@@ -12,6 +12,4 @@ public class Controller {
             Commands useCommands = new Commands(nameCommands[0], nameCommands[1]);
         }
     }
-
-
 }

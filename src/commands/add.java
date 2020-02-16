@@ -1,5 +1,5 @@
 package commands;
-import product.*;
+import movie.*;
 public class add implements ICommand{
     public add(Commands com){
         com.addNewCommand("add",this);
@@ -7,6 +7,6 @@ public class add implements ICommand{
 
     @Override
     public void Do(String parameter){
-        ProductCollection.addProduct(parameter);
+        MovieCollection.addProduct(parameter);
     }
 }
