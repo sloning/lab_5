@@ -1,8 +1,12 @@
 package commands;
 
-public class clear implements ICommand{
+public class Clear implements ICommand{
+    public Clear(Commands com){
+        com.addNewCommand("clear", this);
+    }
+
     @Override
-    public void Do(String parameter){
+    public void Do(String parameter1, String parameter2){
 
     }
 }

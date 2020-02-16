@@ -1,5 +1,5 @@
 package lab;
-
+import commands.*;
 import movie.MovieCollection;
 
 public class Main {

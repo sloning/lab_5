@@ -1,7 +1,7 @@
 package commands;
 
-public class Show implements ICommand {
-    public Show(Commands com){
+public class Remove_key implements ICommand {
+    public Remove_key(Commands com){
         com.addNewCommand("add", this);
     }
 

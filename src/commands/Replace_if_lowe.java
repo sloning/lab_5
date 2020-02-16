@@ -1,7 +1,7 @@
 package commands;
 
-public class Show implements ICommand {
-    public Show(Commands com){
+public class Replace_if_lowe implements ICommand {
+    public Replace_if_lowe(Commands com){
         com.addNewCommand("add", this);
     }
 
