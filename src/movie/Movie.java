@@ -11,7 +11,8 @@ public class Movie {
     private MpaaRating mpaaRating; //Поле может быть null
     private Person director; //Поле не может быть null
 
-    public Movie(String name){
+    public Movie(Long id, String name){
+        this.id = id;
         this.name = name;
     }
 }
