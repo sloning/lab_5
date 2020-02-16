@@ -1,9 +1,9 @@
 package lab;
 
-import product.ProductCollection;
+import movie.MovieCollection;
 
 public class Main {
     public static void main(String[] args){
-        ProductCollection products = new ProductCollection();
+        MovieCollection products = new MovieCollection();
     }
 }
