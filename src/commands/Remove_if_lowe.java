@@ -1,6 +1,6 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
 
 public class Remove_if_lowe implements ICommand {
     public Remove_if_lowe(){
@@ -9,8 +9,9 @@ public class Remove_if_lowe implements ICommand {
 
     @Override
     public void Do(String key, String parameter2) {
-        for (long keyToRemove = 0; keyToRemove < Integer.parseInt(key); keyToRemove++) {
-            MovieCollection.removeMovie(keyToRemove);
+        MovieCollection movieCollection = new MovieCollection();
+        for (int keyToRemove = 0; keyToRemove < Integer.parseInt(key); keyToRemove++) {
+            movieCollection.removeMovie(keyToRemove);
         }
     }
 }

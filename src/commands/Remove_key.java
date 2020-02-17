@@ -1,6 +1,6 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
 
 public class Remove_key implements ICommand {
     public Remove_key(){
@@ -9,7 +9,8 @@ public class Remove_key implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
-        Long key = Long.parseLong (parameter1.trim ());
-        MovieCollection.removeMovie(key);
+        MovieCollection movieCollection = new MovieCollection();
+        Integer key = Integer.parseInt (parameter1.trim ());
+        movieCollection.removeMovie(key);
     }
 }

@@ -11,13 +11,13 @@ public class Movie {
     private MpaaRating mpaaRating; //Поле может быть null
     private Person director; //Поле не может быть null
 
-    public Movie(Long id, String name) {
-        this.id = id;
+    public Movie(int length, String name) {
+        this.length = length;
         this.name = name;
     }
 
     @Override
     public String toString(){
-        return "Movie: " + name + " (ID " + id +")";
+        return "Movie: " + name + " (Length " + length +")";
     }
 }

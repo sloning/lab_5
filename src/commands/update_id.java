@@ -1,6 +1,6 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
 
 public class Update_id implements ICommand {
     public Update_id(){
@@ -9,7 +9,8 @@ public class Update_id implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
-        Long key = Long.parseLong (parameter1.trim ());
-        MovieCollection.replaceMovie(key, parameter2);
+        MovieCollection movieCollection = new MovieCollection();
+        Integer key = Integer.parseInt (parameter1.trim ());
+        movieCollection.replaceMovie(key, parameter2);
     }
 }

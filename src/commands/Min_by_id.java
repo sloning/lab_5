@@ -1,6 +1,6 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
 
 import java.util.Collections;
 
@@ -11,6 +11,7 @@ public class Min_by_id implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
-        System.out.println(MovieCollection.getValue(Collections.min(MovieCollection.getKeySet())));
+        MovieCollection movieCollection = new MovieCollection();
+        System.out.println(movieCollection.getValue(Collections.min(movieCollection.getKeySet())));
     }
 }

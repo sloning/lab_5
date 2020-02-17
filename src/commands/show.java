@@ -1,6 +1,7 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
+import movie.Movie;
 
 public class Show implements ICommand {
     public Show(){
@@ -8,7 +9,8 @@ public class Show implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2){
-        MovieCollection.showMovie();
+    public void Do(String parameter1, String parameter2) {
+        MovieCollection movieCollection = new MovieCollection();
+        movieCollection.showMovie();
     }
 }

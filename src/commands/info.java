@@ -1,6 +1,6 @@
 package commands;
 
-import movie.MovieCollection;
+import data.MovieCollection;
 
 public class Info implements ICommand {
     public Info(){
@@ -9,6 +9,7 @@ public class Info implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
-        MovieCollection.getInfo();
+        MovieCollection movieCollection = new MovieCollection();
+        movieCollection.getInfo();
     }
 }

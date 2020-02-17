@@ -1,10 +1,7 @@
 package lab;
 import commands.*;
-import input_output.Input;
-import movie.*;
+import input_output.InputOutput;
 
-import java.io.*;
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         Clear clear = new Clear();
@@ -24,7 +21,6 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        Input input = new Input();
+        InputOutput input = new InputOutput();
     }
-
 }
