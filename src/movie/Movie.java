@@ -15,4 +15,9 @@ public class Movie {
         this.id = id;
         this.name = name;
     }
+
+    @Override
+    public String toString(){
+        return "Movie: " + name + " (ID " + id +")";
+    }
 }

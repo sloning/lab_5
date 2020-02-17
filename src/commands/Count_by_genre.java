@@ -2,7 +2,7 @@ package commands;
 
 public class Count_by_genre implements ICommand {
     public Count_by_genre(Commands com){
-        com.addNewCommand("Count_by_genre", this);
+        com.addNewCommand("count_by_genre", this);
     }
 
     @Override
