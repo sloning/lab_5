@@ -21,6 +21,7 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        InputOutput input = new InputOutput();
+        InputOutput inputOutput = new InputOutput();
+        inputOutput.Input();
     }
 }

@@ -1,3 +1,2 @@
 help
-insert 1 qwef
-info
+insert 30 Mishka

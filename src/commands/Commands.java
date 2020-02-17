@@ -3,7 +3,7 @@ package commands;
 import java.util.*;
 
 public class Commands {
-    protected static Map<String, ICommand> commands = new TreeMap<>();
+    private static Map<String, ICommand> commands = new TreeMap<>();
 
     public static void addNewCommand(String name, ICommand command){
         commands.put(name, command);

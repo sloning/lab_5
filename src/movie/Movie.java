@@ -16,6 +16,18 @@ public class Movie {
         this.name = name;
     }
 
+    public void setOscarsCount(int oscarsCount){
+        this.oscarsCount=oscarsCount;
+    }
+
+    public void setCoordinates(int x, float y){
+        coordinates=new Coordinates(x,y);
+    }
+
+    public void setDirector(String name, Double height, Float weight, Location location){
+        director=new Person(name,height,weight,location);
+    }
+
     @Override
     public String toString(){
         return "Movie: " + name + " (Length " + length +")";
