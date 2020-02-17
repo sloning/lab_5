@@ -1,8 +1,8 @@
 package commands;
 
 public class History implements ICommand {
-    public History(Commands com){
-        com.addNewCommand("history", this);
+    public History(){
+        Commands.addNewCommand("history", this);
     }
 
     @Override

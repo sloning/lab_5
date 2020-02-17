@@ -5,8 +5,8 @@ import movie.MovieCollection;
 import java.util.Collections;
 
 public class Min_by_id implements ICommand {
-    public Min_by_id(Commands com){
-        com.addNewCommand("min_by_id", this);
+    public Min_by_id(){
+        Commands.addNewCommand("min_by_id", this);
     }
 
     @Override

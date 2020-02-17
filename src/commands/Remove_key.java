@@ -3,8 +3,8 @@ package commands;
 import movie.MovieCollection;
 
 public class Remove_key implements ICommand {
-    public Remove_key(Commands com){
-        com.addNewCommand("add", this);
+    public Remove_key(){
+        Commands.addNewCommand("add", this);
     }
 
     @Override

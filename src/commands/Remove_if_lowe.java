@@ -3,8 +3,8 @@ package commands;
 import movie.MovieCollection;
 
 public class Remove_if_lowe implements ICommand {
-    public Remove_if_lowe(Commands com){
-        com.addNewCommand("remove_lower_key", this);
+    public Remove_if_lowe(){
+        Commands.addNewCommand("remove_lower_key", this);
     }
 
     @Override

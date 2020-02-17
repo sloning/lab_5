@@ -5,7 +5,7 @@ import java.util.*;
 public class Commands {
     protected static Map<String, ICommand> commands = new TreeMap<>();
 
-    public void addNewCommand(String name, ICommand command){
+    public static void addNewCommand(String name, ICommand command){
         commands.put(name, command);
     }
 

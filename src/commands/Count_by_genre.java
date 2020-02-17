@@ -1,8 +1,8 @@
 package commands;
 
 public class Count_by_genre implements ICommand {
-    public Count_by_genre(Commands com){
-        com.addNewCommand("count_by_genre", this);
+    public Count_by_genre(){
+        Commands.addNewCommand("count_by_genre", this);
     }
 
     @Override
