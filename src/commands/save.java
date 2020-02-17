@@ -1,8 +1,8 @@
 package commands;
 
 public class Save implements ICommand {
-    public Save(Commands com){
-        com.addNewCommand("add", this);
+    public Save(){
+        Commands.addNewCommand("add", this);
     }
 
     @Override

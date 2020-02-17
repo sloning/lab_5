@@ -1,8 +1,8 @@
 package commands;
 import movie.*;
 public class Clear implements ICommand{
-    public Clear(Commands com){
-        com.addNewCommand("clear", this);
+    public Clear(){
+        Commands.addNewCommand("clear", this);
     }
 
     @Override

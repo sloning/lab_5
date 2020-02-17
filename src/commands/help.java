@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class Help implements ICommand {
-    public Help(Commands com){
-        com.addNewCommand("help", this);
+    public Help(){
+        Commands.addNewCommand("help", this);
     }
 
     @Override

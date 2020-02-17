@@ -3,8 +3,8 @@ package commands;
 import movie.MovieCollection;
 
 public class Info implements ICommand {
-    public Info(Commands com){
-        com.addNewCommand("info", this);
+    public Info(){
+        Commands.addNewCommand("info", this);
     }
 
     @Override

@@ -2,9 +2,11 @@ package lab;
 import commands.*;
 import input_output.Input;
 import movie.*;
+
+import java.io.*;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
         Clear clear = new Clear();
         Count_by_genre count_by_genre = new Count_by_genre();
         Execute_script execute_script = new Execute_script();
