@@ -27,7 +27,7 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         return Movies.keySet();
     }
 
-    public Movie getValue(int key) {
+    public Movie getValue(long key) {
         return Movies.get(key);
     }
 

@@ -1,8 +1,8 @@
 package commands;
 
 public class Execute_script implements ICommand {
-    public Execute_script(Commands com){
-        com.addNewCommand("execute_script", this);
+    public Execute_script(){
+        Commands.addNewCommand("execute_script", this);
     }
 
     @Override

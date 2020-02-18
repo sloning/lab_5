@@ -1,8 +1,8 @@
 package commands;
 
 public class Exit implements ICommand {
-    public Exit(Commands com){
-        com.addNewCommand("exit", this);
+    public Exit(){
+        Commands.addNewCommand("exit", this);
     }
 
     @Override
