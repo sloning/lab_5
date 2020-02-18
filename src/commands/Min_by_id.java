@@ -12,6 +12,6 @@ public class Min_by_id implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2){
         MovieCollection movieCollection = new MovieCollection();
-        System.out.println(movieCollection.getValue(Collections.min(movieCollection.getKeySet())));
+        //System.out.println(movieCollection.getValue(Collections.min(movieCollection.getKeySet())));
     }
 }

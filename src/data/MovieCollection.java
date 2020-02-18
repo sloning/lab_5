@@ -1,27 +1,29 @@
 package data;
-import data.Collections;
 import movie.Movie;
 
 import java.util.*;
 
 public class MovieCollection { //TODO закинуть в отдельный пэкидж с данными
-    private static Map<Integer, Movie> Movies = new LinkedHashMap<Integer, Movie>();
+    private static Map<Long, Movie> Movies = new LinkedHashMap<Long, Movie>();
 
-    public void addMovie(int length, String movieName) {
-        Movie movie = new Movie(length, movieName);
-        Movies.put(length, movie);
+    public void addMovie(long id, String movieName) {
+        Movie movie = new Movie(id, movieName);
+        Movies.put(id, movie);
     }
 
+    public void putMovie(long key, Movie movie){
+        Movies.put(key,movie);
+    }
 
-    public void removeMovie(int length){
-        Movies.remove(length);
+    public void removeMovie(Long id){
+        Movies.remove(id);
     }
 
     public void clearMovies(){
         Movies.clear();
     }
 
-    public Set<Integer> getKeySet() {
+    public Set<Long> getKeySet() {
         return Movies.keySet();
     }
 
@@ -39,7 +41,7 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         System.out.println(values);
     }
 
-    public void replaceMovie(int key, String movieName){
+    public void replaceMovie(long key, String movieName){
         Movie movie = new Movie(key, movieName);
         Movies.replace(key, movie);
     }
