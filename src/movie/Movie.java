@@ -21,9 +21,11 @@ public class Movie {
         long ms = -946771200000L + (Math.abs(rnd.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000));
         this.creationDate = new Date(ms);
     }
+
     public void setLength(int length){
         this.length=length;
     }
+
     public void setGenre(String genre){
         if (genre=="COMEDY"){
             this.genre=MovieGenre.COMEDY;
@@ -58,6 +60,14 @@ public class Movie {
 
     public void setDirector(String name, Double height, Float weight, Location location){
         director=new Person(name,height,weight,location);
+    }
+
+    public int getLength() {
+        return this.length;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override

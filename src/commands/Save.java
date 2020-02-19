@@ -2,9 +2,6 @@ package commands;
 
 import data.MovieCollection;
 import input_output.InputOutput;
-import movie.Movie;
-
-import java.util.Collection;
 
 public class Save implements ICommand {
     public Save(){

@@ -7,5 +7,6 @@ public class Execute_script implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
+
     }
 }

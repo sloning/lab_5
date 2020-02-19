@@ -8,10 +8,10 @@ public class Update_id implements ICommand {
         Commands.addNewCommand("update", this);
     }
 
-    @Override
+    @Override //Гениальный класс
     public void Do(String parameter1, String parameter2){
         MovieCollection movieCollection = new MovieCollection();
-        Long key = Long.parseLong (parameter1.trim ());
-        movieCollection.replaceMovie(key, parameter2);
+        Long key = Long.parseLong(parameter1.trim());
+        movieCollection.replaceMovie(key, parameter2); //TODO Исправить, сделать, пофиксить, убрать за собой.....
     }
 }

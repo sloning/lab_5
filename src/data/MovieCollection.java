@@ -1,4 +1,5 @@
 package data;
+
 import movie.Movie;
 
 import java.util.*;
@@ -41,8 +42,15 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         System.out.println(values);
     }
 
-    public void replaceMovie(long key, String movieName){
-        Movie movie = new Movie(key, movieName);
-        Movies.replace(key, movie);
+    public void replaceMovie(long key, Movie newMovie){
+        Movies.replace(key, newMovie);
+    }
+
+    public Movie getMovie(long key) {
+        return Movies.get(key);
+    }
+
+    public Map<Long, Movie> getValues() {
+        return Movies;
     }
 }
