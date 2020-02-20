@@ -30,7 +30,7 @@ public class Filter_starts_with_name implements ICommand {
             if (movieName.substring(0, parameter1.length()).compareTo(parameter1) == 0) {
                 System.out.println(movieName);
             }
-            it.remove(); // avoids a ConcurrentModificationException TODO прочитать про это
+            it.remove(); // avoids a ConcurrentModificationException
         }
     }
 }

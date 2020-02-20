@@ -1,9 +1,8 @@
 package lab;
-import input_output.InputOutput;
 import commands.*;
+import input_output.InputOutput;
 public class Main {
     public static void main(String[] args) throws Exception {
-        while (true) {
             Clear clear = new Clear();
             Count_by_genre count_by_genre = new Count_by_genre();
             Execute_script execute_script = new Execute_script();
@@ -21,6 +20,7 @@ public class Main {
             Show show = new Show();
             Update_id update_id = new Update_id();
 
+        while (true) {
             InputOutput inputOutput = new InputOutput();
             inputOutput.Input();
         }

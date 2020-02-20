@@ -1,5 +1,6 @@
 package data;
 
+import input_output.InputMovie;
 import movie.Movie;
 
 import java.util.*;
@@ -15,11 +16,15 @@ public class MovieCollection {
 
     /**
      * Adds new movie to collection
-     * @param id id of new film
      * @param movieName name of new film
      */
-    public void addMovie(long id, String movieName) {
-        Movie movie = new Movie(id, movieName);
+    public void addMovie(String movieName) {
+        InputMovie inputMovie = new InputMovie();
+        /**
+         * almost uniq id of new movie
+         */
+        long id = UUID.randomUUID().hashCode();
+        Movie movie = inputMovie.create(id, movieName);
         Movies.put(id, movie);
     }
 
@@ -68,7 +73,7 @@ public class MovieCollection {
      * Prints info about collection
      */
     public void getInfo() {
-        System.out.println("тип коллекции: HashMap");
+        System.out.println("тип коллекции: LinkedHashMap");
         System.out.println("количество элементов коллекции: " + Movies.size());
     }
 
