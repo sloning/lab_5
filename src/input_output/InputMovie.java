@@ -6,6 +6,7 @@ import movie.Movie;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 /**
  * Creates new movie object
  * @author Abay
@@ -31,9 +32,13 @@ public class InputMovie { //TODO переименовать в фабртику
         try {
             System.out.println("Введите количество полученных фильмом оскаров");
             int oscars = scanner.nextInt();
+            if (oscars<=0) throw new NumberFormatException();
             movie.setOscarsCount(oscars);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setOscarsCountForMovie(movie);
+        } catch (NumberFormatException e) {
+            System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
             this.setOscarsCountForMovie(movie);
         }
     }
@@ -43,9 +48,13 @@ public class InputMovie { //TODO переименовать в фабртику
         try {
             System.out.println("Введите длину фильма");
             int length = scanner.nextInt();
+            if (length<=0) throw new NumberFormatException();
             movie.setLength(length);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setLengthForMovie(movie);
+        } catch (NumberFormatException e) {
+            System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
             this.setLengthForMovie(movie);
         }
     }
@@ -82,8 +91,10 @@ public class InputMovie { //TODO переименовать в фабртику
             String nameDirector = scanner.nextLine();
             System.out.println("Введите высоту (или напишите 0, если хотите пропустить)");
             Double height = scanner.nextDouble();
+            if (height<0) throw new NumberFormatException();
             System.out.println("Введите вес (или напишите 0, если хотите пропустить)");
             Float weight = scanner.nextFloat();
+            if (weight<0) throw new NumberFormatException();
 
             System.out.println("Введите геолокацию директора");
             System.out.println("Введите название геолокации");
@@ -97,6 +108,9 @@ public class InputMovie { //TODO переименовать в фабртику
             movie.setDirector(nameDirector, height, weight, new Location(nameLocation, xLocation, yLocation, zLocation));
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setDirectorForMovie(movie);
+        } catch (NumberFormatException e) {
+            System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
             this.setDirectorForMovie(movie);
         }
     }

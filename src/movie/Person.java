@@ -8,9 +8,17 @@ public class Person {
     private Location location; //Поле может быть null
 
     public Person(String name, Double height, Float weight, Location location){
+        if (weight==0) {
+            this.weight=null;
+        } else {
+            this.weight=weight;
+        }
+        if (height==0) {
+            this.height=null;
+        } else {
+            this.height=height;
+        }
         this.name=name;
-        this.height=height;
-        this.weight=weight;
         this.location=location;
     }
 }

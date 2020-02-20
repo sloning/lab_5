@@ -8,7 +8,7 @@ import data.MovieCollection;
  */
 public class Show implements ICommand {
     public Show(){
-        Commands.addNewCommand("add", this);
+        Commands.addNewCommand("show", this);
     }
 
     @Override

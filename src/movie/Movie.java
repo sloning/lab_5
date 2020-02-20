@@ -115,6 +115,6 @@ public class Movie {
     public String toString() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(this.creationDate);
-        return "Movie: " + name + " (ID " + length +") " + date;
+        return "Movie: " + name + " (ID " + id +") " + date;
     }
 }
