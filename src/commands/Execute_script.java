@@ -2,6 +2,8 @@ package commands;
 
 import input_output.InputOutput;
 
+import java.io.IOException;
+
 /**
  * Executes script
  * @author Not Yet
@@ -17,8 +19,8 @@ public class Execute_script implements ICommand {
      * @param parameter2
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1, String parameter2) throws IOException {
         InputOutput inputOutput = new InputOutput();
-//        inputOutput.InputFile(parameter1); TODO КАво тут надо
+        inputOutput.InputFile(parameter1);
     }
 }

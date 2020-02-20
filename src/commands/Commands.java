@@ -1,5 +1,6 @@
 package commands;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -28,7 +29,7 @@ public class Commands {
      * @param parameter1 first parameter to transmit to command
      * @param parameter2 second parameter to transmit to command
      */
-    public Commands(String name, String parameter1, String parameter2){
+    public Commands(String name, String parameter1, String parameter2) throws IOException {
        commands.get(name).Do(parameter1, parameter2);
     }
 

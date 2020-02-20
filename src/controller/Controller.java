@@ -1,7 +1,8 @@
 package controller;
-import java.util.*;
-import commands.*;
+import commands.Commands;
 import data.CommandHistory;
+
+import java.io.IOException;
 
 /**
  * Process commands and pass it to command module
@@ -12,7 +13,7 @@ public class Controller {
      * Splits string with commands to command name and parameters
      * @param command command to process
      */
-    public Controller(String command){
+    public Controller(String command) throws IOException {
         String[] nameCommands = new String[2];
         nameCommands=command.split(" ");
         if (nameCommands.length==1) {
