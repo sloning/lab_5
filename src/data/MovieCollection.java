@@ -80,8 +80,13 @@ public class MovieCollection {
     /**
      * Prints all movies
      */
-    public void showMovies() {
-        System.out.println(Movies.values());
+    public String showMovies() {
+        String s = null;
+        for (Map.Entry<Long, Movie> entry : Movies.entrySet()) {
+            Movie movie = entry.getValue();
+            s=s + "\n" + movie.getInfo();
+        }
+        return s;
     }
 
     /**

@@ -111,6 +111,16 @@ public class Movie {
         return this.genre.toString();
     }
 
+    /**
+     * @return info about movie
+     */
+    public String getInfo() {
+        return "Movie: " + name + "\n ID: " + id + "\n Coordinates " + this.coordinates.getCoordinates() +
+                "\n Date of creation: " +  this.creationDate + "\n Count of oscars: " +  oscarsCount +
+                "Length: " + length + "\n Genre:" + getGenre() + "\n MPAA rating: " + mpaaRating +
+                "\n Director: " + director.getPerson();
+    }
+
     @Override
     public String toString() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

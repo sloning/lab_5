@@ -17,6 +17,6 @@ public class Save implements ICommand {
     public void Do(String parameter1, String parameter2) throws IOException {
         MovieCollection movieCollection = new MovieCollection();
         InputOutput inputOutput = new InputOutput();
-        inputOutput.Output(movieCollection.getMap().toString());
+        inputOutput.Output(movieCollection.showMovies());
     }
 }

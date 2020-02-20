@@ -14,6 +14,6 @@ public class Show implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection();
-        movieCollection.showMovies();
+        System.out.println(movieCollection.showMovies());
     }
 }

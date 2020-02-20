@@ -1,5 +1,7 @@
 package movie;
 
+import java.util.Date;
+
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
     private java.util.Date birthday; //Поле не может быть null
@@ -20,5 +22,10 @@ public class Person {
         }
         this.name=name;
         this.location=location;
+        this.birthday = new Date();
+    }
+
+    public String getPerson(){
+        return "Name: " + name + "\n Birthday + " + this.birthday + "\n Height: " + height + "\n Weight: " + weight + "\n Location: " + location.getLocation();
     }
 }

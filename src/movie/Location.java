@@ -12,4 +12,8 @@ public class Location {
         this.y=y;
         this.z=z;
     }
+
+    public String getLocation(){
+        return "x = " + x + " y = " + y + " z = " + z;
+    }
 }
