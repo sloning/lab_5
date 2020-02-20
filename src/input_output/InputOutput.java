@@ -1,8 +1,10 @@
 package input_output;
 
+import com.opencsv.CSVWriter;
 import controller.Controller;
+
 import java.io.*;
-import au.com.bytecode.opencsv.CSVWriter;
+import java.util.Scanner;
 
 /**
  * Read input from console and write to a file
@@ -11,11 +13,29 @@ import au.com.bytecode.opencsv.CSVWriter;
 public class InputOutput {
     /**
      * Read inputs from console
+     *
      * @return input
      * @throws IOException
      */
     public void Input() throws IOException {
-        File file = new File("Read.txt");
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Введите команду");
+            String command = sc.nextLine();
+            Controller controller = new Controller(command);
+        } catch (NullPointerException e) {
+            System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
+        }
+    }
+
+    /**
+     * Read inputs from file
+     *
+     * @return input
+     * @throws IOException
+     */
+    public void InputFile(String nameFile) throws IOException {
+        File file = new File(nameFile);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         while (bufferedReader.ready()) {
@@ -28,18 +48,17 @@ public class InputOutput {
      * @param text value to write in file
      * @throws IOException
      */
-    public void Output(String text) throws IOException {
-        /**
-         * File name
-         */
-        String csv = "data.csv";
-        CSVWriter writer = new CSVWriter(new FileWriter(csv));
-        //Create record
-        String [] record = "4,David,Miller,Australia,30".split(",");
-        //Write the record to file
-        writer.writeNext(record);
-        //close the writer
-        writer.close();
-    }
+      public void Output(String text) throws IOException {
+          /**
+           * File name
+           */
+          String csv = "data.csv";
+          CSVWriter writer = new CSVWriter(new FileWriter(csv));
+          //Create record
+          String[] record = "4,David,Miller,Australia,30".split(",");
+          //Write the record to file
+          writer.writeNext(record);
+          //close the writer
+          writer.close();
+      }
 }
-

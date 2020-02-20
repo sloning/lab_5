@@ -39,29 +39,28 @@ public class Movie {
     /**
      * @param genre genre of movie
      */
-    public void setGenre(String genre){
-        if (genre=="COMEDY"){
+    public void setGenre(String genre) {
+        if (genre.equals("COMEDY")){
             this.genre=MovieGenre.COMEDY;
-        } else if (genre=="MUSICAL"){
+        } else if (genre.equals("MUSICAL")){
             this.genre=MovieGenre.MUSICAL;
-        } else if (genre=="FANTASY"){
+        } else if (genre.equals("FANTASY")){
             this.genre=MovieGenre.FANTASY;
-        } if (genre=="пропустить"){
-
+        } if (genre.equals("пропустить")){
         }
     }
 
     /**
      * @param rating rating of movie
      */
-    public void setMpaaRating(String rating){
-        if (rating=="G"){
+    public void setMpaaRating(String rating) {
+        if (rating.equals("G")){
             this.mpaaRating=MpaaRating.G;
-        } else if (rating=="PG"){
+        } else if (rating.equals("PG")){
             this.mpaaRating=MpaaRating.PG;
-        } else if (rating=="PG_13"){
+        } else if (rating.equals("PG_13")){
             this.mpaaRating=MpaaRating.PG_13;
-        } if (rating=="пропустить"){
+        } if (rating.equals("пропустить")){
 
         }
     }

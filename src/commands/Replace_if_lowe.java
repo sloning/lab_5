@@ -22,7 +22,8 @@ public class Replace_if_lowe implements ICommand {
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection();
         Long key = Long.parseLong(parameter1.trim());
-        Movie newMovie = InputMovie.create(key, parameter2);
+        InputMovie inputMovie = new InputMovie();
+        Movie newMovie = inputMovie.create(key, parameter2);
         Movie oldMovie = movieCollection.getMovie(key);
 
         if (newMovie.getLength() < oldMovie.getLength()) {

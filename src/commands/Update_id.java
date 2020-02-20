@@ -21,6 +21,7 @@ public class Update_id implements ICommand {
     public void Do(String parameter1, String parameter2){
         MovieCollection movieCollection = new MovieCollection();
         Long key = Long.parseLong(parameter1.trim());
-        movieCollection.replaceMovie(key, InputMovie.create(key, parameter2));
+        InputMovie newMovie = new InputMovie();
+        movieCollection.replaceMovie(key, newMovie.create(key, parameter2));
     }
 }

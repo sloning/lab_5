@@ -3,6 +3,7 @@ package input_output;
 import movie.Location;
 import movie.Movie;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -10,50 +11,112 @@ import java.util.Scanner;
  * @author Abay
  */
 public class InputMovie { //TODO переименовать в фабртику
+    public void setCoordinatesForMovie(Movie movie) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Введите координаты");
+            System.out.println("Введите координату x");
+            int x = scanner.nextInt();
+            System.out.println("Введите координату y");
+            int y = scanner.nextInt();
+            movie.setCoordinates(x, y);
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели значение неверного типа. Введите значения заново");
+            this.setCoordinatesForMovie(movie);
+        }
+    }
+
+    public void setOscarsCountForMovie(Movie movie) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Введите количество полученных фильмом оскаров");
+            int oscars = scanner.nextInt();
+            movie.setOscarsCount(oscars);
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setOscarsCountForMovie(movie);
+        }
+    }
+
+    public void setLengthForMovie(Movie movie) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Введите длину фильма");
+            int length = scanner.nextInt();
+            movie.setLength(length);
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setLengthForMovie(movie);
+        }
+    }
+
+    public void setGenreForMovie(Movie movie) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY \n(Или напишите пропустить)");
+        String genre = scanner.nextLine();
+        if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY")) || (genre.equals("пропустить"))) {
+            movie.setGenre(genre);
+        } else {
+            System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setGenreForMovie(movie);
+        }
+    }
+
+    public void setMpaaRatingForMovie(Movie movie){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен) \n(Или напишите пропутить)");
+        String rating = scanner.nextLine();
+        if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13") || (rating.equals("пропустить")))))) {
+            movie.setMpaaRating(rating);
+        } else {
+            System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setMpaaRatingForMovie(movie);
+        }
+    }
+
+    public void setDirectorForMovie(Movie movie) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Укажите данные директора фильма");
+            System.out.println("Введите имя");
+            String nameDirector = scanner.nextLine();
+            System.out.println("Введите высоту (или напишите 0, если хотите пропустить)");
+            Double height = scanner.nextDouble();
+            System.out.println("Введите вес (или напишите 0, если хотите пропустить)");
+            Float weight = scanner.nextFloat();
+
+            System.out.println("Введите геолокацию директора");
+            System.out.println("Введите название геолокации");
+            String nameLocation = scanner.nextLine();
+            System.out.println("Введите координату x");
+            int xLocation = scanner.nextInt();
+            System.out.println("Введите координату y");
+            long yLocation = scanner.nextLong();
+            System.out.println("Введите координату z");
+            int zLocation = scanner.nextInt();
+            movie.setDirector(nameDirector, height, weight, new Location(nameLocation, xLocation, yLocation, zLocation));
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели значение неверного типа. Введите значение заново");
+            this.setDirectorForMovie(movie);
+        }
+    }
+
     /**
      * Reads input and therefore creates new movie
      * @param id id of new movie
      * @param movieName name of new movie
      * @return new movie object
      */
-    public static Movie create(Long id, String movieName) {
+    public Movie create(Long id, String movieName) {
         Movie movie = new Movie(id, movieName);
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите координаты");
-        System.out.println("Введите координату x");
-        int x = scanner.nextInt();
-        System.out.println("Введите координату y");
-        int y = scanner.nextInt();
-        movie.setCoordinates(x,y);
-        System.out.println("Введите количество полученных фильмом оскаров");
-        int oscars = scanner.nextInt();
-        movie.setOscarsCount(oscars);
-        System.out.println("Введите длину фильма");
-        int length = scanner.nextInt();
-        movie.setLength(length);
-        System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY \n(Или напишите пропустить)");
-        String genre = scanner.nextLine();
-        movie.setGenre(genre);
-        System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен) \n(Или напишите пропутить)");
-        String rating = scanner.nextLine();
-        movie.setMpaaRating(rating);
-        System.out.println("Укажите данные директора фильма");
-        System.out.println("Введите имя");
-        String nameDirector = scanner.nextLine();
-        System.out.println("Введите высоту (или напишите 0, если хотите пропустить)");
-        Double height = scanner.nextDouble();
-        System.out.println("Введите вес (или напишите 0, если хотите пропустить)");
-        Float weight = scanner.nextFloat();
-        System.out.println("Введите геолокацию директора");
-        System.out.println("Введите название геолокации");
-        String nameLocation = scanner.nextLine();
-        System.out.println("Введите координату x");
-        int xLocation = scanner.nextInt();
-        System.out.println("Введите координату y");
-        long yLocation = scanner.nextLong();
-        System.out.println("Введите координату z");
-        int zLocation = scanner.nextInt();
-        movie.setDirector(nameDirector, height, weight, new Location(nameLocation, xLocation, yLocation, zLocation));
+        this.setCoordinatesForMovie(movie);
+        this.setOscarsCountForMovie(movie);
+        this.setLengthForMovie(movie);
+        this.setGenreForMovie(movie);
+        this.setMpaaRatingForMovie(movie);
+        this.setDirectorForMovie(movie);
+
         return movie;
     }
 }
