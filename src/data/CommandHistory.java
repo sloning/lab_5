@@ -1,15 +1,16 @@
 package data;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Stores last 6 commands
+ * Stores commands
  */
 public class CommandHistory {
     /**
      * Place there commands stores
      */
-    private static ArrayDeque<String> history = new ArrayDeque<String>(6);
+    private static List<String> history = new ArrayList<String>();
 
     /**
      * Adds new command to collection and removes the oldest
@@ -23,6 +24,6 @@ public class CommandHistory {
      * Prints last six commands
      */
     public void printHistory() {
-        System.out.println(history);
+        System.out.println(history.subList(Math.max(history.size() - 6, 0), history.size()));
     }
 }
