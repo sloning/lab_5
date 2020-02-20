@@ -5,9 +5,19 @@ import movie.Movie;
 
 import java.util.Scanner;
 
+/**
+ * Creates new movie object
+ * @author Abay
+ */
 public class InputMovie { //TODO переименовать в фабртику
-    public static Movie create(Long key, String movieName) {
-        Movie movie = new Movie(key, movieName);
+    /**
+     * Reads input and therefore creates new movie
+     * @param id id of new movie
+     * @param movieName name of new movie
+     * @return new movie object
+     */
+    public static Movie create(Long id, String movieName) {
+        Movie movie = new Movie(id, movieName);
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите координаты");
         System.out.println("Введите координату x");

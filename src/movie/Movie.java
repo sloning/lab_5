@@ -3,8 +3,10 @@ package movie;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
+/**
+ * Stores movies
+ */
 public class Movie {
     private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -16,16 +18,27 @@ public class Movie {
     private MpaaRating mpaaRating; //Поле может быть null
     private Person director; //Поле не может быть null
 
+    /**
+     * Constructor, creates new movie
+     * @param id id of new movie
+     * @param name name of new movie
+     */
     public Movie(long id, String name) {
         this.id = id;
         this.name = name;
         this.creationDate = new Date();
     }
 
+    /**
+     * @param length length of movie
+     */
     public void setLength(int length){
         this.length=length;
     }
 
+    /**
+     * @param genre genre of movie
+     */
     public void setGenre(String genre){
         if (genre=="COMEDY"){
             this.genre=MovieGenre.COMEDY;
@@ -38,6 +51,9 @@ public class Movie {
         }
     }
 
+    /**
+     * @param rating rating of movie
+     */
     public void setMpaaRating(String rating){
         if (rating=="G"){
             this.mpaaRating=MpaaRating.G;
@@ -50,26 +66,48 @@ public class Movie {
         }
     }
 
+    /**
+     * @param oscarsCount amount of oscars
+     */
     public void setOscarsCount(int oscarsCount){
         this.oscarsCount=oscarsCount;
     }
 
+    /**
+     * @param x coordinate x
+     * @param y coordinate y
+     */
     public void setCoordinates(int x, float y){
         coordinates=new Coordinates(x,y);
     }
 
+    /**
+     * @param name name of director
+     * @param height height of director
+     * @param weight weight of director
+     * @param location location of director
+     */
     public void setDirector(String name, Double height, Float weight, Location location){
         director=new Person(name,height,weight,location);
     }
 
+    /**
+     * @return length of movie
+     */
     public int getLength() {
         return this.length;
     }
 
+    /**
+     * @return name of movie
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * @return genre of movie
+     */
     public String getGenre() {
         return this.genre.toString();
     }

@@ -1,8 +1,11 @@
 package commands;
 
 import data.MovieCollection;
-import movie.Movie;
 
+/**
+ * Prints all movies in collection
+ * @author Abay
+ */
 public class Show implements ICommand {
     public Show(){
         Commands.addNewCommand("add", this);
@@ -11,6 +14,6 @@ public class Show implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection();
-        movieCollection.showMovie();
+        movieCollection.showMovies();
     }
 }

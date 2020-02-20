@@ -2,14 +2,22 @@ package commands;
 
 import data.MovieCollection;
 
-import java.util.Collection;
 import java.util.Collections;
 
+/**
+ * Printing element with minimal id
+ * @author Vladislav
+ */
 public class Min_by_id implements ICommand {
     public Min_by_id() {
         Commands.addNewCommand("min_by_id", this);
     }
 
+    /**
+     * Get Key Set from HashMap then take lowest key (key = id) and print it's value
+     * @param parameter1 ignore this
+     * @param parameter2 ignore this too
+     */
     @Override
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection(); //something wrong.

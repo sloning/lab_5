@@ -3,6 +3,9 @@ package commands;
 import data.MovieCollection;
 import input_output.InputOutput;
 
+/**
+ * Saves collection to a file
+ */
 public class Save implements ICommand {
     public Save(){
         Commands.addNewCommand("add", this);

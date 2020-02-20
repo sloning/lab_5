@@ -2,17 +2,28 @@ package commands;
 
 import data.MovieCollection;
 import movie.Movie;
-import movie.MovieGenre;
 
 import java.util.*;
 
+/**
+ * Count how many movies of this genre collection has
+ * @author Vladislav
+ */
 public class Count_by_genre implements ICommand {
     public Count_by_genre(){
         Commands.addNewCommand("count_by_genre", this);
     }
 
+    /**
+     * Iterate through every element of collection to count all movies
+     * @param parameter1 name of genre
+     * @param parameter2 nothing here, ignore it
+     */
     @Override
-    public void Do(String parameter1, String parameter2) {      //Да я хуй знает как это делать
+    public void Do(String parameter1, String parameter2) {
+        /**
+         * Counts how many movies of the genre
+         */
         int count = 0;
         MovieCollection movieCollection = new MovieCollection();
         Iterator it = movieCollection.getMap().entrySet().iterator();

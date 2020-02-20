@@ -6,11 +6,20 @@ import movie.Movie;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Prints all movies which names starts with this name
+ * @author Vladislav
+ */
 public class Filter_starts_with_name implements ICommand {
     public Filter_starts_with_name(){
         Commands.addNewCommand("filter_starts_with_name", this);
     }
 
+    /**
+     * Iterates through all elements of collection and print elements which names starts with this name
+     * @param parameter1 name to filter
+     * @param parameter2 nothing here, ignore it plz
+     */
     @Override
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection();

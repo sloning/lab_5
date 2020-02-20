@@ -1,8 +1,9 @@
 package commands;
 
-import java.util.Arrays;
-import java.util.Map;
-
+/**
+ * Prints help for every command
+ * @author Abay
+ */
 public class Help implements ICommand {
     public Help(){
         Commands.addNewCommand("help", this);

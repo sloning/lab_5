@@ -3,7 +3,15 @@ import java.util.*;
 import commands.*;
 import data.CommandHistory;
 
+/**
+ * Process commands and pass it to command module
+ * @author Abay
+ */
 public class Controller {
+    /**
+     * Splits string with commands to command name and parameters
+     * @param command command to process
+     */
     public Controller(String command){
         String[] nameCommands = new String[2];
         nameCommands=command.split(" ");
