@@ -5,7 +5,7 @@ import movie.Movie;
 
 import java.util.Scanner;
 
-public class InputMovie {
+public class InputMovie { //TODO переименовать в фабртику
     public static Movie create(Long key, String movieName) {
         Movie movie = new Movie(key, movieName);
         Scanner scanner = new Scanner(System.in);

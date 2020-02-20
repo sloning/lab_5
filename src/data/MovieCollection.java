@@ -12,11 +12,11 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         Movies.put(id, movie);
     }
 
-    public void putMovie(long key, Movie movie){
+    public void putMovie(long key, Movie movie) {
         Movies.put(key,movie);
     }
 
-    public void removeMovie(Long id){
+    public void removeMovie(Long id) {
         Movies.remove(id);
     }
 
@@ -32,17 +32,16 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         return Movies.get(key);
     }
 
-    public void getInfo(){
+    public void getInfo() {
         System.out.println("тип коллекции: HashMap");
         System.out.println("количество элементов коллекции: " + Movies.size());
     }
 
-    public void showMovie(){
-        Collection<Movie> values = Movies.values();
-        System.out.println(values);
+    public void showMovie() {
+        System.out.println(Movies.values());
     }
 
-    public void replaceMovie(long key, Movie newMovie){
+    public void replaceMovie(long key, Movie newMovie) {
         Movies.replace(key, newMovie);
     }
 

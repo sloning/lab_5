@@ -1,6 +1,7 @@
 package controller;
 import java.util.*;
 import commands.*;
+import data.CommandHistory;
 
 public class Controller {
     public Controller(String command){
@@ -13,5 +14,7 @@ public class Controller {
         } else {
             Commands useCommands = new Commands(nameCommands[0], nameCommands[1], nameCommands[2]);
         }
-        }
-        }
+        CommandHistory commandHistory = new CommandHistory();
+        commandHistory.addCommand(nameCommands[0]);
+    }
+}

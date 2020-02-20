@@ -2,6 +2,9 @@ package lab;
 import commands.*;
 import input_output.InputOutput;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Clear clear = new Clear();
