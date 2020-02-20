@@ -15,6 +15,18 @@ public class MovieCollection {
     private static Map<Long, Movie> Movies = new LinkedHashMap<Long, Movie>();
 
     /**
+     * Data of creature
+     */
+    private java.util.Date dateCreation;
+
+    /**
+     * Constructor of this class
+     */
+    public MovieCollection(){
+        this.dateCreation = new Date();
+    }
+
+    /**
      * Adds new movie to collection
      * @param movieName name of new film
      */
@@ -75,6 +87,7 @@ public class MovieCollection {
     public void getInfo() {
         System.out.println("тип коллекции: LinkedHashMap");
         System.out.println("количество элементов коллекции: " + Movies.size());
+        System.out.println("дата создания колекции: " + dateCreation);
     }
 
     /**
