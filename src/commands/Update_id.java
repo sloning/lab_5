@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import input_output.InputMovie;
 import movie.Location;
 
 public class Update_id implements ICommand {
@@ -12,6 +13,6 @@ public class Update_id implements ICommand {
     public void Do(String parameter1, String parameter2){
         MovieCollection movieCollection = new MovieCollection();
         Long key = Long.parseLong(parameter1.trim());
-        movieCollection.replaceMovie(key, parameter2); //TODO Исправить, сделать, пофиксить, убрать за собой.....
+        movieCollection.replaceMovie(key, InputMovie.create(key, parameter2));
     }
 }

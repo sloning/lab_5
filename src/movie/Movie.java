@@ -1,5 +1,7 @@
 package movie;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
@@ -17,9 +19,7 @@ public class Movie {
     public Movie(long id, String name) {
         this.id = id;
         this.name = name;
-        Random rnd = new Random();
-        long ms = -946771200000L + (Math.abs(rnd.nextLong()) % (70L * 365 * 24 * 60 * 60 * 1000));
-        this.creationDate = new Date(ms);
+        this.creationDate = new Date();
     }
 
     public void setLength(int length){
@@ -70,8 +70,14 @@ public class Movie {
         return this.name;
     }
 
+    public String getGenre() {
+        return this.genre.toString();
+    }
+
     @Override
-    public String toString(){
-        return "Movie: " + name + " (ID " + length +")";
+    public String toString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(this.creationDate);
+        return "Movie: " + name + " (ID " + length +") " + date;
     }
 }

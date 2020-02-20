@@ -2,6 +2,8 @@ package input_output;
 
 import controller.Controller;
 import java.io.*;
+import au.com.bytecode.opencsv.CSVWriter;
+
 
 public class InputOutput { //TODO объеденить, вынести инпут в метод
     public void Input() throws Exception {
@@ -14,13 +16,14 @@ public class InputOutput { //TODO объеденить, вынести инпу�
     }
 
     public void Output(String text) throws IOException {
-        File file = new File("Write.txt");
-        FileWriter fileWriter = new FileWriter(file);
-        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-        bufferedWriter.write(text);
-        bufferedWriter.newLine();
-        bufferedWriter.flush();
-        bufferedWriter.close();
+        String csv = "data.csv";
+        CSVWriter writer = new CSVWriter(new FileWriter(csv));
+        //Create record
+        String [] record = "4,David,Miller,Australia,30".split(",");
+        //Write the record to file
+        writer.writeNext(record);
+        //close the writer
+        writer.close();
     }
 }
 

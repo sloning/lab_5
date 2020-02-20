@@ -14,7 +14,7 @@ public class Filter_starts_with_name implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2) {
         MovieCollection movieCollection = new MovieCollection();
-        Iterator it = movieCollection.getValues().entrySet().iterator();
+        Iterator it = movieCollection.getMap().entrySet().iterator();
         while (it.hasNext()) {
             Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
             String movieName = movie.getName();

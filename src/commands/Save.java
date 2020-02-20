@@ -10,7 +10,8 @@ public class Save implements ICommand {
 
     @Override
     public void Do(String parameter1, String parameter2){
-        InputOutput inputOutput = new InputOutput();
         MovieCollection movieCollection = new MovieCollection();
+        InputOutput inputOutput = new InputOutput();
+        inputOutput.Output(movieCollection.getMap());
     }
 }

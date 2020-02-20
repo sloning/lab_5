@@ -1,10 +1,11 @@
 package data;
 
 import movie.Movie;
+import movie.MovieGenre;
 
 import java.util.*;
 
-public class MovieCollection { //TODO закинуть в отдельный пэкидж с данными
+public class MovieCollection {
     private static Map<Long, Movie> Movies = new LinkedHashMap<Long, Movie>();
 
     public void addMovie(long id, String movieName) {
@@ -13,7 +14,7 @@ public class MovieCollection { //TODO закинуть в отдельный п�
     }
 
     public void putMovie(long key, Movie movie) {
-        Movies.put(key,movie);
+        Movies.put(key, movie);
     }
 
     public void removeMovie(Long id) {
@@ -49,7 +50,7 @@ public class MovieCollection { //TODO закинуть в отдельный п�
         return Movies.get(key);
     }
 
-    public Map<Long, Movie> getValues() {
+    public Map<Long, Movie> getMap() {
         return Movies;
     }
 }
