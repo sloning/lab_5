@@ -33,7 +33,7 @@ public class Count_by_genre implements ICommand {
             if (parameter1 == movieGenre) {
                 count++;
             }
-            it.remove(); // avoids a ConcurrentModificationException TODO прочитать про это
+            it.remove(); // avoids a ConcurrentModificationException
         }
         System.out.print("Количество фильмов жанра " + parameter1 + " - ");
         System.out.println(count);
