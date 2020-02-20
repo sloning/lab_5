@@ -9,6 +9,9 @@ public class Coordinates {
         this.y=y;
     }
 
+    /**
+      * @return string with coordinates
+     */
     public String getCoordinates() {
         return "x = " + this.x + ", y = " + this.y;
     }

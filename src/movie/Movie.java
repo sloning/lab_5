@@ -112,7 +112,7 @@ public class Movie {
     }
 
     /**
-     * @return info about movie
+     * @return string with information about movie
      */
     public String getInfo() {
         return "Movie: " + name + "\n ID: " + id + "\n Coordinates " + this.coordinates.getCoordinates() +

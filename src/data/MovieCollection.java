@@ -91,15 +91,16 @@ public class MovieCollection {
     }
 
     /**
-     * Prints all movies
+     * Iterates through all movies and returns information about them
+     * @return info about all movies
      */
     public String showMovies() {
-        String s = null;
+        String moviesInfo = null;
         for (Map.Entry<Long, Movie> entry : Movies.entrySet()) {
             Movie movie = entry.getValue();
-            s=s + "\n" + movie.getInfo();
+            moviesInfo = moviesInfo + "\n" + movie.getInfo();
         }
-        return s;
+        return moviesInfo;
     }
 
     /**
