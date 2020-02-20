@@ -1,5 +1,7 @@
 package movie;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person {
@@ -35,7 +37,9 @@ public class Person {
     /**
      * @return string with information about person
      */
-    public String getPerson(){
-        return "Name: " + name + "\n Birthday + " + this.birthday + "\n Height: " + height + "\n Weight: " + weight + "\n Location: " + location.getLocation();
+    public String getPerson() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(this.birthday);
+        return "Name: " + name + "\nBirthday: " + date + "\nHeight: " + height + "\nWeight: " + weight + "\nLocation: " + location.getLocation();
     }
 }

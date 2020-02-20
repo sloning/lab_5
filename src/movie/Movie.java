@@ -115,10 +115,12 @@ public class Movie {
      * @return string with information about movie
      */
     public String getInfo() {
-        return "Movie: " + name + "\n ID: " + id + "\n Coordinates " + this.coordinates.getCoordinates() +
-                "\n Date of creation: " +  this.creationDate + "\n Count of oscars: " +  oscarsCount +
-                "Length: " + length + "\n Genre:" + getGenre() + "\n MPAA rating: " + mpaaRating +
-                "\n Director: " + director.getPerson();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(this.creationDate);
+        return "Movie: " + name + "\nID: " + id + "\nCoordinates: " + this.coordinates.getCoordinates() +
+                "\nDate of creation: " +  date + "\nCount of oscars: " +  oscarsCount +
+                "\nLength: " + length + "\nGenre: " + getGenre() + "\nMPAA rating: " + mpaaRating +
+                "\nDirector: " + director.getPerson();
     }
 
     @Override

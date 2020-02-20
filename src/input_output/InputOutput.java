@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class InputOutput {
     /**
      * Read inputs from console
-     *
      * @return input
      * @throws IOException
      */
@@ -30,7 +29,6 @@ public class InputOutput {
 
     /**
      * Read inputs from file
-     *
      * @return input
      * @throws IOException
      */

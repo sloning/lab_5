@@ -95,7 +95,7 @@ public class MovieCollection {
      * @return info about all movies
      */
     public String showMovies() {
-        String moviesInfo = null;
+        String moviesInfo = "";
         for (Map.Entry<Long, Movie> entry : Movies.entrySet()) {
             Movie movie = entry.getValue();
             moviesInfo = moviesInfo + "\n" + movie.getInfo();
