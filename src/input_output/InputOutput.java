@@ -52,13 +52,10 @@ public class InputOutput {
           /**
            * File name
            */
-          String csv = "data.csv";
+          String csv = "write.csw";
           CSVWriter writer = new CSVWriter(new FileWriter(csv));
-          //Create record
-          String[] record = "4,David,Miller,Australia,30".split(",");
-          //Write the record to file
+          String[] record = text.split(",");
           writer.writeNext(record);
-          //close the writer
           writer.close();
       }
 }
