@@ -1,2 +1,1 @@
 help
-insert 30 Mishka

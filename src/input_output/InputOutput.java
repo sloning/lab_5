@@ -35,11 +35,15 @@ public class InputOutput {
      * @throws IOException
      */
     public void InputFile(String nameFile) throws IOException {
-        File file = new File(nameFile);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        while (bufferedReader.ready()) {
-            Controller controller = new Controller(bufferedReader.readLine());
+        try {
+            File file = new File(nameFile);
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while (bufferedReader.ready()) {
+                Controller controller = new Controller(bufferedReader.readLine());
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Вы ввели неверное название файла");
         }
     }
 
@@ -52,7 +56,7 @@ public class InputOutput {
           /**
            * File name
            */
-          String csv = "write.csw";
+          String csv = "write.csv";
           CSVWriter writer = new CSVWriter(new FileWriter(csv));
           String[] record = text.split(",");
           writer.writeNext(record);
