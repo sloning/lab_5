@@ -1,6 +1,5 @@
 package data;
 
-import input_output.InputMovie;
 import movie.Movie;
 
 import java.util.*;
@@ -12,7 +11,7 @@ public class MovieCollection {
     /**
      * LinkedHashMap stores every movie
      */
-    private static Map<Long, Movie> Movies = new LinkedHashMap<Long, Movie>();
+    private static Map<String, Movie> Movies = new LinkedHashMap<>();
 
     /**
      * Data of creature
@@ -26,35 +25,22 @@ public class MovieCollection {
         this.dateCreation = new Date();
     }
 
-    /**
-     * Adds new movie to collection
-     * @param movieName name of new film
-     */
-    public void addMovie(String movieName) {
-        InputMovie inputMovie = new InputMovie();
-        /**
-         * almost uniq id of new movie
-         */
-        long id = UUID.randomUUID().hashCode();
-        Movie movie = inputMovie.create(id, movieName);
-        Movies.put(id, movie);
-    }
 
     /**
      * Puts movie to collection
      * @param key key to put movie in HashMap
      * @param movie movie object to be put in collection
      */
-    public void putMovie(long key, Movie movie) {
+    public void putMovie(String key, Movie movie) {
         Movies.put(key, movie);
     }
 
     /**
      * Removes movie by id or key
-     * @param id id of movie
+     * @param key key of movie
      */
-    public void removeMovie(Long id) {
-        Movies.remove(id);
+    public void removeMovie(String key) {
+        Movies.remove(key);
     }
 
     /**
@@ -68,7 +54,7 @@ public class MovieCollection {
      * Returns ids of all movies
      * @return all ids of movies
      */
-    public Set<Long> getKeySet() {
+    public Set<String> getKeySet() {
         return Movies.keySet();
     }
 
@@ -77,7 +63,7 @@ public class MovieCollection {
      * @param key id of movie
      * @return movie object
      */
-    public Movie getValue(long key) {
+    public Movie getValue(String key) {
         return Movies.get(key);
     }
 
@@ -96,7 +82,7 @@ public class MovieCollection {
      */
     public String showMovies() {
         String moviesInfo = "";
-        for (Map.Entry<Long, Movie> entry : Movies.entrySet()) {
+        for (Map.Entry<String, Movie> entry : Movies.entrySet()) {
             Movie movie = entry.getValue();
             moviesInfo = moviesInfo + "\n" + movie.getInfo();
         }
@@ -108,7 +94,7 @@ public class MovieCollection {
      * @param key id of movie to be replaced
      * @param newMovie movie that will replace old movie
      */
-    public void replaceMovie(long key, Movie newMovie) {
+    public void replaceMovie(String key, Movie newMovie) {
         Movies.replace(key, newMovie);
     }
 
@@ -117,7 +103,7 @@ public class MovieCollection {
      * @param key id of movie
      * @return movie object
      */
-    public Movie getMovie(long key) {
+    public Movie getMovie(String key) {
         return Movies.get(key);
     }
 
@@ -125,7 +111,7 @@ public class MovieCollection {
      * Returns this collection
      * @return collection with movies
      */
-    public Map<Long, Movie> getMap() {
+    public Map<String, Movie> getMap() {
         return Movies;
     }
 }

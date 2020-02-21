@@ -34,6 +34,22 @@ public class Person {
         this.birthday = new Date();
     }
 
+    public Person(String name, Double height, Float weight, Location location, Date date) {
+        if (weight == 0) {
+            this.weight = null;
+        } else {
+            this.weight = weight;
+        }
+        if (height == 0) {
+            this.height = null;
+        } else {
+            this.height = height;
+        }
+        this.name = name;
+        this.location = location;
+        this.birthday = date;
+    }
+
     /**
      * @return string with information about person
      */

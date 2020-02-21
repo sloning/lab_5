@@ -1,10 +1,8 @@
 package lab;
 
 import commands.*;
-import data.MovieCollection;
 import input_output.GoIN;
-import input_output.GoOUT;
-import input_output.InputMovie;
+import input_output.InputOutput;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -25,18 +23,12 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        InputMovie in = new InputMovie();
-        MovieCollection mc = new MovieCollection();
-        mc.putMovie(322, in.create((long)322, "SoLo"));
-        GoOUT out = new GoOUT();
-        out.getOut();
         GoIN goIN = new GoIN();
-        goIN.in();
+        goIN.in(args[0]);
 
-
-//        while (true) {
-//            InputOutput inputOutput = new InputOutput();
-//            inputOutput.Input();
-//        }
+        while (true) {
+            InputOutput inputOutput = new InputOutput();
+            inputOutput.Input();
+        }
     }
 }

@@ -1,6 +1,5 @@
 package input_output;
 
-import com.opencsv.CSVWriter;
 import controller.Controller;
 
 import java.io.*;
@@ -45,19 +44,4 @@ public class InputOutput {
         }
     }
 
-    /**
-     * Write something in file
-     * @param text value to write in file
-     * @throws IOException
-     */
-      public void Output(String text) throws IOException {
-          /**
-           * File name
-           */
-          String csv = "write.csv";
-          CSVWriter writer = new CSVWriter(new FileWriter(csv));
-          String[] record = text.split(",");
-          writer.writeNext(record);
-          writer.close();
-      }
 }

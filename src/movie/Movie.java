@@ -3,6 +3,7 @@ package movie;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Stores movies
@@ -23,10 +24,18 @@ public class Movie {
      * @param id id of new movie
      * @param name name of new movie
      */
-    public Movie(long id, String name) {
-        this.id = id;
-        this.name = name;
+    public Movie() {
+        this.id = (long) UUID.randomUUID().hashCode();
         this.creationDate = new Date();
+    }
+
+    public Movie(String name, Date date, Coordinates coordinates, int oscarsCount, int length, Person director) {
+        this.name = name;
+        this.creationDate = date;
+        this.coordinates = coordinates;
+        this.oscarsCount = oscarsCount;
+        this.length = length;
+        this.director = director;
     }
 
     /**
@@ -128,5 +137,9 @@ public class Movie {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(this.creationDate);
         return "Movie: " + name + " (ID " + id +") " + date;
+    }
+
+    public long getId() {
+        return this.id;
     }
 }

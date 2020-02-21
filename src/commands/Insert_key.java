@@ -20,11 +20,10 @@ public class Insert_key implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2){
         MovieCollection movieCollection = new MovieCollection();
-        Long key = Long.parseLong(parameter1.trim());
         InputMovie newMovie = new InputMovie();
-        movieCollection.putMovie(key, newMovie.create(key, parameter2));
+        movieCollection.putMovie(parameter1, newMovie.create());
 
-        System.out.println("В коллекцию успешно добавлен элемент " + parameter2 + " (Length " + parameter1 + ")");
+        System.out.println("В коллекцию успешно добавлен элемент " + newMovie.getName());
     }
 
 }

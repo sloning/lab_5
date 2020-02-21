@@ -1,7 +1,7 @@
 package commands;
 
 import data.MovieCollection;
-import input_output.InputOutput;
+import input_output.GoOUT;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class Save implements ICommand {
     @Override
     public void Do(String parameter1, String parameter2) throws IOException {
         MovieCollection movieCollection = new MovieCollection();
-        InputOutput inputOutput = new InputOutput();
-        inputOutput.Output(movieCollection.showMovies());
+        GoOUT go = new GoOUT();
+        go.getOut();
     }
 }

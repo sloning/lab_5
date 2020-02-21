@@ -13,6 +13,12 @@ public class Location {
         this.z=z;
     }
 
+    public Location (int x, long y, int z){
+        this.x=x;
+        this.y=y;
+        this.z=z;
+    }
+
     /**
      * @return string with location
      */

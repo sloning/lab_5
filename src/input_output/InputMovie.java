@@ -12,6 +12,20 @@ import java.util.Scanner;
  * @author Abay
  */
 public class InputMovie { //TODO переименовать в фабртику
+    private String Name;
+
+    public void setNameForMovie(Movie movie){
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите название фильма");
+            String name = scanner.nextLine();
+            this.Name = name;
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели значение неверного типа. Введите значения заново");
+            this.setNameForMovie(movie);
+        }
+    }
+
     public void setCoordinatesForMovie(Movie movie) {
         Scanner scanner = new Scanner(System.in);
         try {
@@ -115,15 +129,17 @@ public class InputMovie { //TODO переименовать в фабртику
         }
     }
 
+    public String getName() {
+        return Name;
+    }
+
     /**
      * Reads input and therefore creates new movie
-     * @param id id of new movie
-     * @param movieName name of new movie
      * @return new movie object
      */
-    public Movie create(Long id, String movieName) {
-        Movie movie = new Movie(id, movieName);
-        Scanner scanner = new Scanner(System.in);
+    public Movie create() {
+        Movie movie = new Movie();
+        this.setNameForMovie(movie);
         this.setCoordinatesForMovie(movie);
         this.setOscarsCountForMovie(movie);
         this.setLengthForMovie(movie);
