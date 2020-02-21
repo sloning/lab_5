@@ -1,14 +1,10 @@
 package input_output;
 
-import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import com.opencsv.exceptions.CsvException;
 import controller.Controller;
-import java.nio.*;
+
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * Read input from console and write to a file
@@ -17,7 +13,6 @@ import java.util.*;
 public class InputOutput {
     /**
      * Read inputs from console
-     *
      * @return input
      * @throws IOException
      */
@@ -34,7 +29,6 @@ public class InputOutput {
 
     /**
      * Read inputs from file
-     *
      * @return input
      * @throws IOException
      */
@@ -53,19 +47,17 @@ public class InputOutput {
 
     /**
      * Write something in file
-     *
      * @param text value to write in file
      * @throws IOException
      */
-    public void Output(String text) throws IOException {
-        /**
-         * File name
-         */
-        String csv = "write.csv";
-        CSVWriter writer = new CSVWriter(new FileWriter(csv));
-        String[] record = text.split(" ");
-        writer.writeNext(record);
-        writer.close();
-    }
-
+      public void Output(String text) throws IOException {
+          /**
+           * File name
+           */
+          String csv = "write.csv";
+          CSVWriter writer = new CSVWriter(new FileWriter(csv));
+          String[] record = text.split(",");
+          writer.writeNext(record);
+          writer.close();
+      }
 }
