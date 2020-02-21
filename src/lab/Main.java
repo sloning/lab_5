@@ -4,6 +4,8 @@ import commands.*;
 import input_output.GoIN;
 import input_output.InputOutput;
 
+import java.util.NoSuchElementException;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Clear clear = new Clear();
@@ -27,8 +29,12 @@ public class Main {
         goIN.in(args[0]);
 
         while (true) {
-            InputOutput inputOutput = new InputOutput();
-            inputOutput.Input();
+            try {
+                InputOutput inputOutput = new InputOutput();
+                inputOutput.Input();
+            } catch (NoSuchElementException e) {
+                System.exit(0);
+            }
         }
     }
 }
