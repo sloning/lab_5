@@ -18,10 +18,9 @@ public class Filter_starts_with_name implements ICommand {
     /**
      * Iterates through all elements of collection and print elements which names starts with this name
      * @param parameter1 name to filter
-     * @param parameter2 nothing here, ignore it plz
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         Iterator it = movieCollection.getMap().entrySet().iterator();
         while (it.hasNext()) {

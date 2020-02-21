@@ -12,7 +12,7 @@ public class Show implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         System.out.println(movieCollection.showMovies());
     }

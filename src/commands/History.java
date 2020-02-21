@@ -12,7 +12,7 @@ public class History implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1){
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.printHistory();
     }

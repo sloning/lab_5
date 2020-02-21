@@ -15,10 +15,9 @@ public class Insert_key implements ICommand {
     /**
      * Replaces movie by id
      * @param parameter1 key to HashMap to insert movie
-     * @param parameter2 name of new movie
      */
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         InputMovie newMovie = new InputMovie();
         movieCollection.putMovie(parameter1, newMovie.create());

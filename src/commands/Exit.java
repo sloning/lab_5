@@ -10,7 +10,7 @@ public class Exit implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1){
         System.exit(0);
     }
 }

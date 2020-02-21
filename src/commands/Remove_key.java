@@ -14,10 +14,9 @@ public class Remove_key implements ICommand {
     /**
      * Removes movie by key
      * @param parameter1 key of movie to remove
-     * @param parameter2 nothing
      */
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.removeMovie(parameter1);
     }

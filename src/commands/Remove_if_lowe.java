@@ -18,10 +18,9 @@ public class Remove_if_lowe implements ICommand {
     /**
      * Iterates through all elements of collection and removes movies by their id's
      * @param parameter1 id, all movie's which has lower id's than this will be removed from collection
-     * @param parameter2 just ignore this
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         Iterator it = movieCollection.getMap().entrySet().iterator();
         long givenId = Long.parseLong(parameter1);

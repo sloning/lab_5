@@ -14,7 +14,7 @@ public class Execute_script implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2) throws IOException {
+    public void Do(String parameter1) throws IOException {
         InputOutput inputOutput = new InputOutput();
         inputOutput.InputFile(parameter1);
     }

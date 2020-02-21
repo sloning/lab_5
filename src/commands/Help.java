@@ -10,7 +10,7 @@ public class Help implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1){
         System.out.println("help: вывести справку по доступным командам");
         System.out.println("info: вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д." );
         System.out.println("show: вывести в стандартный поток вывода все элементы коллекции в строковом представлении");

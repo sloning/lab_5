@@ -16,10 +16,9 @@ public class Replace_if_lowe implements ICommand {
     /**
      * Get new movie object and compare's it to old movie
      * @param parameter1 key to HashMap
-     * @param parameter2 name of new movie
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         InputMovie inputMovie = new InputMovie();
         Movie newMovie = inputMovie.create();

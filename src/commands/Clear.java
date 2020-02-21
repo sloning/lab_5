@@ -11,12 +11,10 @@ public class Clear implements ICommand{
     }
 
     /**
-     *
      * @param parameter1 ignore this
-     * @param parameter2 ignore this
      */
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.clearMovies();
     }

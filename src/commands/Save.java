@@ -14,7 +14,7 @@ public class Save implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1, String parameter2) throws IOException {
+    public void Do(String parameter1) throws IOException {
         MovieCollection movieCollection = new MovieCollection();
         GoOUT go = new GoOUT();
         go.getOut();

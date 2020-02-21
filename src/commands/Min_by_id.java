@@ -16,10 +16,9 @@ public class Min_by_id implements ICommand {
     /**
      * Get Key Set from HashMap then take lowest key (key = id) and print it's value
      * @param parameter1 ignore this
-     * @param parameter2 ignore this too
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection(); //something wrong.
         System.out.println(movieCollection.getValue(Collections.min(movieCollection.getKeySet())));
     }

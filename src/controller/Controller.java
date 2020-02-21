@@ -17,11 +17,9 @@ public class Controller {
         String[] nameCommands = new String[2];
         nameCommands=command.split(" ");
         if (nameCommands.length==1) {
-            Commands useCommands = new Commands(nameCommands[0], null, null);
+            Commands useCommands = new Commands(nameCommands[0], null);
         } else if (nameCommands.length==2) {
-            Commands useCommands = new Commands(nameCommands[0], nameCommands[1], null);
-        } else {
-            Commands useCommands = new Commands(nameCommands[0], nameCommands[1], nameCommands[2]);
+            Commands useCommands = new Commands(nameCommands[0], nameCommands[1]);
         }
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.addCommand(nameCommands[0]);

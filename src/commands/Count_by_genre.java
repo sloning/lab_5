@@ -17,10 +17,9 @@ public class Count_by_genre implements ICommand {
     /**
      * Iterate through every element of collection to count all movies
      * @param parameter1 name of genre
-     * @param parameter2 nothing here, ignore it
      */
     @Override
-    public void Do(String parameter1, String parameter2) {
+    public void Do(String parameter1) {
         /**
          * Counts how many movies of the genre
          */

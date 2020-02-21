@@ -14,10 +14,9 @@ public class Info implements ICommand {
     /**
      * Prints info about collection
      * @param parameter1 nothing here
-     * @param parameter2 ignore this parameter
      */
     @Override
-    public void Do(String parameter1, String parameter2){
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.getInfo();
     }
