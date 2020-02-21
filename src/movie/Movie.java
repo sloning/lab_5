@@ -90,6 +90,10 @@ public class Movie {
         director=new Person(name,height,weight,location);
     }
 
+    public void setDate(Date date){
+        creationDate = date;
+    }
+
     /**
      * @return length of movie
      */

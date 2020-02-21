@@ -123,7 +123,6 @@ public class InputMovie { //TODO переименовать в фабртику
      */
     public Movie create(Long id, String movieName) {
         Movie movie = new Movie(id, movieName);
-        Scanner scanner = new Scanner(System.in);
         this.setCoordinatesForMovie(movie);
         this.setOscarsCountForMovie(movie);
         this.setLengthForMovie(movie);

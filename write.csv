@@ -1,27 +1,13 @@
-"
-Movie: SoLo
-ID: 322
-Coordinates: x = 1"," y = 1.0
-Date of creation: 2020/02/21 01:44:10
-Count of oscars: 1
-Length: 1
-Genre: COMEDY
-MPAA rating: PG
-Director: Name: a
-Birthday: 2020/02/21 01:44:25
-Height: 1.0
-Weight: 1.0
-Location: x = 1 y = 1 z = 1
-Movie: NE_solo
-ID: 228
-Coordinates: x = 1"," y = 1.0
-Date of creation: 2020/02/21 01:44:38
-Count of oscars: 1
-Length: 1
-Genre: COMEDY
-MPAA rating: G
-Director: Name: a
-Birthday: 2020/02/21 01:44:50
-Height: 1.0
-Weight: 1.0
-Location: x = 1 y = 1 z = 1"
+Movie:","fesd
+ID:","12
+Coordinates:","x","=","12,","y","=","24.0
+Date","of","creation:","2020/02/21","02:54:21
+Count","of","oscars:","14
+Length:","235
+Genre:","MUSICAL
+MPAA","rating:","PG
+Director:","Name:","Alex
+Birthday:","2020/02/21","02:54:47
+Height:","124.0
+Weight:","53.0
+Location:","x","=","94","y","=","2","z","=","15
