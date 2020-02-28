@@ -1,8 +1,7 @@
 package lab;
 
 import commands.*;
-import input_output.GoIN;
-import input_output.InputOutput;
+import input_output.*;
 
 import java.util.NoSuchElementException;
 
@@ -25,8 +24,8 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        GoIN goIN = new GoIN();
-        goIN.in(args[0]);
+        LoadMovies loader = new LoadMovies();
+        loader.load(args[0]);
 
         while (true) {
             try {

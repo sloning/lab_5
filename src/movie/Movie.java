@@ -29,8 +29,9 @@ public class Movie {
         this.creationDate = new Date();
     }
 
-    public Movie(String name, Date date, Coordinates coordinates, int oscarsCount, int length, Person director) {
+    public Movie(String name, String id, Date date, Coordinates coordinates, int oscarsCount, int length, Person director) {
         this.name = name;
+        this.id = Long.parseLong(id);
         this.creationDate = date;
         this.coordinates = coordinates;
         this.oscarsCount = oscarsCount;
@@ -45,6 +46,10 @@ public class Movie {
         this.length=length;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * @param genre genre of movie
      */
@@ -55,7 +60,6 @@ public class Movie {
             this.genre=MovieGenre.MUSICAL;
         } else if (genre.equals("FANTASY")){
             this.genre=MovieGenre.FANTASY;
-        } if (genre.equals("пропустить")){
         }
     }
 
@@ -69,8 +73,6 @@ public class Movie {
             this.mpaaRating=MpaaRating.PG;
         } else if (rating.equals("PG_13")){
             this.mpaaRating=MpaaRating.PG_13;
-        } if (rating.equals("пропустить")){
-
         }
     }
 

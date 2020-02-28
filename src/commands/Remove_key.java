@@ -12,6 +12,7 @@ public class Remove_key implements ICommand {
     }
 
     /**
+     * TODO Не работает из-за того, что ключ хешмапы больше не равен id
      * Removes movie by key
      * @param parameter1 key of movie to remove
      */

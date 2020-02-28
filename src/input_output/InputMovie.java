@@ -20,6 +20,7 @@ public class InputMovie { //TODO переименовать в фабртику
             System.out.println("Введите название фильма");
             String name = scanner.nextLine();
             this.Name = name;
+            movie.setName(name);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значения заново");
             this.setNameForMovie(movie);
@@ -75,9 +76,9 @@ public class InputMovie { //TODO переименовать в фабртику
 
     public void setGenreForMovie(Movie movie) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY \n(Или напишите пропустить)");
+        System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY");
         String genre = scanner.nextLine();
-        if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY")) || (genre.equals("пропустить"))) {
+        if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY"))) {
             movie.setGenre(genre);
         } else {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -87,9 +88,9 @@ public class InputMovie { //TODO переименовать в фабртику
 
     public void setMpaaRatingForMovie(Movie movie){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен) \n(Или напишите пропутить)");
+        System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен)");
         String rating = scanner.nextLine();
-        if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13") || (rating.equals("пропустить")))))) {
+        if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13"))))) {
             movie.setMpaaRating(rating);
         } else {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -103,12 +104,12 @@ public class InputMovie { //TODO переименовать в фабртику
             System.out.println("Укажите данные директора фильма");
             System.out.println("Введите имя");
             String nameDirector = scanner.nextLine();
-            System.out.println("Введите высоту (или напишите 0, если хотите пропустить)");
+            System.out.println("Введите высоту");
             Double height = scanner.nextDouble();
-            if (height<0) throw new NumberFormatException();
-            System.out.println("Введите вес (или напишите 0, если хотите пропустить)");
+            if (height <= 0) throw new NumberFormatException();
+            System.out.println("Введите вес");
             Float weight = scanner.nextFloat();
-            if (weight<0) throw new NumberFormatException();
+            if (weight <= 0) throw new NumberFormatException();
 
             System.out.println("Введите геолокацию директора");
             System.out.println("Введите название геолокации");
