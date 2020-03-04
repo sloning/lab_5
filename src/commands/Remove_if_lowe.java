@@ -11,8 +11,24 @@ import java.util.Map;
  * @author Vladislav
  */
 public class Remove_if_lowe implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Remove_if_lowe(){
-        Commands.addNewCommand("remove_lower_key", this);
+        name = "remove_lower_key";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": удалить значение по ключу, если новое значение меньше старого";
     }
 
     /**

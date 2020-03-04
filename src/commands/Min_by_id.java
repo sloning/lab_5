@@ -9,8 +9,24 @@ import java.util.Collections;
  * @author Vladislav
  */
 public class Min_by_id implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Min_by_id() {
-        Commands.addNewCommand("min_by_id", this);
+        name = "min_by_id";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": вывести любой объект из коллекции, значение поля id которого является минимальным";
     }
 
     /**

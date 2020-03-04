@@ -8,8 +8,24 @@ import input_output.InputMovie;
  * @author Abay
  */
 public class Update_id implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Update_id(){
-        Commands.addNewCommand("update", this);
+        name = "update";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
     /**

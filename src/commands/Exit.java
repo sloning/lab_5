@@ -5,8 +5,24 @@ package commands;
  * @author Vladislav
  */
 public class Exit implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Exit(){
+        name = "exit";
         Commands.addNewCommand("exit", this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": завершить программу (без сохранения в файл)";
     }
 
     @Override

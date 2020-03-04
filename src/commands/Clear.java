@@ -6,8 +6,24 @@ import data.MovieCollection;
  * @author Abay
  */
 public class Clear implements ICommand{
+    /**
+     * @param name = name of command
+     */
+    private String name;
+
     public Clear(){
-        Commands.addNewCommand("clear", this);
+        this.name = "clear";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": вывести справку по доступным командам";
     }
 
     /**

@@ -32,4 +32,10 @@ public class Commands {
        commands.get(name).Do(parameter1);
     }
 
+    static void help() {
+        Collection<ICommand> Val = commands.values();
+        for (ICommand com : Val) {
+            System.out.println(com.info());
+        }
+    }
 }

@@ -9,8 +9,24 @@ import input_output.InputMovie;
  * @author Vladislav
  */
 public class Replace_if_lowe implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Replace_if_lowe() {
-        Commands.addNewCommand("replace_if_lower", this);
+        name = "replace_if_lower";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": заменить значение по ключу, если новое значение меньше старого";
     }
 
     /**

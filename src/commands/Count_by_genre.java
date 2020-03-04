@@ -10,8 +10,23 @@ import java.util.*;
  * @author Vladislav
  */
 public class Count_by_genre implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Count_by_genre(){
-        Commands.addNewCommand("count_by_genre", this);
+        name = "count_by_genre";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    public String info() {
+        return name + ": вывести справку по доступным командам";
     }
 
     /**
@@ -20,16 +35,13 @@ public class Count_by_genre implements ICommand {
      */
     @Override
     public void Do(String parameter1) {
-        /**
-         * Counts how many movies of the genre
-         */
         int count = 0;
         MovieCollection movieCollection = new MovieCollection();
         Iterator it = movieCollection.getMap().entrySet().iterator();
         while (it.hasNext()) {
             Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
             String movieGenre = movie.getGenre();
-            if (parameter1 == movieGenre) {
+            if (parameter1.equals(movieGenre)) {
                 count++;
             }
             it.remove(); // avoids a ConcurrentModificationException

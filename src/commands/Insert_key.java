@@ -8,9 +8,26 @@ import input_output.InputMovie;
  * @author Abay
  */
 public class Insert_key implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Insert_key(){
-        Commands.addNewCommand("insert", this);
+        name = "insert";
+        Commands.addNewCommand(name, this);
     }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": добавить новый элемент с заданным ключом";
+    }
+
 
     /**
      * Replaces movie by id

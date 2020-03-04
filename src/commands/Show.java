@@ -7,8 +7,24 @@ import data.MovieCollection;
  * @author Abay
  */
 public class Show implements ICommand {
+    /**
+     * @param name name of command
+     */
+    private String name;
+
     public Show(){
-        Commands.addNewCommand("show", this);
+        name = "show";
+        Commands.addNewCommand(name, this);
+    }
+
+    /**
+     * get info about command
+     *
+     * @return String
+     */
+    @Override
+    public String info() {
+        return name + ": вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
     @Override
