@@ -20,10 +20,14 @@ public class FabricOfMovies {
             System.out.println("Введите название фильма");
             System.out.print("$ ");
             String name = scanner.nextLine();
+            if (name.equals("") || name == null) throw new NullPointerException();
             this.Name = name;
             movie.setName(name);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значения заново");
+            this.setNameForMovie(movie);
+        } catch (NullPointerException e) {
+            System.out.println("Это поле не может быть null. Введите значение заново");
             this.setNameForMovie(movie);
         }
     }
@@ -34,13 +38,17 @@ public class FabricOfMovies {
             System.out.println("Введите координаты");
             System.out.println("Введите координату x");
             System.out.print("$ ");
-            int x = scanner.nextInt();
+            Integer x = scanner.nextInt();
+            if (x == null) throw new NullPointerException();
             System.out.println("Введите координату y");
             System.out.print("$ ");
             int y = scanner.nextInt();
             movie.setCoordinates(x, y);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значения заново");
+            this.setCoordinatesForMovie(movie);
+        } catch (NullPointerException e) {
+            System.out.println("Это поле не может быть null. Введите значение заново");
             this.setCoordinatesForMovie(movie);
         }
     }
@@ -50,7 +58,8 @@ public class FabricOfMovies {
         try {
             System.out.println("Введите количество полученных фильмом оскаров");
             System.out.print("$ ");
-            int oscars = scanner.nextInt();
+            Integer oscars = scanner.nextInt();
+            if (oscars==null) throw new NullPointerException();
             if (oscars<=0) throw new NumberFormatException();
             movie.setOscarsCount(oscars);
         } catch (InputMismatchException e) {
@@ -59,6 +68,9 @@ public class FabricOfMovies {
         } catch (NumberFormatException e) {
             System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
             this.setOscarsCountForMovie(movie);
+        } catch (NullPointerException e) {
+            System.out.println("Это поле не может быть null. Введите значение заново");
+            this.setCoordinatesForMovie(movie);
         }
     }
 
@@ -84,7 +96,7 @@ public class FabricOfMovies {
         System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY");
         System.out.print("$ ");
         String genre = scanner.nextLine();
-        if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY"))) {
+        if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY") || (genre.equals("")))) {
             movie.setGenre(genre);
         } else {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -97,7 +109,7 @@ public class FabricOfMovies {
         System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен)");
         System.out.print("$ ");
         String rating = scanner.nextLine();
-        if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13"))))) {
+        if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13") || (rating.equals("")))))) {
             movie.setMpaaRating(rating);
         } else {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
