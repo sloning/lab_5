@@ -25,7 +25,7 @@ public class Update_id implements ICommand {
      */
     @Override
     public String info() {
-        return name + ": вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
+        return name + ": обновить значение элемента коллекции, ID которого равен зададному";
     }
 
     /**

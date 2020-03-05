@@ -26,7 +26,7 @@ public class Count_by_genre implements ICommand {
      * @return String
      */
     public String info() {
-        return name + ": вывести справку по доступным командам";
+        return name + ": вывести количество элементов, значения поля genre которых равно заданому";
     }
 
     /**

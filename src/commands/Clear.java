@@ -23,7 +23,7 @@ public class Clear implements ICommand{
      */
     @Override
     public String info() {
-        return name + ": вывести справку по доступным командам";
+        return name + ": очистить коллекцию";
     }
 
     /**
