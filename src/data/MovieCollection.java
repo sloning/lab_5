@@ -112,6 +112,6 @@ public class MovieCollection {
      * @return collection with movies
      */
     public Map<String, Movie> getMap() {
-        return Movies;
+        return new LinkedHashMap<>(Movies);
     }
 }

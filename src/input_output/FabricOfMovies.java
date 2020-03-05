@@ -11,13 +11,14 @@ import java.util.Scanner;
  * Creates new movie object
  * @author Abay
  */
-public class InputMovie { //TODO переименовать в фабртику
+public class FabricOfMovies {
     private String Name;
 
     public void setNameForMovie(Movie movie){
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название фильма");
+            System.out.print("$ ");
             String name = scanner.nextLine();
             this.Name = name;
             movie.setName(name);
@@ -32,8 +33,10 @@ public class InputMovie { //TODO переименовать в фабртику
         try {
             System.out.println("Введите координаты");
             System.out.println("Введите координату x");
+            System.out.print("$ ");
             int x = scanner.nextInt();
             System.out.println("Введите координату y");
+            System.out.print("$ ");
             int y = scanner.nextInt();
             movie.setCoordinates(x, y);
         } catch (InputMismatchException e) {
@@ -46,6 +49,7 @@ public class InputMovie { //TODO переименовать в фабртику
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Введите количество полученных фильмом оскаров");
+            System.out.print("$ ");
             int oscars = scanner.nextInt();
             if (oscars<=0) throw new NumberFormatException();
             movie.setOscarsCount(oscars);
@@ -62,6 +66,7 @@ public class InputMovie { //TODO переименовать в фабртику
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Введите длину фильма");
+            System.out.print("$ ");
             int length = scanner.nextInt();
             if (length<=0) throw new NumberFormatException();
             movie.setLength(length);
@@ -77,6 +82,7 @@ public class InputMovie { //TODO переименовать в фабртику
     public void setGenreForMovie(Movie movie) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите жанр: \nCOMEDY, \nMUSICAL, \nFANTASY");
+        System.out.print("$ ");
         String genre = scanner.nextLine();
         if ((genre.equals("COMEDY")) || (genre.equals("MUSICAL")) || (genre.equals("FANTASY"))) {
             movie.setGenre(genre);
@@ -89,6 +95,7 @@ public class InputMovie { //TODO переименовать в фабртику
     public void setMpaaRatingForMovie(Movie movie){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен)");
+        System.out.print("$ ");
         String rating = scanner.nextLine();
         if ((rating.equals("G") || (rating.equals("PG") || (rating.equals("PG_13"))))) {
             movie.setMpaaRating(rating);
@@ -103,11 +110,14 @@ public class InputMovie { //TODO переименовать в фабртику
         try {
             System.out.println("Укажите данные директора фильма");
             System.out.println("Введите имя");
+            System.out.print("$ ");
             String nameDirector = scanner.nextLine();
             System.out.println("Введите высоту");
+            System.out.print("$ ");
             Double height = scanner.nextDouble();
             if (height <= 0) throw new NumberFormatException();
             System.out.println("Введите вес");
+            System.out.print("$ ");
             Float weight = scanner.nextFloat();
             if (weight <= 0) throw new NumberFormatException();
 
@@ -115,10 +125,13 @@ public class InputMovie { //TODO переименовать в фабртику
             System.out.println("Введите название геолокации");
             String nameLocation = scanner.nextLine();
             System.out.println("Введите координату x");
+            System.out.print("$ ");
             int xLocation = scanner.nextInt();
             System.out.println("Введите координату y");
+            System.out.print("$ ");
             long yLocation = scanner.nextLong();
             System.out.println("Введите координату z");
+            System.out.print("$ ");
             int zLocation = scanner.nextInt();
             movie.setDirector(nameDirector, height, weight, new Location(nameLocation, xLocation, yLocation, zLocation));
         } catch (InputMismatchException e) {

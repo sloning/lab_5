@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-public class GoOUT {
+public class SaveMovies {
     public void getOut() throws IOException {
         MovieCollection movieCollection = new MovieCollection();
 

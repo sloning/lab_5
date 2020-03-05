@@ -6,7 +6,7 @@ import java.io.IOException;
 
 /**
  * Executes script
- * @author Not Yet
+ * @author Abay geniy
  */
 public class Execute_script implements ICommand {
     /**
@@ -21,8 +21,8 @@ public class Execute_script implements ICommand {
 
     @Override
     public void Do(String parameter1) throws IOException {
-        InputOutput inputOutput = new InputOutput();
-        inputOutput.InputFile(parameter1);
+            InputOutput inputOutput = new InputOutput();
+            inputOutput.InputFile(parameter1);
     }
 
     /**

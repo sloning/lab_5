@@ -1,7 +1,7 @@
 package commands;
 
 import data.MovieCollection;
-import input_output.InputMovie;
+import input_output.FabricOfMovies;
 
 /**
  * Insert movie by key
@@ -36,7 +36,7 @@ public class Insert_key implements ICommand {
     @Override
     public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
-        InputMovie newMovie = new InputMovie();
+        FabricOfMovies newMovie = new FabricOfMovies();
         movieCollection.putMovie(parameter1, newMovie.create());
 
         System.out.println("В коллекцию успешно добавлен элемент " + newMovie.getName());

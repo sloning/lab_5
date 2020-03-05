@@ -1,7 +1,7 @@
 package commands;
 
 import data.MovieCollection;
-import input_output.InputMovie;
+import input_output.FabricOfMovies;
 
 /**
  * Replace movie by it's id
@@ -35,7 +35,7 @@ public class Update_id implements ICommand {
     @Override //Гениальный класс
     public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
-        InputMovie newMovie = new InputMovie();
-        movieCollection.replaceMovie(parameter1, newMovie.create());
+        FabricOfMovies newMovie = new FabricOfMovies();
+        movieCollection.replaceMovie(parameter1, newMovie.create());    //TODO Записывает фильм с новым ID а я так панимаю что ID должен оставаться старым
     }
 }

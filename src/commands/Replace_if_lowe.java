@@ -2,7 +2,7 @@ package commands;
 
 import data.MovieCollection;
 import movie.Movie;
-import input_output.InputMovie;
+import input_output.FabricOfMovies;
 
 /**
  * Replace element if it new element has lower length
@@ -36,8 +36,8 @@ public class Replace_if_lowe implements ICommand {
     @Override
     public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
-        InputMovie inputMovie = new InputMovie();
-        Movie newMovie = inputMovie.create();
+        FabricOfMovies fabricOfMovies = new FabricOfMovies();
+        Movie newMovie = fabricOfMovies.create();
         Movie oldMovie = movieCollection.getMovie(parameter1);
 
         if (newMovie.getLength() < oldMovie.getLength()) {
