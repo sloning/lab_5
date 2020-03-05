@@ -20,12 +20,10 @@ public class Movie {
     private Person director; //Поле не может быть null
 
     /**
-     * Constructor, creates new movie
-     * @param id id of new movie
-     * @param name name of new movie
+     * Constructors, creates new movie
      */
     public Movie() {
-        this.id = (long) UUID.randomUUID().hashCode();
+        this.id = (long) UUID.randomUUID().hashCode(); //TODO Значение должно быть > 0 по заданию
         this.creationDate = new Date();
     }
 

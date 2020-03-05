@@ -34,7 +34,7 @@ public class Insert_key implements ICommand {
      * @param parameter1 key to HashMap to insert movie
      */
     @Override
-    public void Do(String parameter1) {
+    public void Do(String parameter1) { //TODO Работает даже когда ключ не введён из-за этого вместо ключа будет null
         MovieCollection movieCollection = new MovieCollection();
         FabricOfMovies newMovie = new FabricOfMovies();
         movieCollection.putMovie(parameter1, newMovie.create());
