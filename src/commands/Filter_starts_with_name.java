@@ -34,6 +34,7 @@ public class Filter_starts_with_name implements ICommand {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите подстроку");
+            System.out.print("$");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {System.out.println("подстрока не может быть null");}
             else {Commands commands = new Commands(this.name, key);}

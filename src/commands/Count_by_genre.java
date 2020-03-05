@@ -40,6 +40,7 @@ public class Count_by_genre implements ICommand {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите жанр");
+            System.out.print("$");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("жанр не может быть null");

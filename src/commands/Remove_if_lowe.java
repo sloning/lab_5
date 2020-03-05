@@ -43,6 +43,7 @@ public class Remove_if_lowe implements ICommand {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ");
+            System.out.print("$");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
