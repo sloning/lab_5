@@ -25,7 +25,7 @@ public class LoadMovies {
         String strLine;
 
         Pattern moviePattern = Pattern.compile("Movie:\\s(\\w+\\s*\\w*\\s*\\w*)\"");    // Название фильма может состоять максимум из 3 слов(a-z, A-Z, 0-9)
-        Pattern movieKeyPattern = Pattern.compile("ID:\\s([-+]?\\d+)\"");
+        Pattern movieIdPattern = Pattern.compile("ID:\\s([-+]?\\d+)\"");
         Pattern datePattern = Pattern.compile("Date\\sof\\screation:\\s\\d{4}\\/\\d{2}\\/\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\"");
         Pattern amountOfOscarsPattern = Pattern.compile("Count of oscars:\\s\\d+\"");
         Pattern movieLengthPattern = Pattern.compile("Length:\\s\\d+\"");
@@ -41,11 +41,12 @@ public class LoadMovies {
         Pattern coordY = Pattern.compile("y\\s=\\s\\d+.\\d+");
         Pattern cY = Pattern.compile("y\\s=\\s\\d+");
         Pattern cZ = Pattern.compile("z\\s=\\s\\d+");
+        Pattern movieKeyPattern = Pattern.compile("Movie\\sKey:\\s\\d+\"");
 
         while ((strLine = br.readLine()) != null) {
             try {
                 Matcher movieMatcher = moviePattern.matcher(strLine);
-                Matcher movieKeyMatcher = movieKeyPattern.matcher(strLine);
+                Matcher movieIdMatcher = movieIdPattern.matcher(strLine);
                 Matcher dateMatcher = datePattern.matcher(strLine);
                 Matcher amountOfOscarsMatcher = amountOfOscarsPattern.matcher(strLine);
                 Matcher movieLengthMatcher = movieLengthPattern.matcher(strLine);
@@ -57,8 +58,9 @@ public class LoadMovies {
                 Matcher locationMatcher = locationPattern.matcher(strLine);
                 Matcher genreMatcher = genrePattern.matcher(strLine);
                 Matcher ratingMatcher = ratingPattern.matcher(strLine);
+                Matcher movieKeyMatcher = movieKeyPattern.matcher(strLine);
                 movieMatcher.find();
-                movieKeyMatcher.find();
+                movieIdMatcher.find();
                 dateMatcher.find();
                 amountOfOscarsMatcher.find();
                 movieLengthMatcher.find();
@@ -70,6 +72,7 @@ public class LoadMovies {
                 locationMatcher.find();
                 genreMatcher.find();
                 ratingMatcher.find();
+                movieKeyMatcher.find();
 
                 String coordinates = strLine.substring(coordinatesMatcher.start(), coordinatesMatcher.end());
                 String location = strLine.substring(locationMatcher.start(), locationMatcher.end() - 1);
@@ -85,7 +88,7 @@ public class LoadMovies {
                 cZMatcher.find();
 
                 String movieName = strLine.substring(movieMatcher.start() + 7, movieMatcher.end() - 1);
-                String movieKey = strLine.substring(movieKeyMatcher.start() + 4, movieKeyMatcher.end() - 1);
+                String movieId = strLine.substring(movieIdMatcher.start() + 4, movieIdMatcher.end() - 1);
                 String directorName = strLine.substring(directorNameMatcher.start() + 16, directorNameMatcher.end() - 1);
                 String movieRating = strLine.substring(ratingMatcher.start() + 13, ratingMatcher.end() - 1);
                 String movieGenre = strLine.substring(genreMatcher.start() + 7, genreMatcher.end() - 1);
@@ -100,11 +103,12 @@ public class LoadMovies {
                 double directorHeight = Double.parseDouble(strLine.substring(directorHeightMatcher.start() + 8, directorHeightMatcher.end() - 1));
                 Date date = FormattingDate(strLine.substring(dateMatcher.start() + 18, dateMatcher.end() - 1));
                 Date directorDate = FormattingDate(strLine.substring(directorDateMatcher.start() + 10, directorDateMatcher.end() - 1));
+                String movieKey = strLine.substring(movieKeyMatcher.start() + 11, movieKeyMatcher.end() - 1);
 
                 Coordinates movieCoordinates = new Coordinates(x, y);
                 Location movieLocation = new Location(locX, locY, locZ);
                 Person director = new Person(directorName, directorHeight, directorWeight, movieLocation, directorDate);
-                Movie movie = new Movie(movieName, movieKey, date, movieCoordinates, amountOfOscars, movieLength, director);
+                Movie movie = new Movie(movieName, movieId, date, movieCoordinates, amountOfOscars, movieLength, director);
                 movie.setGenre(movieGenre);
                 movie.setMpaaRating(movieRating);
                 movieCollection.putMovie(movieKey, movie);

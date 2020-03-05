@@ -84,7 +84,7 @@ public class MovieCollection {
         String moviesInfo = "";
         for (Map.Entry<String, Movie> entry : Movies.entrySet()) {
             Movie movie = entry.getValue();
-            moviesInfo = moviesInfo + "\n" + movie.getInfo();
+            moviesInfo = moviesInfo + "\n" + movie.getInfo() + "\nMovie Key: " + entry.getKey();
         }
         return moviesInfo;
     }

@@ -32,7 +32,7 @@ public class Save implements ICommand {
     @Override
     public void Do(String parameter1) throws IOException {
         MovieCollection movieCollection = new MovieCollection();
-        SaveMovies go = new SaveMovies();
-        go.getOut();
+        SaveMovies save = new SaveMovies();
+        save.getOut();
     }
 }

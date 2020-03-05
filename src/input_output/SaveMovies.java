@@ -17,9 +17,11 @@ public class SaveMovies {
 
         Iterator it = movieCollection.getMap().entrySet().iterator();
         while (it.hasNext()) {
-            Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
+            Map.Entry<String, Movie> elementOfMap = (Map.Entry<String, Movie>) it.next();
+            Movie movie = elementOfMap.getValue();
+            String movieKey = elementOfMap.getKey();
             String movieInString = "\"";
-            movieInString = movieInString + movie.getInfo();
+            movieInString = movieInString + movie.getInfo() + "\nMovie Key: " + movieKey;
             movieInString = movieInString.replace("\n", "\",\"").replace("\r","\",\"");
             movieInString = movieInString + "\"" + "\n";
             writer.write(movieInString);

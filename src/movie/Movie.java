@@ -23,7 +23,7 @@ public class Movie {
      * Constructors, creates new movie
      */
     public Movie() {
-        this.id = (long) UUID.randomUUID().hashCode(); //TODO Значение должно быть > 0 по заданию
+        this.id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         this.creationDate = new Date();
     }
 
