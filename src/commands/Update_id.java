@@ -36,6 +36,6 @@ public class Update_id implements ICommand {
     public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
         FabricOfMovies newMovie = new FabricOfMovies();
-        movieCollection.replaceMovie(parameter1, newMovie.create());    //TODO Записывает фильм с новым ID а я так панимаю что ID должен оставаться старым
+        movieCollection.replaceMovie(parameter1, newMovie.create());
     }
 }

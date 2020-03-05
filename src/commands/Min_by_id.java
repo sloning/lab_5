@@ -2,8 +2,6 @@ package commands;
 
 import data.MovieCollection;
 
-import java.util.Collections;
-
 /**
  * Printing element with minimal id
  * @author Vladislav
@@ -34,9 +32,8 @@ public class Min_by_id implements ICommand {
      * @param parameter1 ignore this
      */
     @Override
-    public void Do(String parameter1) { //TODO по прежнему сортирует по ключу мапы НЕ РАБОТАЕТ
+    public void Do(String parameter1) {
         MovieCollection movieCollection = new MovieCollection();
-        System.out.println(movieCollection.getKeySet());
-        System.out.println(movieCollection.getValue(Collections.min(movieCollection.getKeySet())));
+        System.out.println(movieCollection.getMinimumId());
     }
 }

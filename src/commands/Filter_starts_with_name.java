@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * TODO ввести null
  * Prints all movies which names starts with this name
  * @author Vladislav
  */
@@ -18,7 +17,7 @@ public class Filter_starts_with_name implements ICommand {
     private String name;
 
 
-    public Filter_starts_with_name(){
+    public Filter_starts_with_name() {
         name = "filter_starts_with_name";
         Commands.addNewCommand(name, this);
     }

@@ -124,7 +124,7 @@ public class FabricOfMovies {
             System.out.println("Введите геолокацию директора");
             System.out.println("Введите название геолокации");
             String nameLocation = scanner.nextLine();
-            System.out.println("Введите координату x");
+            System.out.println("Введите координату x");     //TODO если тыкнуть enter здесь то все пойдет не по плану. (В конце скажет, что введена неверная команда)
             System.out.print("$ ");
             int xLocation = scanner.nextInt();
             System.out.println("Введите координату y");

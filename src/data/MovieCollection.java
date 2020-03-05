@@ -114,4 +114,16 @@ public class MovieCollection {
     public Map<String, Movie> getMap() {
         return new LinkedHashMap<>(Movies);
     }
+
+    public String getMinimumId() {
+        Long minId = Long.MAX_VALUE;
+        String response = "";
+        for (Map.Entry<String, Movie> elementOfMap : getMap().entrySet()) {
+            if (elementOfMap.getValue().getId() < minId) {
+                minId = elementOfMap.getValue().getId();
+                response = getValue(elementOfMap.getKey()).toString();
+            }
+        }
+        return response;
+    }
 }
