@@ -3,6 +3,7 @@ package commands;
 import input_output.InputOutput;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Executes script
@@ -21,8 +22,17 @@ public class Execute_script implements ICommand {
 
     @Override
     public void Do(String parameter1) throws IOException {
+        if (parameter1 == null){
+            Scanner scanner = new Scanner(System.in);
+            String key;
+            System.out.println("Введите название файла");
+            key = scanner.nextLine();
+            if (key.equals("") || key == null) {System.out.println("Название файла не может быть null");}
+            else {Commands commands = new Commands("execute_script", key);}
+        } else {
             InputOutput inputOutput = new InputOutput();
             inputOutput.InputFile(parameter1);
+        }
     }
 
     /**

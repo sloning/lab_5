@@ -58,4 +58,6 @@ public class Person {
         String date = dateFormat.format(this.birthday);
         return "Name: " + name + "\nBirthday: " + date + "\nHeight: " + height + "\nWeight: " + weight + "\nLocation: " + location.getLocation();
     }
+
+
 }

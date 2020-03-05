@@ -24,7 +24,7 @@ public class InputOutput {
             System.out.print("$ ");
             String command = sc.nextLine();
             Controller controller = new Controller(command);
-        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
         }
     }
