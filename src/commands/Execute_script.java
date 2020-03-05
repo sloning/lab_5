@@ -28,7 +28,7 @@ public class Execute_script implements ICommand {
             System.out.println("Введите название файла");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {System.out.println("Название файла не может быть null");}
-            else {Commands commands = new Commands("execute_script", key);}
+            else {Commands commands = new Commands(this.name, key);}
         } else {
             InputOutput inputOutput = new InputOutput();
             inputOutput.InputFile(parameter1);

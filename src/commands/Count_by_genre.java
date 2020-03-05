@@ -3,6 +3,7 @@ package commands;
 import data.MovieCollection;
 import movie.Movie;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -34,19 +35,31 @@ public class Count_by_genre implements ICommand {
      * @param parameter1 name of genre
      */
     @Override
-    public void Do(String parameter1) {
-        int count = 0;
-        MovieCollection movieCollection = new MovieCollection();
-        Iterator it = movieCollection.getMap().entrySet().iterator();
-        while (it.hasNext()) {
-            Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
-            String movieGenre = movie.getGenre();
-            if (parameter1.equals(movieGenre)) {
-                count++;
+    public void Do(String parameter1) throws IOException {
+        if (parameter1 == null) {
+            Scanner scanner = new Scanner(System.in);
+            String key;
+            System.out.println("Введите жанр");
+            key = scanner.nextLine();
+            if (key.equals("") || key == null) {
+                System.out.println("жанр не может быть null");
+            } else {
+                Commands commands = new Commands(this.name, key);
             }
-            it.remove(); // avoids a ConcurrentModificationException
+        } else {
+            int count = 0;
+            MovieCollection movieCollection = new MovieCollection();
+            Iterator it = movieCollection.getMap().entrySet().iterator();
+            while (it.hasNext()) {
+                Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
+                String movieGenre = movie.getGenre();
+                if (parameter1.equals(movieGenre)) {
+                    count++;
+                }
+                it.remove(); // avoids a ConcurrentModificationException
+            }
+            System.out.print("Количество фильмов жанра " + parameter1 + " - ");
+            System.out.println(count);
         }
-        System.out.print("Количество фильмов жанра " + parameter1 + " - ");
-        System.out.println(count);
     }
 }

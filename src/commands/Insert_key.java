@@ -44,7 +44,7 @@ public class Insert_key implements ICommand {
             System.out.println("Введите ключ");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {System.out.println("Ключ не может быть null");}
-            else {Commands commands = new Commands("insert", key);}
+            else {Commands commands = new Commands(this.name, key);}
         } else {
             MovieCollection movieCollection = new MovieCollection();
             FabricOfMovies newMovie = new FabricOfMovies();

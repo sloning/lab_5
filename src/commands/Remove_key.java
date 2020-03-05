@@ -2,6 +2,9 @@ package commands;
 
 import data.MovieCollection;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * Removes movie by key
  * @author Abay
@@ -13,8 +16,8 @@ public class Remove_key implements ICommand {
     private String name;
 
     public Remove_key(){
-        name = "remove_key";
-        Commands.addNewCommand("remove_key", this);
+        name = "remove";
+        Commands.addNewCommand(name, this);
     }
 
     /**
@@ -33,8 +36,20 @@ public class Remove_key implements ICommand {
      * @param parameter1 key of movie to remove
      */
     @Override
-    public void Do(String parameter1) {
-        MovieCollection movieCollection = new MovieCollection();
-        movieCollection.removeMovie(parameter1);
+    public void Do(String parameter1) throws IOException {
+        if (parameter1 == null) {
+            Scanner scanner = new Scanner(System.in);
+            String key;
+            System.out.println("Введите ключ объекта, который хотите удалить");
+            key = scanner.nextLine();
+            if (key.equals("") || key == null) {
+                System.out.println("Ключ не может быть null");
+            } else {
+                Commands commands = new Commands(this.name, key);
+            }
+        } else {
+            MovieCollection movieCollection = new MovieCollection();
+            movieCollection.removeMovie(parameter1);
+        }
     }
 }
