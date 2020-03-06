@@ -24,7 +24,7 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        if (args[0] != null) {
+        if (args.length > 0) {
             LoadMovies loader = new LoadMovies();
             loader.load(args[0]);
         }

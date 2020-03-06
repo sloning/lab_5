@@ -35,6 +35,18 @@ public class InputOutput {
     public void InputFile(String nameFile) throws IOException {
         try {
             File file = new File(nameFile);
+            if (file.isDirectory()) {
+                System.out.println("Необходим обязательный аргумент: Полное имя файла данных, не директория");
+            }
+            if (!file.exists()) {
+                System.out.println("Файл не найден");
+            }
+            if (!file.canRead()) {
+                System.out.println("Ошибка доступа на чтение");
+            }
+            if (!file.canWrite()) {
+                System.out.println("Ошибка доступа на запись");
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while (bufferedReader.ready()) {
