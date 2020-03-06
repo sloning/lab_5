@@ -60,6 +60,7 @@ public class Insert_key implements ICommand {
             MovieCollection movieCollection = new MovieCollection();
             if (Execute_script.getSignal() == 0) {
                 FabricOfMovies newMovie = new FabricOfMovies();
+                newMovie.create();
             } else {
                 int c = InputOutput.count;
                 FileReader fileReader = new FileReader(Execute_script.getFileName());
