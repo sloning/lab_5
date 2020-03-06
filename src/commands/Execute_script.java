@@ -3,6 +3,8 @@ package commands;
 import input_output.InputOutput;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,6 +16,7 @@ public class Execute_script implements ICommand {
      * @param name name of command
      */
     private String name;
+    private List<String> fileNames = new ArrayList<>();
 
     public Execute_script() {
         name = "execute_script";
@@ -26,13 +29,23 @@ public class Execute_script implements ICommand {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите название файла");
-            System.out.print("$");
+            System.out.print("$ ");
             key = scanner.nextLine();
             if (key.equals("") || key == null) {System.out.println("Название файла не может быть null");}
             else {Commands commands = new Commands(this.name, key);}
         } else {
-            InputOutput inputOutput = new InputOutput();
-            inputOutput.InputFile(parameter1);
+            try {
+                InputOutput inputOutput = new InputOutput();
+                if (fileNames.contains(parameter1)) {
+                    System.err.println("STACKOVERFLOW");
+                } else {
+                    fileNames.add(parameter1);
+                    inputOutput.InputFile(parameter1);
+                }
+            } catch (StackOverflowError e) {
+                System.out.println("STACKOVERFLOW");
+                return;
+            }
         }
     }
 

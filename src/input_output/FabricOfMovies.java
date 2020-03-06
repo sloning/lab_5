@@ -195,7 +195,7 @@ public class FabricOfMovies {
     private int setDirectorX(Movie movie){
         try {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите координату x");     //TODO если тыкнуть enter здесь то все пойдет не по плану. (В конце скажет, что введена неверная команда)
+            System.out.println("Введите координату x");
             System.out.print("$ ");
             Integer xLocation = scanner.nextInt();
             if (xLocation == null) throw new NullPointerException();

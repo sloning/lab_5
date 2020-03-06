@@ -37,7 +37,7 @@ public class Insert_key implements ICommand {
      * @param parameter1 key to HashMap to insert movie
      */
     @Override
-    public void Do(String parameter1) throws IOException { //TODO Работает даже когда ключ не введён из-за этого вместо ключа будет null
+    public void Do(String parameter1) throws IOException {
         if (parameter1 == null){
             Scanner scanner = new Scanner(System.in);
             String key;
