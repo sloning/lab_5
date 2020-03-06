@@ -4,10 +4,13 @@ import data.MovieCollection;
 import movie.Movie;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * Count how many movies of this genre collection has
+ *
  * @author Vladislav
  */
 public class Count_by_genre implements ICommand {
@@ -16,7 +19,7 @@ public class Count_by_genre implements ICommand {
      */
     private String name;
 
-    public Count_by_genre(){
+    public Count_by_genre() {
         name = "count_by_genre";
         Commands.addNewCommand(name, this);
     }
@@ -32,6 +35,7 @@ public class Count_by_genre implements ICommand {
 
     /**
      * Iterate through every element of collection to count all movies
+     *
      * @param parameter1 name of genre
      */
     @Override

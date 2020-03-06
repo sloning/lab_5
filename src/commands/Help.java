@@ -2,6 +2,7 @@ package commands;
 
 /**
  * Prints help for every command
+ *
  * @author Abay
  */
 public class Help implements ICommand {
@@ -10,7 +11,7 @@ public class Help implements ICommand {
      */
     private String name;
 
-    public Help(){
+    public Help() {
         name = "help";
         Commands.addNewCommand(name, this);
     }

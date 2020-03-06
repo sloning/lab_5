@@ -9,12 +9,15 @@ import java.util.Scanner;
 
 /**
  * Executes script
+ *
  * @author Abay geniy
  */
 public class Execute_script implements ICommand {
     /**
      * @param name name of command
      */
+    private static String fileName;
+    private static int signal = 0;
     private String name;
     private List<String> fileNames = new ArrayList<>();
 
@@ -23,24 +26,38 @@ public class Execute_script implements ICommand {
         Commands.addNewCommand("execute_script", this);
     }
 
+    public static int getSignal() {
+        return signal;
+    }
+
+    public static String getFileName() {
+        return fileName;
+    }
+
     @Override
     public void Do(String parameter1) throws IOException {
-        if (parameter1 == null){
+        fileName = parameter1;
+        if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите название файла");
             System.out.print("$ ");
             key = scanner.nextLine();
-            if (key.equals("") || key == null) {System.out.println("Название файла не может быть null");}
-            else {Commands commands = new Commands(this.name, key);}
+            if (key.equals("") || key == null) {
+                System.out.println("Название файла не может быть null");
+            } else {
+                Commands commands = new Commands(this.name, key);
+            }
         } else {
             try {
                 InputOutput inputOutput = new InputOutput();
                 if (fileNames.contains(parameter1)) {
                     System.err.println("STACKOVERFLOW");
                 } else {
+                    signal = 1;
                     fileNames.add(parameter1);
                     inputOutput.InputFile(parameter1);
+                    signal = 0;
                 }
             } catch (StackOverflowError e) {
                 System.out.println("STACKOVERFLOW");

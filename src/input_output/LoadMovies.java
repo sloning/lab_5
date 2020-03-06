@@ -6,10 +6,7 @@ import movie.Location;
 import movie.Movie;
 import movie.Person;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +14,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoadMovies {
+    public static Date FormattingDate(String str) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = formatter.parse(str);
+        return date;
+    }
+
     public void load(String fileName) throws IOException, ParseException {
+        File file = new File(fileName);
+        if (file.isDirectory()) {
+            System.out.println("Необходим обязательный аргумент: Полное имя файла данных, не директория");
+        }
+        if (!file.exists()) {
+            System.out.println("Файл не найден");
+        }
+        if (!file.canRead()) {
+            System.out.println("Ошибка доступа на чтение");
+        }
+        if (!file.canWrite()) {
+            System.out.println("Ошибка доступа на запись");
+        }
         MovieCollection movieCollection = new MovieCollection();
 
         FileInputStream fstream = new FileInputStream(fileName);
@@ -116,11 +132,5 @@ public class LoadMovies {
                 System.out.println("Error occurred while loading movies");
             }
         }
-    }
-
-    public static Date FormattingDate(String str) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = formatter.parse(str);
-        return date;
     }
 }

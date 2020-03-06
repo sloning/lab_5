@@ -4,14 +4,19 @@ import controller.Controller;
 
 import java.io.*;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  * Read input from console and write to a file
+ *
  * @author Abay
  */
 public class InputOutput {
+    public static int count = 0;
+
     /**
      * Read inputs from console
+     *
      * @return input
      * @throws IOException
      */
@@ -29,6 +34,7 @@ public class InputOutput {
 
     /**
      * Read inputs from file
+     *
      * @return input
      * @throws IOException
      */
@@ -48,9 +54,18 @@ public class InputOutput {
                 System.out.println("Ошибка доступа на запись");
             }
             FileReader fileReader = new FileReader(file);
+            String s;
+
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while (bufferedReader.ready()) {
-                Controller controller = new Controller(bufferedReader.readLine());
+                s = bufferedReader.readLine().replaceAll("\\s+", " ");
+                count++;
+                Controller controller = new Controller(s);
+                if (Pattern.matches("insert\\s[A-Za-z0-9_]+", s)) {
+                    for (int i = 0; i < 14; i++) {
+                        bufferedReader.readLine();
+                    }
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Вы ввели неверное название файла");

@@ -10,7 +10,7 @@ public class Coordinates {
     }
 
     /**
-      * @return string with coordinates
+     * @return string with coordinates
      */
     public String getCoordinates() {
         return "x = " + this.x + ", y = " + this.y;

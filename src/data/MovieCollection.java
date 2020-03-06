@@ -2,7 +2,10 @@ package data;
 
 import movie.Movie;
 
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This class stores and protects collection with movies
@@ -21,14 +24,15 @@ public class MovieCollection {
     /**
      * Constructor of this class
      */
-    public MovieCollection(){
+    public MovieCollection() {
         this.dateCreation = new Date();
     }
 
 
     /**
      * Puts movie to collection
-     * @param key key to put movie in HashMap
+     *
+     * @param key   key to put movie in HashMap
      * @param movie movie object to be put in collection
      */
     public void putMovie(String key, Movie movie) {
@@ -37,6 +41,7 @@ public class MovieCollection {
 
     /**
      * Removes movie by id or key
+     *
      * @param key key of movie
      */
     public void removeMovie(String key) {
@@ -46,12 +51,13 @@ public class MovieCollection {
     /**
      * Completely clears collection
      */
-    public void clearMovies(){
+    public void clearMovies() {
         Movies.clear();
     }
 
     /**
      * Returns ids of all movies
+     *
      * @return all ids of movies
      */
     public Set<String> getKeySet() {
@@ -60,6 +66,7 @@ public class MovieCollection {
 
     /**
      * Returns movie by it's id
+     *
      * @param key id of movie
      * @return movie object
      */
@@ -78,6 +85,7 @@ public class MovieCollection {
 
     /**
      * Iterates through all movies and returns information about them
+     *
      * @return info about all movies
      */
     public String showMovies() {
@@ -91,7 +99,8 @@ public class MovieCollection {
 
     /**
      * Replaces movie by id
-     * @param key id of movie to be replaced
+     *
+     * @param key      id of movie to be replaced
      * @param newMovie movie that will replace old movie
      */
     public void replaceMovie(String key, Movie newMovie) {
@@ -100,6 +109,7 @@ public class MovieCollection {
 
     /**
      * Returns movie
+     *
      * @param key id of movie
      * @return movie object
      */
@@ -109,6 +119,7 @@ public class MovieCollection {
 
     /**
      * Returns this collection
+     *
      * @return collection with movies
      */
     public Map<String, Movie> getMap() {

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 /**
  * Removes movie by key
+ *
  * @author Abay
  */
 public class Remove_key implements ICommand {
@@ -15,7 +16,7 @@ public class Remove_key implements ICommand {
      */
     private String name;
 
-    public Remove_key(){
+    public Remove_key() {
         name = "remove";
         Commands.addNewCommand(name, this);
     }
@@ -33,6 +34,7 @@ public class Remove_key implements ICommand {
 
     /**
      * Removes movie by key
+     *
      * @param parameter1 key of movie to remove
      */
     @Override

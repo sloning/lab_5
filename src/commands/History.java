@@ -4,6 +4,7 @@ import data.CommandHistory;
 
 /**
  * Prints last six commands
+ *
  * @author People of the Earth
  */
 public class History implements ICommand {
@@ -12,7 +13,7 @@ public class History implements ICommand {
      */
     private String name;
 
-    public History(){
+    public History() {
         name = "history";
         Commands.addNewCommand(name, this);
     }
@@ -28,7 +29,7 @@ public class History implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1){
+    public void Do(String parameter1) {
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.printHistory();
     }

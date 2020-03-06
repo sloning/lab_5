@@ -14,6 +14,7 @@ public class CommandHistory {
 
     /**
      * Adds new command to collection and removes the oldest
+     *
      * @param commandName Name of command to be adds
      */
     public void addCommand(String commandName) {

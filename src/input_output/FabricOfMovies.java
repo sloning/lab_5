@@ -9,12 +9,13 @@ import java.util.Scanner;
 
 /**
  * Creates new movie object
+ *
  * @author Abay
  */
 public class FabricOfMovies {
     private String Name;
 
-    public void setNameForMovie(Movie movie){
+    public void setNameForMovie(Movie movie) {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название фильма");
@@ -59,8 +60,8 @@ public class FabricOfMovies {
             System.out.println("Введите количество полученных фильмом оскаров");
             System.out.print("$ ");
             Integer oscars = scanner.nextInt();
-            if (oscars==null) throw new NullPointerException();
-            if (oscars<=0) throw new NumberFormatException();
+            if (oscars == null) throw new NullPointerException();
+            if (oscars <= 0) throw new NumberFormatException();
             movie.setOscarsCount(oscars);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -80,7 +81,7 @@ public class FabricOfMovies {
             System.out.println("Введите длину фильма");
             System.out.print("$ ");
             int length = scanner.nextInt();
-            if (length<=0) throw new NumberFormatException();
+            if (length <= 0) throw new NumberFormatException();
             movie.setLength(length);
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -104,7 +105,7 @@ public class FabricOfMovies {
         }
     }
 
-    public void setMpaaRatingForMovie(Movie movie){
+    public void setMpaaRatingForMovie(Movie movie) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Укажите возрастной рейтинг: \nG (нет возрастных ограничений), \nPG (Рекомендуется присутствие родителей), \nPG_13 (Детям до 13 просмотр запрещен)");
         System.out.print("$ ");
@@ -116,13 +117,14 @@ public class FabricOfMovies {
             this.setMpaaRatingForMovie(movie);
         }
     }
-    private String setDirectorName(Movie movie){
-        try{
+
+    private String setDirectorName(Movie movie) {
+        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите имя");
             System.out.print("$ ");
             String nameDirector = scanner.nextLine();
-            if (nameDirector.equals("") || nameDirector==null) throw new NullPointerException();
+            if (nameDirector.equals("") || nameDirector == null) throw new NullPointerException();
             return nameDirector;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
@@ -135,8 +137,8 @@ public class FabricOfMovies {
         }
     }
 
-    private double setDirectorHeight(Movie movie){
-        try{
+    private double setDirectorHeight(Movie movie) {
+        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите высоту");
             System.out.print("$ ");
@@ -148,9 +150,9 @@ public class FabricOfMovies {
             this.setDirectorHeight(movie);
             return 0;
         } catch (NumberFormatException e) {
-        System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
-        this.setDirectorHeight(movie);
-        return 0;
+            System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
+            this.setDirectorHeight(movie);
+            return 0;
         }
     }
 
@@ -173,26 +175,26 @@ public class FabricOfMovies {
         }
     }
 
-    private String setDirectorLocationName(Movie movie){
-        try{
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите геолокацию директора");
-        System.out.println("Введите название геолокации");
-        String nameLocation = scanner.nextLine();
-        if (nameLocation.equals("") || nameLocation == null) throw new NullPointerException();
-        return nameLocation;
+    private String setDirectorLocationName(Movie movie) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите геолокацию директора");
+            System.out.println("Введите название геолокации");
+            String nameLocation = scanner.nextLine();
+            if (nameLocation.equals("") || nameLocation == null) throw new NullPointerException();
+            return nameLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
             this.setDirectorLocationName(movie);
             return null;
         } catch (NullPointerException e) {
-        System.out.println("Значение этого поля не может быть null. Введите значение заново");
-        this.setDirectorLocationName(movie);
-        return null;
+            System.out.println("Значение этого поля не может быть null. Введите значение заново");
+            this.setDirectorLocationName(movie);
+            return null;
         }
     }
 
-    private int setDirectorX(Movie movie){
+    private int setDirectorX(Movie movie) {
         try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите координату x");
@@ -211,13 +213,13 @@ public class FabricOfMovies {
         }
     }
 
-    private long setDirectorY(Movie movie){
-        try{
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите координату y");
-        System.out.print("$ ");
-        long yLocation = scanner.nextLong();
-        return yLocation;
+    private long setDirectorY(Movie movie) {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите координату y");
+            System.out.print("$ ");
+            long yLocation = scanner.nextLong();
+            return yLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
             this.setDirectorY(movie);
@@ -225,8 +227,8 @@ public class FabricOfMovies {
         }
     }
 
-    public int setDirectorZ(Movie movie){
-        try{
+    public int setDirectorZ(Movie movie) {
+        try {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите координату z");
             System.out.print("$ ");
@@ -266,6 +268,7 @@ public class FabricOfMovies {
 
     /**
      * Reads input and therefore creates new movie
+     *
      * @return new movie object
      */
     public Movie create() {

@@ -4,6 +4,7 @@ import data.MovieCollection;
 
 /**
  * Prints all movies in collection
+ *
  * @author Abay
  */
 public class Show implements ICommand {
@@ -12,7 +13,7 @@ public class Show implements ICommand {
      */
     private String name;
 
-    public Show(){
+    public Show() {
         name = "show";
         Commands.addNewCommand(name, this);
     }

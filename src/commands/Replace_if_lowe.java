@@ -1,14 +1,15 @@
 package commands;
 
 import data.MovieCollection;
-import movie.Movie;
 import input_output.FabricOfMovies;
+import movie.Movie;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 /**
  * Replace element if it new element has lower length
+ *
  * @author Vladislav
  */
 public class Replace_if_lowe implements ICommand {
@@ -34,6 +35,7 @@ public class Replace_if_lowe implements ICommand {
 
     /**
      * Get new movie object and compare's it to old movie
+     *
      * @param parameter1 key to HashMap
      */
     @Override

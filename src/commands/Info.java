@@ -4,6 +4,7 @@ import data.MovieCollection;
 
 /**
  * SHows info about collection
+ *
  * @author Abay
  */
 public class Info implements ICommand {
@@ -12,7 +13,7 @@ public class Info implements ICommand {
      */
     private String name;
 
-    public Info(){
+    public Info() {
         name = "info";
         Commands.addNewCommand(name, this);
     }
@@ -29,6 +30,7 @@ public class Info implements ICommand {
 
     /**
      * Prints info about collection
+     *
      * @param parameter1 nothing here
      */
     @Override

@@ -1,17 +1,19 @@
 package commands;
+
 import data.MovieCollection;
 
 /**
  * Removes all movies from collection
+ *
  * @author Abay
  */
-public class Clear implements ICommand{
+public class Clear implements ICommand {
     /**
      * @param name = name of command
      */
     private String name;
 
-    public Clear(){
+    public Clear() {
         this.name = "clear";
         Commands.addNewCommand(name, this);
     }

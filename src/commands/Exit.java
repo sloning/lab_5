@@ -2,6 +2,7 @@ package commands;
 
 /**
  * Stops program execution
+ *
  * @author Vladislav
  */
 public class Exit implements ICommand {
@@ -10,7 +11,7 @@ public class Exit implements ICommand {
      */
     private String name;
 
-    public Exit(){
+    public Exit() {
         name = "exit";
         Commands.addNewCommand("exit", this);
     }
@@ -26,7 +27,7 @@ public class Exit implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1){
+    public void Do(String parameter1) {
         System.exit(0);
     }
 }

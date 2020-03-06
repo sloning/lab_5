@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 /**
  * Replace movie by it's id
+ *
  * @author Abay
  */
 public class Update_id implements ICommand {
@@ -16,7 +17,7 @@ public class Update_id implements ICommand {
      */
     private String name;
 
-    public Update_id(){
+    public Update_id() {
         name = "update";
         Commands.addNewCommand(name, this);
     }
@@ -33,6 +34,7 @@ public class Update_id implements ICommand {
 
     /**
      * Replaces old movie by new movie
+     *
      * @param parameter1 key to HashMap and id of new movie
      */
     @Override //Гениальный класс

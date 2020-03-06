@@ -4,6 +4,7 @@ import data.MovieCollection;
 
 /**
  * Printing element with minimal id
+ *
  * @author Vladislav
  */
 public class Min_by_id implements ICommand {
@@ -29,6 +30,7 @@ public class Min_by_id implements ICommand {
 
     /**
      * Get Key Set from HashMap then take lowest key (key = id) and print it's value
+     *
      * @param parameter1 ignore this
      */
     @Override

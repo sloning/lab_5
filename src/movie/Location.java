@@ -6,23 +6,23 @@ public class Location {
     private Integer z; //Поле не может быть null
     private String name; //Поле не может быть null
 
-    public Location (String name, int x, long y, int z){
-        this.name=name;
-        this.x=x;
-        this.y=y;
-        this.z=z;
+    public Location(String name, int x, long y, int z) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public Location (int x, long y, int z){
-        this.x=x;
-        this.y=y;
-        this.z=z;
+    public Location(int x, long y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     /**
      * @return string with location
      */
-    public String getLocation(){
-        return "x = " + x + " y = " + y + " z = " + z;
+    public String getLocation() {
+        return "\nLocation name: " + name + "\nLocation: x = " + x + " y = " + y + " z = " + z;
     }
 }

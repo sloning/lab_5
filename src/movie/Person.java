@@ -13,9 +13,10 @@ public class Person {
 
     /**
      * Constructor, creates person
-     * @param name name of person
-     * @param height height of person
-     * @param weight weight of person
+     *
+     * @param name     name of person
+     * @param height   height of person
+     * @param weight   weight of person
      * @param location location of person
      */
     public Person(String name, Double height, Float weight, Location location) {
@@ -56,7 +57,7 @@ public class Person {
     public String getPerson() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(this.birthday);
-        return "Name: " + name + "\nBirthday: " + date + "\nHeight: " + height + "\nWeight: " + weight + "\nLocation: " + location.getLocation();
+        return "Name: " + name + "\nBirthday: " + date + "\nHeight: " + height + "\nWeight: " + weight + location.getLocation();
     }
 
 

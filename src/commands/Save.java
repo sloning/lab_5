@@ -14,7 +14,7 @@ public class Save implements ICommand {
      */
     private String name;
 
-    public Save(){
+    public Save() {
         name = "save";
         Commands.addNewCommand(name, this);
     }

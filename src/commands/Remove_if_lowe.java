@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 /**
  * Remove movie if it's id lower than my
+ *
  * @author Vladislav
  */
 public class Remove_if_lowe implements ICommand {
@@ -18,7 +19,7 @@ public class Remove_if_lowe implements ICommand {
      */
     private String name;
 
-    public Remove_if_lowe(){
+    public Remove_if_lowe() {
         name = "remove_lower_key";
         Commands.addNewCommand(name, this);
     }
@@ -35,6 +36,7 @@ public class Remove_if_lowe implements ICommand {
 
     /**
      * Iterates through all elements of collection and removes movies by their id's
+     *
      * @param parameter1 id, all movie's which has lower id's than this will be removed from collection
      */
     @Override
