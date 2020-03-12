@@ -13,9 +13,9 @@ public class Location {
         this.z = z;
     }
 
-    public Location(int x, long y, int z) {
+    public Location(String name, int x, int z) {
+        this.name = name;
         this.x = x;
-        this.y = y;
         this.z = z;
     }
 

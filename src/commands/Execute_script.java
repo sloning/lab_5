@@ -39,29 +39,23 @@ public class Execute_script implements ICommand {
         fileName = parameter1;
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
-            String key;
             System.out.println("Введите название файла");
             System.out.print("$ ");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
+            fileName = scanner.nextLine();
+            if (fileName.isEmpty()) {
                 System.out.println("Название файла не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, fileName);
             }
         } else {
-            try {
-                InputOutput inputOutput = new InputOutput();
-                if (fileNames.contains(parameter1)) {
-                    System.err.println("STACKOVERFLOW");
-                } else {
-                    signal = 1;
-                    fileNames.add(parameter1);
-                    inputOutput.InputFile(parameter1);
-                    signal = 0;
-                }
-            } catch (StackOverflowError e) {
-                System.out.println("STACKOVERFLOW");
-                return;
+            InputOutput inputOutput = new InputOutput();
+            if (fileNames.contains(fileName)) {
+                System.err.println("STACKOVERFLOW");        //TODO Выводится не там где надо
+            } else {
+                signal = 1;
+                fileNames.add(fileName);
+                inputOutput.InputFile(fileName);
+                signal = 0;
             }
         }
     }

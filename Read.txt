@@ -1,17 +1,2 @@
-insert abc
-Kirill
-1
-2
-3
-4
-COMEDY
-G
-asdf
-4
-4
-ABAY
-5
-5
-5
-show
+
 execute_script Read1.txt

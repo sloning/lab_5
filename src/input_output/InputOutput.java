@@ -32,6 +32,27 @@ public class InputOutput {
         }
     }
 
+    public static int checkFile(String fileName) {
+        File file = new File(fileName);
+        if (file.isDirectory()) {
+            System.out.println("Необходим обязательный аргумент: Полное имя файла данных, не директория");
+            return 1;
+        }
+        if (!file.exists()) {
+            System.out.println("Файл не найден");
+            return 1;
+        }
+        if (!file.canRead()) {
+            System.out.println("Ошибка доступа на чтение");
+            return 1;
+        }
+        if (!file.canWrite()) {
+            System.out.println("Ошибка доступа на запись");
+            return 1;
+        }
+        return 0;
+    }
+
     /**
      * Read inputs from file
      *
@@ -41,29 +62,20 @@ public class InputOutput {
     public void InputFile(String nameFile) throws IOException {
         try {
             File file = new File(nameFile);
-            if (file.isDirectory()) {
-                System.out.println("Необходим обязательный аргумент: Полное имя файла данных, не директория");
-            }
-            if (!file.exists()) {
-                System.out.println("Файл не найден");
-            }
-            if (!file.canRead()) {
-                System.out.println("Ошибка доступа на чтение");
-            }
-            if (!file.canWrite()) {
-                System.out.println("Ошибка доступа на запись");
-            }
-            FileReader fileReader = new FileReader(file);
-            String s;
+            if (checkFile(nameFile) == 0) {
+                FileReader fileReader = new FileReader(file);
+                String str;
 
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            while (bufferedReader.ready()) {
-                s = bufferedReader.readLine().replaceAll("\\s+", " ");
-                count++;
-                Controller controller = new Controller(s);
-                if (Pattern.matches("insert\\s[A-Za-z0-9_]+", s)) {
-                    for (int i = 0; i < 14; i++) {
-                        bufferedReader.readLine();
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                while (bufferedReader.ready()) {
+                    str = bufferedReader.readLine().replaceAll("\\s+", " ");
+                    if (str.isEmpty()) continue;
+                    count++;
+                    Controller controller = new Controller(str);
+                    if (Pattern.matches("insert\\s[A-Za-z0-9_]+", str)) {
+                        for (int i = 0; i < 14; i++) {
+                            bufferedReader.readLine();
+                        }
                     }
                 }
             }

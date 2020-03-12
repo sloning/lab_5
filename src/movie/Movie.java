@@ -65,6 +65,10 @@ public class Movie {
         coordinates = new Coordinates(x, y);
     }
 
+    public void setCoordinates(int x) {
+        coordinates = new Coordinates(x);
+    }
+
     /**
      * @param name     name of director
      * @param height   height of director
