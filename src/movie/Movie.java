@@ -108,7 +108,11 @@ public class Movie {
      * @return genre of movie
      */
     public String getGenre() {
-        return this.genre.toString();
+        try {
+            return genre.toString();
+        } catch (Exception e) {
+            return "null";
+        }
     }
 
     /**

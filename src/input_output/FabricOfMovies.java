@@ -124,16 +124,14 @@ public class FabricOfMovies {
             System.out.println("Введите имя");
             System.out.print("$ ");
             String nameDirector = scanner.nextLine();
-            if (nameDirector.equals("") || nameDirector == null) throw new NullPointerException();
+            if (nameDirector.isEmpty()) throw new NullPointerException();
             return nameDirector;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorName(movie);
-            return null;
+            return this.setDirectorName(movie);
         } catch (NullPointerException e) {
             System.out.println("Значение этого поля не может быть null. Введите значение заново");
-            this.setDirectorName(movie);
-            return null;
+            return this.setDirectorName(movie);
         }
     }
 
@@ -147,12 +145,10 @@ public class FabricOfMovies {
             return height;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorHeight(movie);
-            return 0;
+            return this.setDirectorHeight(movie);
         } catch (NumberFormatException e) {
             System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
-            this.setDirectorHeight(movie);
-            return 0;
+            return this.setDirectorHeight(movie);
         }
     }
 
@@ -166,12 +162,10 @@ public class FabricOfMovies {
             return weight;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorWeight(movie);
-            return 0;
+            return this.setDirectorWeight(movie);
         } catch (NumberFormatException e) {
             System.out.println("Значение этого поля не может быть отрицательным или равным нулю");
-            this.setDirectorWeight(movie);
-            return 0;
+            return this.setDirectorWeight(movie);
         }
     }
 
@@ -180,17 +174,16 @@ public class FabricOfMovies {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите геолокацию директора");
             System.out.println("Введите название геолокации");
+            System.out.print("$ ");
             String nameLocation = scanner.nextLine();
-            if (nameLocation.equals("") || nameLocation == null) throw new NullPointerException();
+            if (nameLocation.isEmpty()) throw new NullPointerException();
             return nameLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorLocationName(movie);
-            return null;
+            return this.setDirectorLocationName(movie);
         } catch (NullPointerException e) {
             System.out.println("Значение этого поля не может быть null. Введите значение заново");
-            this.setDirectorLocationName(movie);
-            return null;
+            return this.setDirectorLocationName(movie);
         }
     }
 
@@ -204,12 +197,10 @@ public class FabricOfMovies {
             return xLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorX(movie);
-            return 0;
+            return this.setDirectorX(movie);
         } catch (NullPointerException e) {
             System.out.println("Значение этого поля не может быть null. Введите значение заново");
-            this.setDirectorX(movie);
-            return 0;
+            return this.setDirectorX(movie);
         }
     }
 
@@ -222,8 +213,7 @@ public class FabricOfMovies {
             return yLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorY(movie);
-            return 0;
+            return this.setDirectorY(movie);
         }
     }
 
@@ -237,12 +227,10 @@ public class FabricOfMovies {
             return zLocation;
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
-            this.setDirectorZ(movie);
-            return 0;
+            return this.setDirectorZ(movie);
         } catch (NullPointerException e) {
             System.out.println("Значение этого поля не может быть null. Введите значение заново");
-            this.setDirectorZ(movie);
-            return 0;
+            return this.setDirectorZ(movie);
         }
     }
 
@@ -250,8 +238,6 @@ public class FabricOfMovies {
         Scanner scanner = new Scanner(System.in);
         try {
             System.out.println("Укажите данные директора фильма");
-
-
             movie.setDirector(this.setDirectorName(movie), this.setDirectorHeight(movie), this.setDirectorWeight(movie), new Location(this.setDirectorLocationName(movie), this.setDirectorX(movie), this.setDirectorY(movie), this.setDirectorZ(movie)));
         } catch (InputMismatchException e) {
             System.out.println("Вы ввели значение неверного типа. Введите значение заново");
