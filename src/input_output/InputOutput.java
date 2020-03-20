@@ -42,6 +42,10 @@ public class InputOutput {
             System.out.println("Файл не найден");
             return 1;
         }
+        if (!file.canRead() && !file.canWrite()) {
+            System.out.println("Ошибка доступа на чтение и на запись");
+            return 1;
+        }
         if (!file.canRead()) {
             System.out.println("Ошибка доступа на чтение");
             return 1;
