@@ -26,8 +26,8 @@ public class LoadMovies {
     public void load(String fileName) throws IOException, ParseException {
         MovieCollection movieCollection = new MovieCollection();
 
-        FileInputStream fstream = new FileInputStream(fileName);
         if (InputOutput.checkFile(fileName) == 0) {
+            FileInputStream fstream = new FileInputStream(fileName);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String csvLine;
 
