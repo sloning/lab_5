@@ -12,10 +12,11 @@ public class Clear implements ICommand {
      * @param name = name of command
      */
     private String name;
-
+    Commands commands;
     public Clear() {
         this.name = "clear";
         Commands.addNewCommand(name, this);
+
     }
 
     /**
@@ -36,4 +37,5 @@ public class Clear implements ICommand {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.clearMovies();
     }
+
 }

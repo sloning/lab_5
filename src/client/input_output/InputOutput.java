@@ -20,7 +20,7 @@ public class InputOutput {
      * @return input
      * @throws IOException
      */
-    public void Input() throws IOException {
+    public void Input() throws Exception {
         try {
             Scanner sc = new Scanner(System.in);
             System.out.println("Введите команду");
@@ -85,6 +85,8 @@ public class InputOutput {
             }
         } catch (FileNotFoundException e) {
             System.out.println("Вы ввели неверное название файла");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -39,7 +39,7 @@ public class Count_by_genre implements ICommand {
      * @param parameter1 name of genre
      */
     @Override
-    public void Do(String parameter1) throws IOException {
+    public void Do(String parameter1) throws Exception {
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
             String key;

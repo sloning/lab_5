@@ -40,7 +40,7 @@ public class Remove_if_lowe implements ICommand {
      * @param parameter1 id, all server.movie's which has lower id's than this will be removed from collection
      */
     @Override
-    public void Do(String parameter1) throws IOException {
+    public void Do(String parameter1) throws Exception {
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
             String key;

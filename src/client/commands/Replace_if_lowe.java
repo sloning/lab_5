@@ -39,7 +39,7 @@ public class Replace_if_lowe implements ICommand {
      * @param parameter1 key to HashMap
      */
     @Override
-    public void Do(String parameter1) throws IOException {
+    public void Do(String parameter1) throws Exception {
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
             String key;

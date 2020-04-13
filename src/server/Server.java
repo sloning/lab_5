@@ -18,7 +18,6 @@ public class Server {
             String InputLine;
             System.out.println("new connection from: " + clientSocket.getRemoteSocketAddress().toString());
 
-
         }
     }
 

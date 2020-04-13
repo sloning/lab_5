@@ -1,5 +1,7 @@
 package client.commands;
 
+import client.sirializator.Serialize;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
@@ -23,8 +25,8 @@ public class Commands {
      * @param name       name of command
      * @param parameter1 first parameter to transmit to command
      */
-    public Commands(String name, String parameter1) throws IOException {
-        commands.get(name).Do(parameter1);
+    public Commands(String name, String parameter1) throws Exception { //TODO передать как-нибудь параметер
+        Serialize serialize = new Serialize(commands.get(name));
     }
 
     /**
@@ -43,4 +45,6 @@ public class Commands {
             System.out.println(com.info());
         }
     }
+
+
 }
