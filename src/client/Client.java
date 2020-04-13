@@ -1,13 +1,10 @@
-package lab;
-
+package client;
 import client.commands.*;
-import client.input_output.InputOutput;
-import client.input_output.LoadMovies;
+import java.io.*;
+import java.net.*;
 
-import java.util.NoSuchElementException;
-
-public class Main {
-    public static void main(String[] args) throws Exception {
+public class Client {
+    public static void main(String[] args) throws IOException {
         Clear clear = new Clear();
         Count_by_genre count_by_genre = new Count_by_genre();
         Execute_script execute_script = new Execute_script();
@@ -25,18 +22,15 @@ public class Main {
         Show show = new Show();
         Update_id update_id = new Update_id();
 
-        if (args.length > 0) {
-            LoadMovies loader = new LoadMovies();
-            loader.load(args[0]);
-        }
 
-        while (true) {
-            try {
-                InputOutput inputOutput = new InputOutput();
-                inputOutput.Input();
-            } catch (NoSuchElementException e) {
-                System.exit(0);
-            }
+        try (
+                Socket socket = new Socket("127.0.0.1", 1010);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        ) {
+
+        } catch (Throwable cause) {
+            System.out.println("Connection error: " + cause.getMessage());
         }
     }
 }
