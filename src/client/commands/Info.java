@@ -2,12 +2,14 @@ package client.commands;
 
 import server.data.MovieCollection;
 
+import java.io.Serializable;
+
 /**
  * SHows info about collection
  *
  * @author Abay
  */
-public class Info implements ICommand {
+public class Info implements ICommand, Serializable {
     /**
      * @param name name of command
      */

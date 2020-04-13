@@ -1,11 +1,13 @@
 package client.commands;
 
+import java.io.Serializable;
+
 /**
  * Prints help for every command
  *
  * @author Abay
  */
-public class Help implements ICommand {
+public class Help implements ICommand, Serializable {
     /**
      * @param name name of command
      */

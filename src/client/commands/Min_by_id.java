@@ -2,12 +2,14 @@ package client.commands;
 
 import server.data.MovieCollection;
 
+import java.io.Serializable;
+
 /**
  * Printing element with minimal id
  *
  * @author Vladislav
  */
-public class Min_by_id implements ICommand {
+public class Min_by_id implements ICommand, Serializable {
     /**
      * @param name name of command
      */

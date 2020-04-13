@@ -1,13 +1,16 @@
 package client.commands;
 
+import client.sirializator.Serialize;
 import server.data.MovieCollection;
+
+import java.io.Serializable;
 
 /**
  * Removes all movies from collection
  *
  * @author Abay
  */
-public class Clear implements ICommand {
+public class Clear implements ICommand, Serializable {
     /**
      * @param name = name of command
      */

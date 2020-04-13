@@ -4,6 +4,7 @@ import server.data.MovieCollection;
 import client.input_output.FabricOfMovies;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Abay
  */
-public class Update_id implements ICommand {
+public class Update_id implements ICommand, Serializable {
     /**
      * @param name name of command
      */
