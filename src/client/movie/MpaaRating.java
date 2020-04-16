@@ -1,4 +1,4 @@
-package server.movie;
+package client.movie;
 
 import java.io.Serializable;
 

@@ -20,7 +20,6 @@ public class Client {
         Remove_if_lowe remove_if_lowe = new Remove_if_lowe();
         Remove_key remove_key = new Remove_key();
         Replace_if_lowe replace_if_lowe = new Replace_if_lowe();
-        Save save = new Save();
         Show show = new Show();
         Update_id update_id = new Update_id();
 
@@ -28,7 +27,7 @@ public class Client {
         try (
                 Socket socket = new Socket("127.0.0.1", 1010);
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
             InputOutput inputOutput = new InputOutput();
             inputOutput.Input();

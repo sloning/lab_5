@@ -59,7 +59,7 @@ public class Insert_key implements ICommand, Serializable {
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            if (Execute_script.getSignal() == 0) {
+            if (!Execute_script.getSignal()) {
                 FabricOfMovies movieCreator = new FabricOfMovies();
                 Movie newMovie = movieCreator.create();
                 movieCollection.putMovie(key, newMovie);

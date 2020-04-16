@@ -12,7 +12,7 @@ public class Server {
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
                 //класс-адаптер, который читает символы, а не потоки
                 //в отличие от BufferedWriter выталкивает содержимое буфера автоматически
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
                 //мы можем что-либо принять с помощью in и отослать с помощью out
         ) {
             String InputLine;
