@@ -5,7 +5,6 @@ import client.input_output.FabricOfMovies;
 import server.movie.Movie;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Vladislav
  */
-public class Replace_if_lowe implements ICommand, Serializable {
+public class Replace_if_lowe implements ICommand {
     /**
      * @param name name of command
      */

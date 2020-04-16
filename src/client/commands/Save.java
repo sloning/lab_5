@@ -4,12 +4,11 @@ import server.data.MovieCollection;
 import client.input_output.SaveMovies;
 
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * Saves collection to a file
  */
-public class Save implements ICommand, Serializable {
+public class Save implements ICommand {
     /**
      * @param name name of command
      */

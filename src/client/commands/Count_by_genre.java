@@ -4,7 +4,6 @@ import server.data.MovieCollection;
 import server.movie.Movie;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,7 +13,7 @@ import java.util.Scanner;
  *
  * @author Vladislav
  */
-public class Count_by_genre implements ICommand, Serializable {
+public class Count_by_genre implements ICommand {
     /**
      * @param name name of command
      */

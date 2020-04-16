@@ -2,14 +2,12 @@ package client.commands;
 
 import server.data.MovieCollection;
 
-import java.io.Serializable;
-
 /**
  * Prints all movies in collection
  *
  * @author Abay
  */
-public class Show implements ICommand, Serializable {
+public class Show implements ICommand {
     /**
      * @param name name of command
      */

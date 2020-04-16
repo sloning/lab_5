@@ -1,13 +1,11 @@
 package client.commands;
 
-import java.io.Serializable;
-
 /**
  * Stops program execution
  *
  * @author Vladislav
  */
-public class Exit implements ICommand, Serializable {
+public class Exit implements ICommand {
     /**
      * @param name name of command
      */

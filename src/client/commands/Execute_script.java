@@ -3,7 +3,6 @@ package client.commands;
 import client.input_output.InputOutput;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Abay geniy
  */
-public class Execute_script implements ICommand, Serializable {
+public class Execute_script implements ICommand {
     /**
      * @param name name of command
      */

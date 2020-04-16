@@ -9,7 +9,6 @@ import server.movie.Movie;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -17,7 +16,7 @@ import java.util.Scanner;
  *
  * @author Abay
  */
-public class Insert_key implements ICommand, Serializable {
+public class Insert_key implements ICommand {
     /**
      * @param name name of command
      */

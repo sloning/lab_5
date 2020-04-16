@@ -2,14 +2,12 @@ package client.commands;
 
 import server.data.CommandHistory;
 
-import java.io.Serializable;
-
 /**
  * Prints last six client.commands
  *
  * @author People of the Earth
  */
-public class History implements ICommand, Serializable {
+public class History implements ICommand {
     /**
      * @param name name of command
      */

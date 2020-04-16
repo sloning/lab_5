@@ -3,7 +3,6 @@ package client.commands;
 import server.data.MovieCollection;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Scanner;
  *
  * @author Abay
  */
-public class Remove_key implements ICommand, Serializable {
+public class Remove_key implements ICommand {
     /**
      * @param name name of command
      */
