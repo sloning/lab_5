@@ -1,7 +1,5 @@
 package client;
 import client.commands.*;
-import client.input_output.InputOutput;
-
 import java.io.*;
 import java.net.*;
 
@@ -30,10 +28,7 @@ public class Client {
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         ) {
-            InputOutput inputOutput = new InputOutput();
-            inputOutput.Input();
-            File file = new File("tempFile");
-            out.print(file);
+
         } catch (Throwable cause) {
             System.out.println("Connection error: " + cause.getMessage());
         }

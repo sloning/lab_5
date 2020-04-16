@@ -35,7 +35,7 @@ public class Execute_script implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) throws Exception {
+    public void Do(String parameter1) throws IOException {
         fileName = parameter1;
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);

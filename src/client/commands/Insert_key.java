@@ -44,7 +44,7 @@ public class Insert_key implements ICommand {
      * @param parameter1 key to HashMap to insert server.movie
      */
     @Override
-    public void Do(String parameter1) throws Exception {
+    public void Do(String parameter1) throws IOException {
         String key = parameter1;
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);

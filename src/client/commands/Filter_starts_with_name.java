@@ -31,7 +31,7 @@ public class Filter_starts_with_name implements ICommand {
      * @param parameter1 name to filter
      */
     @Override
-    public void Do(String parameter1) throws Exception {
+    public void Do(String parameter1) throws IOException {
         if (parameter1 == null) {
             Scanner scanner = new Scanner(System.in);
             String key;

@@ -16,7 +16,7 @@ public class Controller {
      *
      * @param command command to process
      */
-    public Controller(String command) throws Exception {
+    public Controller(String command) throws IOException {
         String[] nameCommands = new String[2];
         nameCommands = command.split(" ");
         if (nameCommands.length == 1) {
