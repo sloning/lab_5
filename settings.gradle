@@ -8,3 +8,5 @@
  */
 
 rootProject.name = 'lab_5'
+
+include 'server', 'client'
