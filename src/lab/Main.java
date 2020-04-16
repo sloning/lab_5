@@ -1,8 +1,8 @@
 package lab;
 
-import client.commands.*;
-import client.input_output.InputOutput;
-import client.input_output.LoadMovies;
+import commands.*;
+import input_output.InputOutput;
+import input_output.LoadMovies;
 
 import java.util.NoSuchElementException;
 
