@@ -1,8 +1,6 @@
 package server.movie;
 
-import java.io.Serializable;
-
-public class Coordinates implements Serializable {
+public class Coordinates {
     private Integer x; //Поле не может быть null
     private float y;
 

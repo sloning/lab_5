@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class CommandHistory {
     /**
-     * Place where client.commands stores
+     * Place there client.commands stores
      */
     private static List<String> history = new ArrayList<String>();
 

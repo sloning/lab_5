@@ -1,8 +1,6 @@
 package server.movie;
 
-import java.io.Serializable;
-
-public class Location implements Serializable {
+public class Location {
     private Integer x; //Поле не может быть null
     private long y;
     private Integer z; //Поле не может быть null

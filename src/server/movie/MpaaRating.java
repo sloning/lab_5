@@ -1,8 +1,6 @@
 package server.movie;
 
-import java.io.Serializable;
-
-public enum MpaaRating implements Serializable {
+public enum MpaaRating {
     G,
     PG,
     PG_13

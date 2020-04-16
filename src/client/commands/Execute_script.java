@@ -18,7 +18,7 @@ public class Execute_script implements ICommand, Serializable {
      * @param name name of command
      */
     private static String fileName;
-    private static boolean signal = false;
+    private static int signal = 0;
     private String name;
     private List<String> fileNames = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class Execute_script implements ICommand, Serializable {
         Commands.addNewCommand("execute_script", this);
     }
 
-    public static boolean getSignal() {
+    public static int getSignal() {
         return signal;
     }
 
@@ -51,12 +51,12 @@ public class Execute_script implements ICommand, Serializable {
         } else {
             InputOutput inputOutput = new InputOutput();
             if (fileNames.contains(fileName)) {
-                System.err.println("STACKOVERFLOW");
+                System.err.println("STACKOVERFLOW");        //TODO Выводится не там где надо
             } else {
-                signal = true;
+                signal = 1;
                 fileNames.add(fileName);
                 inputOutput.InputFile(fileName);
-                signal = false;
+                signal = 0;
             }
         }
     }

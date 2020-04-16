@@ -1,12 +1,16 @@
 package client.sirializator;
 
+import client.commands.ICommand;
+
 import java.io.*;
 
 public class Serialize {
-    public Serialize(SerializedObject serializedObject) throws Exception {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(serializedObject);
-        objectOutputStream.flush();
+    public Serialize(ICommand command) throws Exception {
+        FileOutputStream fileOutputStream = new FileOutputStream("client/tempFile");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(command);
+        objectOutputStream.close();
     }
+
+
 }
