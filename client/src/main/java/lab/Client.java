@@ -1,9 +1,12 @@
-package lab;
+package src.main.java.lab;
+
+import src.main.java.lab.input_output.InputOutput;
+import src.main.java.lab.query.Serialize;
 
 import java.io.*;
 import java.net.*;
 
-public class Main {
+public class Client {
     public static void main(String[] args) throws Exception {
         try (
                 Socket socket = new Socket("127.0.0.1", 1010);
@@ -19,10 +22,12 @@ public class Main {
                     // данные появились - работаем
                     System.out.println("Client start writing in channel...");
                     Thread.sleep(1000);
-                    String clientCommand = br.readLine();
+                    InputOutput inputOutput = new InputOutput();
+                    inputOutput.Input();
+                    File file = new File("tempFile");
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
                     // пишем данные с консоли в канал сокета для сервера
-                    out.write(clientCommand);
-                    System.out.println("Client sent message " + clientCommand + " to server.");
+                    System.out.println("Client sent message " + file.getName() + " to server.");
                     // ждём чтобы сервер успел прочесть сообщение из сокета и ответить
                     Thread.sleep(1000);
                     if(in.read() > -1) {

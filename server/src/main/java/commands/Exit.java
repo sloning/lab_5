@@ -1,4 +1,4 @@
-package commands;
+package src.main.java.commands;
 
 /**
  * Stops program execution

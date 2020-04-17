@@ -1,4 +1,4 @@
-package src.main.java.movie;
+package src.main.java.lab.movie;
 public enum MovieGenre {
     COMEDY,
     MUSICAL,

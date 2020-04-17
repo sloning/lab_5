@@ -1,8 +1,7 @@
-package commands;
+package src.main.java.commands;
 
-import data.MovieCollection;
-import movie.Movie;
-
+import src.main.java.data.MovieCollection;
+import src.main.java.movie.*;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;

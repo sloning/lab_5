@@ -1,7 +1,6 @@
-package commands;
+package src.main.java.commands;
 
-import data.MovieCollection;
-import input_output.FabricOfMovies;
+import src.main.java.data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -52,8 +51,10 @@ public class Update_id implements ICommand {
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            FabricOfMovies newMovie = new FabricOfMovies();
-            movieCollection.replaceMovie(parameter1, newMovie.create());
+            //FabricOfMovies newMovie = new FabricOfMovies();
+            //movieCollection.replaceMovie(parameter1, newMovie.create());
+
+            //TODO нужно обрабатывать готовые объекты, можно помимо парметра еще и муви кидать
         }
     }
 }

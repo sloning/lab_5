@@ -1,7 +1,5 @@
-package commands;
-
-import data.CommandHistory;
-
+package src.main.java.commands;
+//TODO этот класс я так понимаю нужно убрать или перенести в клиент
 /**
  * Prints last six commands
  *
@@ -30,8 +28,8 @@ public class History implements ICommand {
 
     @Override
     public void Do(String parameter1) {
-        CommandHistory commandHistory = new CommandHistory();
-        commandHistory.printHistory();
+//        CommandHistory commandHistory = new CommandHistory();
+//        commandHistory.printHistory();
     }
 
 }

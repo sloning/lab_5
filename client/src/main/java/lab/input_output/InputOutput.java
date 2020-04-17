@@ -1,6 +1,6 @@
-package input_output;
+package src.main.java.lab.input_output;
 
-import controller.Controller;
+import src.main.java.lab.controller.*;
 
 import java.io.*;
 import java.util.Scanner;

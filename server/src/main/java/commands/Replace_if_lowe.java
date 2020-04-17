@@ -1,12 +1,9 @@
-package commands;
-
-import data.MovieCollection;
-import input_output.FabricOfMovies;
-import movie.Movie;
+package src.main.java.commands;
+import src.main.java.data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Scanner;
-
+import src.main.java.movie.*;
 /**
  * Replace element if it new element has lower length
  *
@@ -53,13 +50,14 @@ public class Replace_if_lowe implements ICommand {
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            FabricOfMovies fabricOfMovies = new FabricOfMovies();
-            Movie newMovie = fabricOfMovies.create();
-            Movie oldMovie = movieCollection.getMovie(parameter1);
+            //FabricOfMovies fabricOfMovies = new FabricOfMovies();
+            //Movie newMovie = fabricOfMovies.create();
+            //Movie oldMovie = movieCollection.getMovie(parameter1);
 
-            if (newMovie.getLength() < oldMovie.getLength()) {
-                movieCollection.replaceMovie(parameter1, newMovie);
-            }
+            //if (newMovie.getLength() < oldMovie.getLength()) {
+            //    movieCollection.replaceMovie(parameter1, newMovie);
+            //}
+            //TODO переделать эту команду
         }
     }
 }

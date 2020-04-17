@@ -1,6 +1,6 @@
-package commands;
+package src.main.java.commands;
 
-import data.MovieCollection;
+import src.main.java.data.MovieCollection;
 
 /**
  * Removes all movies from collection

@@ -1,6 +1,5 @@
-package commands;
-
-import data.MovieCollection;
+package src.main.java.commands;
+import src.main.java.data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Scanner;

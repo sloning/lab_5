@@ -1,4 +1,4 @@
-package src.main.java.movie;
+package src.main.java.lab.movie;
 
 public class Location {
     private Integer x; //Поле не может быть null

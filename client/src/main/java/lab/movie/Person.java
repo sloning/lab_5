@@ -1,4 +1,4 @@
-package src.main.java.movie;
+package src.main.java.lab.movie;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Person {
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private Date birthday; //Поле не может быть null
+    private java.util.Date birthday; //Поле не может быть null
     private Double height; //Поле может быть null, Значение поля должно быть больше 0
     private Float weight; //Поле может быть null, Значение поля должно быть больше 0
     private Location location; //Поле может быть null

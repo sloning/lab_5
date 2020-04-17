@@ -1,4 +1,4 @@
-package data;
+package src.main.java.lab.data;
 
 import java.util.ArrayList;
 import java.util.List;

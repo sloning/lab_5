@@ -1,10 +1,7 @@
-package input_output;
+package src.main.java.lab.input_output;
 
-import data.MovieCollection;
-import movie.Coordinates;
-import movie.Location;
-import movie.Movie;
-import movie.Person;
+import src.main.java.data.MovieCollection;
+import src.main.java.lab.movie.*;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

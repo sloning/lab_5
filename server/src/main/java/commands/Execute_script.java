@@ -1,6 +1,5 @@
-package commands;
+package src.main.java.commands;
 
-import input_output.InputOutput;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,29 +35,31 @@ public class Execute_script implements ICommand {
 
     @Override
     public void Do(String parameter1) throws IOException {
-        fileName = parameter1;
-        if (parameter1 == null) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Введите название файла");
-            System.out.print("$ ");
-            fileName = scanner.nextLine();
-            if (fileName.isEmpty()) {
-                System.out.println("Название файла не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, fileName);
-            }
-        } else {
-            InputOutput inputOutput = new InputOutput();
-            if (fileNames.contains(fileName)) {
-                System.err.println("STACKOVERFLOW");
-            } else {
-                signal = true;
-                fileNames.add(fileName);
-                inputOutput.InputFile(fileName);
-                signal = false;
-            }
-        }
+//        fileName = parameter1;
+//        if (parameter1 == null) {
+//            Scanner scanner = new Scanner(System.in);
+//            System.out.println("Введите название файла");
+//            System.out.print("$ ");
+//            fileName = scanner.nextLine();
+//            if (fileName.isEmpty()) {
+//                System.out.println("Название файла не может быть null");
+//            } else {
+//                Commands commands = new Commands(this.name, fileName);
+//            }
+//        } else {
+//            InputOutput inputOutput = new InputOutput();
+//            if (fileNames.contains(fileName)) {
+//                System.err.println("STACKOVERFLOW");
+//            } else {
+//                signal = true;
+//                fileNames.add(fileName);
+//                inputOutput.InputFile(fileName);
+//                signal = false;
+//            }
+//        }
     }
+
+    //TODO переделать, по сути просто с другого класса читать
 
     /**
      * get info about command

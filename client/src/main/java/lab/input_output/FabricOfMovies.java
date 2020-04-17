@@ -1,7 +1,6 @@
-package input_output;
+package src.main.java.lab.input_output;
 
-import movie.Location;
-import movie.Movie;
+import src.main.java.lab.movie.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
