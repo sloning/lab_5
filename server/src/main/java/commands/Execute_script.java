@@ -37,17 +37,6 @@ public class Execute_script implements ICommand {
 
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
-//        else {
-//            InputOutput inputOutput = new InputOutput();
-//            if (fileNames.contains(fileName)) {
-//                System.err.println("STACKOVERFLOW");
-//            } else {
-//                signal = true;
-//                fileNames.add(fileName);
-//                inputOutput.InputFile(fileName);
-//                signal = false;
-//            }
-//        }
         return null;
     }
 

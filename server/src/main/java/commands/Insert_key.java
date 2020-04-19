@@ -48,32 +48,7 @@ public class Insert_key implements ICommand {
 
                 return "В коллекцию успешно добавлен фильм " + movie.getName();
 //            } else {
-//                int c = InputOutput.count;
-//                FileReader fileReader = new FileReader(Execute_script.getFileName());
-//                BufferedReader bufferedReader = new BufferedReader(fileReader);
-//                while (c-- > 0) bufferedReader.readLine();
-//                Movie movie = new Movie();
-//                movie.setName(bufferedReader.readLine());
-//                int cordX = Integer.parseInt(bufferedReader.readLine());
-//                String cordYString = bufferedReader.readLine();
-//                if (cordYString.isEmpty()) movie.setCoordinates(cordX);
-//                else movie.setCoordinates(cordX, Float.parseFloat(cordYString));
-//                movie.setOscarsCount(Integer.parseInt(bufferedReader.readLine()));
-//                movie.setLength(Integer.parseInt(bufferedReader.readLine()));
-//                movie.setGenre(bufferedReader.readLine());
-//                movie.setMpaaRating(bufferedReader.readLine());
-//                String dirName = bufferedReader.readLine();
-//                double dirHeight = Double.parseDouble(bufferedReader.readLine());
-//                float dirWeight = Float.parseFloat(bufferedReader.readLine());
-//                String locName = bufferedReader.readLine();
-//                int locX = Integer.parseInt(bufferedReader.readLine());
-//                String locYString = bufferedReader.readLine();
-//                int locZ = Integer.parseInt(bufferedReader.readLine());
-//                if (locYString.isEmpty())
-//                    movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, locZ));
-//                else
-//                    movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, Long.parseLong(locYString), locZ));
-//                movieCollection.putMovie(parameter1, movie);
+
 //
 //                System.out.println("В коллекцию успешно добавлен элемент " + movie.getName());
 //            }

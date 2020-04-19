@@ -1,26 +1,36 @@
 package controller;
 
-import command_history.CommandHistory;
 import input_output.FabricOfMovies;
-import movie.Movie;
+import input_output.InputOutput;
+import movie.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Validation {
     private String name = null;
     private String parameter = null;
     private Movie movie = null;
+    private static String fileName;
+    private static boolean signal = false;
+    private List<String> fileNames = new ArrayList<>();
 
     public Validation(String name, String parameter) {
         this.name = name;
         this.parameter = parameter;
     }
 
-    public void check() {
+    public void check() throws IOException {
         if ((name.equals("insert")) || (name.equals("update_id") )) {
             FabricOfMovies fabricOfMovies = new FabricOfMovies();
             movie = fabricOfMovies.create();
             this.insertKeyCheck(parameter);
+            this.insertValidation(parameter);
         }
         if (name.equals("count_by_genre")) {
             this.countByGenreCheck(parameter);
@@ -55,8 +65,9 @@ public class Validation {
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
-            } else {
                 this.insertKeyCheck(key);
+            } else {
+                this.parameter = key;
             }
         }
     }
@@ -70,14 +81,15 @@ public class Validation {
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("жанр не может быть null");
-            } else {
                 this.countByGenreCheck(key);
+            } else {
+                this.parameter = key;
             }
         }
     }
 
-    public void executeScriptCheck(String parameter) {
-        String fileName = parameter;
+    public void executeScriptCheck(String parameter) throws IOException {
+        this.fileName = parameter;
         if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название файла");
@@ -85,8 +97,19 @@ public class Validation {
             fileName = scanner.nextLine();
             if (fileName.isEmpty()) {
                 System.out.println("Название файла не может быть null");
-            } else {
                 this.executeScriptCheck(fileName);
+            } else {
+                this.parameter = fileName;
+            }
+        } else {
+            InputOutput inputOutput = new InputOutput();
+            if (fileNames.contains(fileName)) {
+                System.err.println("STACKOVERFLOW");
+            } else {
+                signal = true;
+                fileNames.add(fileName);
+                inputOutput.InputFile(fileName);
+                signal = false;
             }
         }
     }
@@ -100,8 +123,9 @@ public class Validation {
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("подстрока не может быть null");
-            } else {
                 this.filterStartsWithNameCheck(key);
+            } else {
+                this.parameter = key;
             }
         }
     }
@@ -115,9 +139,39 @@ public class Validation {
             key = scanner.nextLine();
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
-            } else {
                 this.removeKeyCheck(key);
+            } else {
+                this.parameter = key;
             }
+        }
+    }
+
+    public void insertValidation(String parameter) throws IOException {
+        if (signal) {
+            int c = InputOutput.count;
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while (c-- > 0) bufferedReader.readLine();
+            movie.setName(bufferedReader.readLine());
+            int cordX = Integer.parseInt(bufferedReader.readLine());
+            String cordYString = bufferedReader.readLine();
+            if (cordYString.isEmpty()) movie.setCoordinates(cordX);
+            else movie.setCoordinates(cordX, Float.parseFloat(cordYString));
+            movie.setOscarsCount(Integer.parseInt(bufferedReader.readLine()));
+            movie.setLength(Integer.parseInt(bufferedReader.readLine()));
+            movie.setGenre(bufferedReader.readLine());
+            movie.setMpaaRating(bufferedReader.readLine());
+            String dirName = bufferedReader.readLine();
+            double dirHeight = Double.parseDouble(bufferedReader.readLine());
+            float dirWeight = Float.parseFloat(bufferedReader.readLine());
+            String locName = bufferedReader.readLine();
+            int locX = Integer.parseInt(bufferedReader.readLine());
+            String locYString = bufferedReader.readLine();
+            int locZ = Integer.parseInt(bufferedReader.readLine());
+            if (locYString.isEmpty())
+                movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, locZ));
+            else
+                movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, Long.parseLong(locYString), locZ));
         }
     }
 
