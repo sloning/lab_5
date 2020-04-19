@@ -39,18 +39,6 @@ public class Remove_if_lowe implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie oldMovie) throws IOException {
-        if (parameter == null) {
-            Scanner scanner = new Scanner(System.in);
-            String key;
-            System.out.println("Введите ключ");
-            System.out.print("$");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
-                System.out.println("Ключ не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, key, oldMovie);
-            }
-        } else {
             MovieCollection movieCollection = new MovieCollection();
             Iterator it = movieCollection.getMap().entrySet().iterator();
             long givenId = Long.parseLong(parameter);
@@ -62,7 +50,6 @@ public class Remove_if_lowe implements ICommand {
                     it.remove(); // avoids a ConcurrentModificationException
                     movieCollection.removeMovie((String) pair.getKey());
                 }
-            }
         }
         return "Все значение, меньшие по ключи, чем новые, были удалены (если они были в коллекции)";
     }

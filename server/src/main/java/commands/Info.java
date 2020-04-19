@@ -32,7 +32,7 @@ public class Info implements ICommand {
     /**
      * Prints info about collection
      *
-     * @param parameter1 nothing here
+     * @param parameter nothing here
      */
     @Override
     public String Do(String parameter, Movie movie) {

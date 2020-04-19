@@ -27,22 +27,10 @@ public class Filter_starts_with_name implements ICommand {
     /**
      * Iterates through all elements of collection and print elements which names starts with this name
      *
-     * @param parameter1 name to filter
+     * @param parameter name to filter
      */
     @Override
     public String Do(String parameter, Movie Movie) throws IOException {
-        if (parameter == null) {
-            Scanner scanner = new Scanner(System.in);
-            String key;
-            System.out.println("Введите подстроку");
-            System.out.print("$");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
-                System.out.println("подстрока не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, key, Movie);
-            }
-        } else {
             MovieCollection movieCollection = new MovieCollection();
             Iterator it = movieCollection.getMap().entrySet().iterator();
             while (it.hasNext()) {
@@ -55,8 +43,7 @@ public class Filter_starts_with_name implements ICommand {
                 it.remove(); // avoids a ConcurrentModificationException
                 return result;
             }
-        }
-        return null;
+            return null;
     }
 
     /**

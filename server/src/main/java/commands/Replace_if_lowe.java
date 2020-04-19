@@ -39,18 +39,6 @@ public class Replace_if_lowe implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
-        if (parameter == null) {
-            Scanner scanner = new Scanner(System.in);
-            String key;
-            System.out.println("Введите ключ");
-            System.out.print("$");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
-                System.out.println("Ключ не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, key, movie);
-            }
-        } else {
             MovieCollection movieCollection = new MovieCollection();
             Movie oldMovie = movieCollection.getMovie(parameter);
 
@@ -58,7 +46,6 @@ public class Replace_if_lowe implements ICommand {
                 movieCollection.replaceMovie(parameter, movie);
                 return "Значение по ключу успешно заменено";
             }
-        }
         return "не удалось заменить значение по ключу";
     }
 }

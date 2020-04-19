@@ -41,16 +41,6 @@ public class Insert_key implements ICommand {
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
         String key = parameter;
-//        if (parameter == null) {
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.println("Введите ключ");
-//            System.out.print("$ ");
-//            key = scanner.nextLine();
-//            if (key.equals("") || key == null) {
-//                System.out.println("Ключ не может быть null");
-//            } else {
-//                Commands commands = new Commands(this.name, key);
-//            }
 //        } else {
             MovieCollection movieCollection = new MovieCollection();
 //            if (!Execute_script.getSignal()) {

@@ -23,8 +23,14 @@ public class CommandHistory {
 
     /**
      * Prints last six commands
+     * @return
      */
-    public void printHistory() {
-        System.out.println(history.subList(Math.max(history.size() - 6, 0), history.size()));
+    public String printHistory() {
+        String result = null;
+        List<String> print = history.subList(Math.max(history.size() - 6, 0), history.size());
+        for (int i=0; i<print.size(); i++){
+            result = print.get(i);
+        }
+        return result;
     }
 }

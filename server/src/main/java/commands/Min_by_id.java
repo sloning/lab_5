@@ -39,4 +39,6 @@ public class Min_by_id implements ICommand {
         MovieCollection movieCollection = new MovieCollection();
         return movieCollection.getMinimumId();
     }
+
+    //TODO добавить исключение если не будет элементов в коллекции
 }

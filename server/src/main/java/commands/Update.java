@@ -39,21 +39,8 @@ public class Update implements ICommand {
      */
     @Override //Гениальный класс
     public String Do(String parameter, Movie movie) throws IOException {
-        if (parameter == null) {
-            Scanner scanner = new Scanner(System.in);
-            String key;
-            System.out.println("Введите ключ");
-            System.out.print("$");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
-                System.out.println("Ключ не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, key, movie);
-            }
-        } else {
             MovieCollection movieCollection = new MovieCollection();
             movieCollection.replaceMovie(parameter, movie);
-        }
         return "Объект по ключу " + parameter + " успешно обновлен";
     }
 }

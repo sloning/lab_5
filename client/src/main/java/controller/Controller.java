@@ -15,6 +15,8 @@ import java.io.IOException;
 public class Controller {
     Movie movie = null;
     Shell shell = null;
+    String name = null;
+    String parameter = null;
     /**
      * Splits string with commands to command name and parameters
      *
@@ -24,18 +26,18 @@ public class Controller {
 
         String[] nameCommands = new String[2];
         nameCommands = command.split(" ");
-        if ((nameCommands[0].equals("insert")) || (nameCommands[0].equals("update_id"))) {
-            FabricOfMovies fabricOfMovies = new FabricOfMovies();
-            movie = fabricOfMovies.create();
+
+        Validation validation = new Validation(nameCommands[0], nameCommands[1]);
+        this.name = validation.getName();
+        this.parameter = validation.getParameter();
+        this.movie = validation.getMovie();
+
+        if (parameter.equals(null)) {
+            shell = new Shell(name, null, movie);
+        } else {
+            shell = new Shell(name, parameter, movie);
         }
 
-        if (nameCommands.length == 1) {
-            shell = new Shell(nameCommands[0], null, movie);
-        } else if (nameCommands.length == 2) {
-            shell = new Shell(nameCommands[0], nameCommands[1], movie);
-        }
-
-        //Serialize serialize = new Serialize(shell);
 
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.addCommand(nameCommands[0]);

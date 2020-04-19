@@ -39,18 +39,6 @@ public class Count_by_genre implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie Movie) throws IOException {
-        if (parameter == null) {
-            Scanner scanner = new Scanner(System.in);
-            String key;
-            System.out.println("Введите жанр");
-            System.out.print("$");
-            key = scanner.nextLine();
-            if (key.equals("") || key == null) {
-                System.out.println("жанр не может быть null");
-            } else {
-                Commands commands = new Commands(this.name, key, Movie);
-            }
-        } else {
             int count = 0;
             MovieCollection movieCollection = new MovieCollection();
             Iterator it = movieCollection.getMap().entrySet().iterator();
@@ -63,7 +51,5 @@ public class Count_by_genre implements ICommand {
                 it.remove(); // avoids a ConcurrentModificationException
             }
             return "Количество фильмов жанра " + parameter + " - " + count;
-        }
-        return null;
     }
 }
