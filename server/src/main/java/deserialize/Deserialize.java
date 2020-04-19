@@ -1,9 +1,8 @@
-package src.main.java.deserialize;
+package server.src.main.java.deserialize;
 
-import src.main.java.lab.query.Shell;
+import common.data.Shell;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 
 public class Deserialize {

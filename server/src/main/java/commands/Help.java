@@ -1,4 +1,4 @@
-package src.main.java.commands;
+package server.src.main.java.commands;
 
 /**
  * Prints help for every command

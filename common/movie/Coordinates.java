@@ -1,4 +1,4 @@
-package src.main.java.movie;
+package common.movie;
 
 public class Coordinates {
     private Integer x; //Поле не может быть null

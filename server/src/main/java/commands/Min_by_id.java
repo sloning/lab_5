@@ -1,6 +1,6 @@
-package src.main.java.commands;
+package server.src.main.java.commands;
 
-import src.main.java.data.MovieCollection;
+import common.data.MovieCollection;
 
 /**
  * Printing element with minimal id

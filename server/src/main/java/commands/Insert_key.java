@@ -1,11 +1,6 @@
-package src.main.java.commands;
+package server.src.main.java.commands;
 
-import src.main.java.data.MovieCollection;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Insert movie by key

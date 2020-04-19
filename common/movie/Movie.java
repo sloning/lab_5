@@ -1,4 +1,4 @@
-package src.main.java.lab.movie;
+package common.movie;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

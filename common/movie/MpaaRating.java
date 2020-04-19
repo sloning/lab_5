@@ -1,4 +1,4 @@
-package src.main.java.lab.movie;
+package common.movie;
 
 public enum MpaaRating {
     G,

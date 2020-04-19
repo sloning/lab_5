@@ -1,6 +1,7 @@
-package src.main.java.lab.input_output;
+package client.src.main.java.input_output;
 
-import src.main.java.lab.controller.*;
+import client.src.main.java.controller.*;
+import common.data.Shell;
 
 import java.io.*;
 import java.util.Scanner;
@@ -12,6 +13,8 @@ import java.util.regex.Pattern;
  * @author Abay
  */
 public class InputOutput {
+    Controller controller = null;
+
     public static int count = 0;
 
     /**
@@ -26,10 +29,14 @@ public class InputOutput {
             System.out.println("Введите команду");
             System.out.print("$ ");
             String command = sc.nextLine();
-            Controller controller = new Controller(command);
+            controller = new Controller(command);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
         }
+    }
+
+    public Shell getShell(){
+        return controller.getShell();
     }
 
     public static int checkFile(String fileName) {

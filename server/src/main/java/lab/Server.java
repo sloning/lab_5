@@ -1,14 +1,10 @@
-package src.main.java.lab;
+package server.src.main.java.lab;
 
-import src.main.java.commands.*;
+import common.data.Shell;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.NoSuchElementException;
 
 public class Server {
     public static void main(String[] args) throws IOException {
@@ -52,19 +48,23 @@ public class Server {
                 //в отличие от BufferedWriter выталкивает содержимое буфера автоматически
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 //мы можем что-либо принять с помощью in и отослать с помощью out
+
+                ObjectOutputStream serializer = new ObjectOutputStream(clientSocket.getOutputStream());
+                ObjectInputStream deserializer = new ObjectInputStream(clientSocket.getInputStream());
+
         ) {
             System.out.println("new connection from: " + clientSocket.getRemoteSocketAddress().toString());
             // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
             while(!clientSocket.isClosed()) {
                 System.out.println("Server reading from channel");
-                int inputLine = in.read();
+                Shell shell = (Shell) deserializer.readObject();
                 // после получения данных считывает их
-                System.out.println("READ from client message - " + inputLine);
-                // если условие окончания работы не верно - продолжаем работу - отправляем эхо-ответ  обратно клиенту
-                out.write("Server reply - " + inputLine + " - OK");
+                System.out.println("READ from client message - " + shell.toString());
+                // если условие окончания работы не
+                // верно - продолжаем работу - отправляем эхо-ответ  обратно клиенту
                 System.out.println("Server Wrote message to client.");
             }
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

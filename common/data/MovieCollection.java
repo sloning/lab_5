@@ -1,6 +1,6 @@
-package src.main.java.data;
+package common.data;
 
-import src.main.java.lab.movie.*;
+import common.movie.*;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;

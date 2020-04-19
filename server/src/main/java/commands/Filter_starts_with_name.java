@@ -1,7 +1,7 @@
-package src.main.java.commands;
+package server.src.main.java.commands;
 
-import src.main.java.data.MovieCollection;
-import src.main.java.movie.*;
+import common.data.MovieCollection;
+import common.movie.*;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;

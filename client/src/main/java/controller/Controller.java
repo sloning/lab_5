@@ -1,10 +1,9 @@
-package src.main.java.lab.controller;
+package client.src.main.java.controller;
 
-import src.main.java.lab.data.CommandHistory;
-import src.main.java.lab.input_output.FabricOfMovies;
-import src.main.java.lab.movie.Movie;
-import src.main.java.lab.query.Serialize;
-import src.main.java.lab.query.Shell;
+import common.data.Shell;
+import client.src.main.java.CommandHistory;
+import client.src.main.java.input_output.FabricOfMovies;
+import common.movie.Movie;
 
 import java.io.IOException;
 
@@ -14,14 +13,15 @@ import java.io.IOException;
  * @author Abay
  */
 public class Controller {
+    Movie movie = null;
+    Shell shell = null;
     /**
      * Splits string with commands to command name and parameters
      *
      * @param command command to process
      */
     public Controller(String command) throws IOException {
-        Movie movie = null;
-        Shell shell = null;
+
         String[] nameCommands = new String[2];
         nameCommands = command.split(" ");
         if ((nameCommands[0].equals("insert")) || (nameCommands[0].equals("update_id"))) {
@@ -35,9 +35,13 @@ public class Controller {
             shell = new Shell(nameCommands[0], nameCommands[1], movie);
         }
 
-        Serialize serialize = new Serialize(shell);
+        //Serialize serialize = new Serialize(shell);
 
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.addCommand(nameCommands[0]);
+    }
+
+    public Shell getShell(){
+        return shell;
     }
 }

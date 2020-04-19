@@ -1,9 +1,9 @@
-package src.main.java.commands;
-import src.main.java.data.MovieCollection;
+package server.src.main.java.commands;
+import common.data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Scanner;
-import src.main.java.movie.*;
+
 /**
  * Replace element if it new element has lower length
  *
