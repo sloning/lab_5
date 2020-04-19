@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
 /**
  * SHows info about collection
@@ -34,8 +35,8 @@ public class Info implements ICommand {
      * @param parameter1 nothing here
      */
     @Override
-    public void Do(String parameter1) {
+    public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        movieCollection.getInfo();
+        return movieCollection.getInfo();
     }
 }

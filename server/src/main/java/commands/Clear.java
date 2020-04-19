@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
 /**
  * Removes all movies from collection
@@ -32,8 +33,9 @@ public class Clear implements ICommand {
      * @param parameter1 ignore this
      */
     @Override
-    public void Do(String parameter1) {
+    public String Do(String parameter1, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.clearMovies();
+        return "Коллекция успешно очищена";
     }
 }

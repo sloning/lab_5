@@ -35,11 +35,11 @@ public class Remove_if_lowe implements ICommand {
     /**
      * Iterates through all elements of collection and removes movies by their id's
      *
-     * @param parameter1 id, all movie's which has lower id's than this will be removed from collection
+     * @param parameter id, all movie's which has lower id's than this will be removed from collection
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie oldMovie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ");
@@ -48,12 +48,12 @@ public class Remove_if_lowe implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, oldMovie);
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
             Iterator it = movieCollection.getMap().entrySet().iterator();
-            long givenId = Long.parseLong(parameter1);
+            long givenId = Long.parseLong(parameter);
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry) it.next();
                 Movie movie = (Movie) pair.getValue();
@@ -64,5 +64,6 @@ public class Remove_if_lowe implements ICommand {
                 }
             }
         }
+        return "Все значение, меньшие по ключи, чем новые, были удалены (если они были в коллекции)";
     }
 }

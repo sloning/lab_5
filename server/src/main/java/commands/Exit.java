@@ -1,5 +1,7 @@
 package commands;
 
+import movie.Movie;
+
 /**
  * Stops program execution
  *
@@ -27,7 +29,8 @@ public class Exit implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) {
+    public String Do(String parameter, Movie movie) {
         System.exit(0);
+        return "выход из программы";
     }
 }

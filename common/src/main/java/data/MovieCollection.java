@@ -76,10 +76,11 @@ public class MovieCollection {
     /**
      * Prints info about collection
      */
-    public void getInfo() {
-        System.out.println("тип коллекции: LinkedHashMap");
-        System.out.println("количество элементов коллекции: " + Movies.size());
-        System.out.println("дата создания колекции: " + dateCreation);
+    public String getInfo() {
+        String result = "тип коллекции: LinkedHashMap";
+        result += "количество элементов коллекции: " + Movies.size();
+        result += "дата создания колекции: " + dateCreation;
+        return result;
     }
 
     /**

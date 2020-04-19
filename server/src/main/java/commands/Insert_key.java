@@ -1,5 +1,9 @@
 package commands;
 
+import data.MovieCollection;
+import input_output.FabricOfMovies;
+import movie.Movie;
+
 import java.io.IOException;
 
 /**
@@ -32,12 +36,12 @@ public class Insert_key implements ICommand {
     /**
      * Replaces movie by id
      *
-     * @param parameter1 key to HashMap to insert movie
+     * @param parameter key to HashMap to insert movie
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-//        String key = parameter1;
-//        if (parameter1 == null) {
+    public String Do(String parameter, Movie movie) throws IOException {
+        String key = parameter;
+//        if (parameter == null) {
 //            Scanner scanner = new Scanner(System.in);
 //            System.out.println("Введите ключ");
 //            System.out.print("$ ");
@@ -48,13 +52,11 @@ public class Insert_key implements ICommand {
 //                Commands commands = new Commands(this.name, key);
 //            }
 //        } else {
-//            MovieCollection movieCollection = new MovieCollection();
+            MovieCollection movieCollection = new MovieCollection();
 //            if (!Execute_script.getSignal()) {
-//                FabricOfMovies movieCreator = new FabricOfMovies();
-//                Movie newMovie = movieCreator.create();
-//                movieCollection.putMovie(key, newMovie);
-//
-//                System.out.println("В коллекцию успешно добавлен элемент " + newMovie.getName());
+                movieCollection.putMovie(key, movie);
+
+                return "В коллекцию успешно добавлен фильм " + movie.getName();
 //            } else {
 //                int c = InputOutput.count;
 //                FileReader fileReader = new FileReader(Execute_script.getFileName());

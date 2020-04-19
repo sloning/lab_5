@@ -1,5 +1,7 @@
 package commands;
 
+import movie.Movie;
+
 /**
  * Prints help for every command
  *
@@ -27,7 +29,7 @@ public class Help implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) {
-        Commands.help();
+    public String Do(String parameter, Movie movie) {
+        return Commands.help();
     }
 }

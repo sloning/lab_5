@@ -35,11 +35,11 @@ public class Count_by_genre implements ICommand {
     /**
      * Iterate through every element of collection to count all movies
      *
-     * @param parameter1 name of genre
+     * @param parameter name of genre
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie Movie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите жанр");
@@ -48,7 +48,7 @@ public class Count_by_genre implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("жанр не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, Movie);
             }
         } else {
             int count = 0;
@@ -57,13 +57,13 @@ public class Count_by_genre implements ICommand {
             while (it.hasNext()) {
                 Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
                 String movieGenre = movie.getGenre();
-                if (parameter1.equals(movieGenre)) {
+                if (parameter.equals(movieGenre)) {
                     count++;
                 }
                 it.remove(); // avoids a ConcurrentModificationException
             }
-            System.out.print("Количество фильмов жанра " + parameter1 + " - ");
-            System.out.println(count);
+            return "Количество фильмов жанра " + parameter + " - " + count;
         }
+        return null;
     }
 }

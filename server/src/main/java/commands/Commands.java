@@ -1,5 +1,7 @@
 package commands;
 
+import movie.Movie;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
@@ -12,6 +14,10 @@ import java.util.TreeMap;
  * @author Abay
  */
 public class Commands {
+    private String name;
+    private String parameter;
+    private Movie movie;
+
     /**
      * Collection with object of all commands
      */
@@ -21,12 +27,18 @@ public class Commands {
      * Searches command through TreeMap and calls method Do
      *
      * @param name       name of command
-     * @param parameter1 first parameter to transmit to command
+     * @param parameter first parameter to transmit to command
      */
-    public Commands(String name, String parameter1) throws IOException {
-        commands.get(name).Do(parameter1);
+    public Commands(String name, String parameter, Movie movie) {
+        this.name = name;
+        this.parameter = parameter;
+        this.movie = movie;
     }
 
+
+    public String execute() throws IOException {
+        return commands.get(name).Do(parameter, movie);
+    }
     /**
      * Adds new command to collection
      *
@@ -37,10 +49,12 @@ public class Commands {
         commands.put(name, command);
     }
 
-    static void help() {
+    static String help() {
         Collection<ICommand> Val = commands.values();
+        String result = null;
         for (ICommand com : Val) {
-            System.out.println(com.info());
+            result += com.info();
         }
+        return result;
     }
 }

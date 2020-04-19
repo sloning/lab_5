@@ -1,9 +1,11 @@
 package commands;
 
+import movie.Movie;
+
 import java.io.IOException;
 
 public interface ICommand {
-    void Do(String parameter1) throws IOException;
+    String Do(String parameter, Movie movie) throws IOException;
 
     String info();
 }

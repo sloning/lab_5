@@ -30,8 +30,8 @@ public class Filter_starts_with_name implements ICommand {
      * @param parameter1 name to filter
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie Movie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите подстроку");
@@ -40,7 +40,7 @@ public class Filter_starts_with_name implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("подстрока не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, Movie);
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
@@ -48,12 +48,15 @@ public class Filter_starts_with_name implements ICommand {
             while (it.hasNext()) {
                 Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
                 String movieName = movie.getName();
-                if (movieName.substring(0, parameter1.length()).compareTo(parameter1) == 0) {
-                    System.out.println(movieName);
+                String result=null;
+                if (movieName.substring(0, parameter.length()).compareTo(parameter) == 0) {
+                    result += movieName;
                 }
                 it.remove(); // avoids a ConcurrentModificationException
+                return result;
             }
         }
+        return null;
     }
 
     /**

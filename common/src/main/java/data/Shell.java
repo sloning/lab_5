@@ -14,6 +14,18 @@ public class Shell implements Serializable {
         this.movie = movie;
     }
 
+    public String getName(){
+        return name;
+    }
+
+    public String getParameter(){
+        return parameter;
+    }
+
+    public Movie getMovie(){
+        return movie;
+    }
+
     @Override
     public String toString() {
         if ((parameter.equals(null) && (movie.equals(null)))) {

@@ -1,6 +1,8 @@
 package commands;
 
 
+import movie.Movie;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class Execute_script implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) throws IOException {
+    public String Do(String parameter, Movie movie) throws IOException {
 //        fileName = parameter1;
 //        if (parameter1 == null) {
 //            Scanner scanner = new Scanner(System.in);
@@ -57,6 +59,7 @@ public class Execute_script implements ICommand {
 //                signal = false;
 //            }
 //        }
+        return null;
     }
 
     //TODO переделать, по сути просто с другого класса читать

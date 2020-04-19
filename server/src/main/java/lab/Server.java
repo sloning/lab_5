@@ -1,14 +1,15 @@
 package lab;
 
 import data.Shell;
-
+import commands.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        /*Clear clear = new Clear();
+        Clear clear = new Clear();
         Count_by_genre count_by_genre = new Count_by_genre();
         Execute_script execute_script = new Execute_script();
         Exit exit = new Exit();
@@ -21,23 +22,14 @@ public class Server {
         Remove_if_lowe remove_if_lowe = new Remove_if_lowe();
         Remove_key remove_key = new Remove_key();
         Replace_if_lowe replace_if_lowe = new Replace_if_lowe();
-        Save save = new Save();
         Show show = new Show();
-        Update_id update_id = new Update_id();
+        Update update_id = new Update();
+//
+//        if (args.length > 0) {
+//            LoadMovies loader = new LoadMovies();
+//            loader.load(args[0]);
+//        }
 
-        if (args.length > 0) {
-            LoadMovies loader = new LoadMovies();
-            loader.load(args[0]);
-        }
-
-        while (true) {
-            try {
-                InputOutput inputOutput = new InputOutput();
-                inputOutput.Input();
-            } catch (NoSuchElementException e) {
-                System.exit(0);
-            }
-        }*/
         try (
                 ServerSocket serverSocket = new ServerSocket(1010);
                 Socket clientSocket = serverSocket.accept();
@@ -57,15 +49,23 @@ public class Server {
             // начинаем диалог с подключенным клиентом в цикле, пока сокет не закрыт
             while(!clientSocket.isClosed()) {
                 System.out.println("Server reading from channel");
-                Shell shell = (Shell) deserializer.readObject();
+                Shell shell
+                        ;
+                shell = (Shell) deserializer.readObject();
                 // после получения данных считывает их
-                System.out.println("READ from client message - " + shell.toString());
+                System.out.println("READ from client message - " + shell.getName());
                 // если условие окончания работы не
                 // верно - продолжаем работу - отправляем эхо-ответ  обратно клиенту
-                System.out.println("Server Wrote message to client.");
+
+                Commands commands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                String result = commands.execute();
+                out.print(result);
+                System.out.println("Server Wrote message to client: " + result);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+
     }
+
 }

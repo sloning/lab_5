@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
 /**
  * Prints all movies in collection
@@ -29,8 +30,8 @@ public class Show implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) {
+    public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        System.out.println(movieCollection.showMovies());
+        return movieCollection.showMovies();
     }
 }

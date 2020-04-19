@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,13 +11,13 @@ import java.util.Scanner;
  *
  * @author Abay
  */
-public class Update_id implements ICommand {
+public class Update implements ICommand {
     /**
      * @param name name of command
      */
     private String name;
 
-    public Update_id() {
+    public Update() {
         name = "update";
         Commands.addNewCommand(name, this);
     }
@@ -28,17 +29,17 @@ public class Update_id implements ICommand {
      */
     @Override
     public String info() {
-        return name + ": обновить значение элемента коллекции, ID которого равен зададному";
+        return name + ": обновить значение элемента коллекции, ключ которого равен зададному";
     }
 
     /**
      * Replaces old movie by new movie
      *
-     * @param parameter1 key to HashMap and id of new movie
+     * @param parameter key to HashMap and id of new movie
      */
     @Override //Гениальный класс
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie movie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ");
@@ -47,14 +48,12 @@ public class Update_id implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, movie);
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            //FabricOfMovies newMovie = new FabricOfMovies();
-            //movieCollection.replaceMovie(parameter1, newMovie.create());
-
-            //TODO нужно обрабатывать готовые объекты, можно помимо парметра еще и муви кидать
+            movieCollection.replaceMovie(parameter, movie);
         }
+        return "Объект по ключу " + parameter + " успешно обновлен";
     }
 }

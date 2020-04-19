@@ -1,6 +1,7 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -34,11 +35,11 @@ public class Replace_if_lowe implements ICommand {
     /**
      * Get new movie object and compare's it to old movie
      *
-     * @param parameter1 key to HashMap
+     * @param parameter key to HashMap
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie movie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ");
@@ -47,18 +48,17 @@ public class Replace_if_lowe implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, movie);
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            //FabricOfMovies fabricOfMovies = new FabricOfMovies();
-            //Movie newMovie = fabricOfMovies.create();
-            //Movie oldMovie = movieCollection.getMovie(parameter1);
+            Movie oldMovie = movieCollection.getMovie(parameter);
 
-            //if (newMovie.getLength() < oldMovie.getLength()) {
-            //    movieCollection.replaceMovie(parameter1, newMovie);
-            //}
-            //TODO переделать эту команду
+            if (movie.getLength() < oldMovie.getLength()) {
+                movieCollection.replaceMovie(parameter, movie);
+                return "Значение по ключу успешно заменено";
+            }
         }
+        return "не удалось заменить значение по ключу";
     }
 }

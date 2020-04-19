@@ -1,7 +1,9 @@
 package commands;
 
 import data.MovieCollection;
+import movie.Movie;
 
+import javax.lang.model.element.NestingKind;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -35,11 +37,11 @@ public class Remove_key implements ICommand {
     /**
      * Removes movie by key
      *
-     * @param parameter1 key of movie to remove
+     * @param parameter key of movie to remove
      */
     @Override
-    public void Do(String parameter1) throws IOException {
-        if (parameter1 == null) {
+    public String Do(String parameter, Movie movie) throws IOException {
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ объекта, который хотите удалить");
@@ -48,11 +50,12 @@ public class Remove_key implements ICommand {
             if (key.equals("") || key == null) {
                 System.out.println("Ключ не может быть null");
             } else {
-                Commands commands = new Commands(this.name, key);
+                Commands commands = new Commands(this.name, key, movie);
             }
         } else {
             MovieCollection movieCollection = new MovieCollection();
-            movieCollection.removeMovie(parameter1);
+            movieCollection.removeMovie(parameter);
         }
+        return "Значение по ключу " + parameter + " успешно удалено";
     }
 }

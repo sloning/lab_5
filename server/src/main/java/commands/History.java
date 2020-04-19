@@ -1,5 +1,8 @@
 package commands;
 //TODO этот класс я так понимаю нужно убрать или перенести в клиент
+
+import movie.Movie;
+
 /**
  * Prints last six commands
  *
@@ -27,9 +30,9 @@ public class History implements ICommand {
     }
 
     @Override
-    public void Do(String parameter1) {
+    public String Do(String parameter, Movie movie) {
 //        CommandHistory commandHistory = new CommandHistory();
 //        commandHistory.printHistory();
+        return null;
     }
-
 }
