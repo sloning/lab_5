@@ -1,9 +1,9 @@
-package client.src.main.java.controller;
+package controller;
 
-import common.data.Shell;
-import client.src.main.java.CommandHistory;
-import client.src.main.java.input_output.FabricOfMovies;
-import common.movie.Movie;
+import data.Shell;
+import command_history.CommandHistory;
+import input_output.FabricOfMovies;
+import movie.Movie;
 
 import java.io.IOException;
 

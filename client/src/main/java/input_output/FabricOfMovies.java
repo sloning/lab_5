@@ -1,6 +1,6 @@
-package client.src.main.java.input_output;
+package input_output;
 
-import common.movie.*;
+import movie.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

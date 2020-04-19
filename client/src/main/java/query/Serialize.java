@@ -1,4 +1,4 @@
-package client.src.main.java.query;
+package query;
 
 import java.io.*;
 

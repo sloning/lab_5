@@ -1,6 +1,6 @@
-package server.src.main.java.deserialize;
+package deserialize;
 
-import common.data.Shell;
+import data.Shell;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;

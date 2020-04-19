@@ -1,6 +1,6 @@
-package common.data;
+package data;
 
-import common.movie.Movie;
+import movie.Movie;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class Shell implements Serializable {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         if ((parameter.equals(null) && (movie.equals(null)))) {
             return name;
         } else if (parameter.equals(null)) {

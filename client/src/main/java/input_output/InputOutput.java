@@ -1,7 +1,7 @@
-package client.src.main.java.input_output;
+package input_output;
 
-import client.src.main.java.controller.*;
-import common.data.Shell;
+import controller.*;
+import data.Shell;
 
 import java.io.*;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package common.movie;
+package movie;
 public enum MovieGenre {
     COMEDY,
     MUSICAL,

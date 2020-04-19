@@ -1,4 +1,4 @@
-package server.src.main.java.commands;
+package commands;
 //TODO этот класс я так понимаю нужно убрать или перенести в клиент
 /**
  * Prints last six commands

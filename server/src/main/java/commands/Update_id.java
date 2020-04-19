@@ -1,6 +1,6 @@
-package server.src.main.java.commands;
+package commands;
 
-import common.data.MovieCollection;
+import data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Scanner;

@@ -6,23 +6,29 @@ subprojects {
 
 project(':server') {
     apply plugin: 'application'
-    mainClassName = 'lab.Main'
+    mainClassName = 'lab.Server'
+    dependencies {
+        implementation project(':common')
+    }
     jar {
         manifest {
-            attributes 'Main-Class': 'lab.Main'
+            attributes 'Main-Class': 'lab.Server'
         }
     }
 }
 
 project(':client') {
     apply plugin: 'application'
-    mainClassName = 'lab.Main'
+    mainClassName = 'lab.Client'
     run {
         standardInput = System.in
     }
+    dependencies {
+        implementation project(':common')
+    }
     jar {
         manifest {
-            attributes 'Main-Class': 'lab.Main'
+            attributes 'Main-Class': 'lab.Client'
         }
     }
 }

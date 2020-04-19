@@ -1,7 +1,7 @@
-package client.src.main.java.lab;
+package lab;
 
-import client.src.main.java.input_output.InputOutput;
-import common.data.Shell;
+import input_output.InputOutput;
+import data.Shell;
 
 import java.io.*;
 import java.net.*;

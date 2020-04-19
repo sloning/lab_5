@@ -1,7 +1,7 @@
-package client.src.main.java.input_output;
+package input_output;
 
-import common.data.MovieCollection;
-import common.movie.*;
+import data.MovieCollection;
+import movie.*;
 
 import java.io.FileWriter;
 import java.io.IOException;

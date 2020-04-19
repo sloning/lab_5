@@ -1,11 +1,11 @@
-package server.src.main.java.commands;
-import common.data.MovieCollection;
+package commands;
+import data.MovieCollection;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import common.movie.*;
+import movie.*;
 /**
  * Remove movie if it's id lower than my
  *

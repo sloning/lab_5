@@ -1,4 +1,4 @@
-package client.src.main.java;
+package command_history;
 
 import java.util.ArrayList;
 import java.util.List;

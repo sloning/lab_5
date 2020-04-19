@@ -1,6 +1,6 @@
-package server.src.main.java.commands;
+package commands;
 
-import common.data.MovieCollection;
+import data.MovieCollection;
 
 /**
  * SHows info about collection

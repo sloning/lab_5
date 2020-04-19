@@ -1,6 +1,6 @@
-package server.src.main.java.lab;
+package lab;
 
-import common.data.Shell;
+import data.Shell;
 
 import java.io.*;
 import java.net.ServerSocket;
