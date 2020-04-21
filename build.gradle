@@ -32,6 +32,7 @@ project(':client') {
         }
     }
 }
+
 //
 //task run {
 //    compileJava ':server

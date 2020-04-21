@@ -1,8 +1,7 @@
-package controller;
+package client_controller;
 
 import data.Shell;
 import command_history.CommandHistory;
-import input_output.FabricOfMovies;
 import movie.Movie;
 
 import java.io.IOException;
@@ -25,22 +24,22 @@ public class Controller {
     public Controller(String command) throws IOException {
 
         String[] nameCommands = new String[2];
-        nameCommands = command.split(" ");
+        nameCommands = command.split(" ");      // TODO добавить исключение, если в команде будет 3+ слова
 
-        Validation validation = new Validation(nameCommands[0], nameCommands[1]);
+        Validation validation = new Validation(nameCommands[0], null);
+
+        if (nameCommands.length == 2) {
+            validation.setParameter(nameCommands[1]);
+        }
         this.name = validation.getName();
         this.parameter = validation.getParameter();
         this.movie = validation.getMovie();
 
-        if (parameter.equals(null)) {
-            shell = new Shell(name, null, movie);
-        } else {
-            shell = new Shell(name, parameter, movie);
-        }
+        shell = new Shell(name, parameter, movie);
 
 
         CommandHistory commandHistory = new CommandHistory();
-        commandHistory.addCommand(nameCommands[0]);
+        commandHistory.addCommand(nameCommands[0]);     // TODO сделать статиком
     }
 
     public Shell getShell(){

@@ -1,4 +1,4 @@
-package input_output;
+package deserialize;
 
 import data.MovieCollection;
 import movie.*;
@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static data.FileCheck.checkFile;
+
 public class LoadMovies {
     public static Date FormattingDate(String str) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -23,7 +25,7 @@ public class LoadMovies {
     public void load(String fileName) throws IOException, ParseException {
         MovieCollection movieCollection = new MovieCollection();
 
-        if (InputOutput.checkFile(fileName) == 0) {
+        if (checkFile(fileName) == 0) {
             FileInputStream fstream = new FileInputStream(fileName);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String csvLine;

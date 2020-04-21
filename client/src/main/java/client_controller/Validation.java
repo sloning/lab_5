@@ -1,11 +1,10 @@
-package controller;
+package client_controller;
 
 import input_output.FabricOfMovies;
 import input_output.InputOutput;
 import movie.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +19,10 @@ public class Validation {
     private static boolean signal = false;
     private List<String> fileNames = new ArrayList<>();
 
-    public Validation(String name, String parameter) {
+    public Validation(String name, String parameter) throws IOException {
         this.name = name;
         this.parameter = parameter;
+        check();
     }
 
     public void check() throws IOException {
@@ -58,7 +58,7 @@ public class Validation {
 
     public void insertKeyCheck(String parameter) {
         String key = parameter;
-        if (parameter == null) {
+        if (parameter == null) {        // TODO а не лучше while сделать?
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите ключ");
             System.out.print("$ ");
@@ -90,7 +90,7 @@ public class Validation {
 
     public void executeScriptCheck(String parameter) throws IOException {
         this.fileName = parameter;
-        if (parameter == null) {
+        if (fileName == null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название файла");
             System.out.print("$ ");
@@ -185,5 +185,9 @@ public class Validation {
 
     public Movie getMovie(){
         return movie;
+    }
+
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
     }
 }

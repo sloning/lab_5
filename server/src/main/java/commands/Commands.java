@@ -1,5 +1,6 @@
 package commands;
 
+import command_history.CommandHistory;
 import movie.Movie;
 
 import java.io.IOException;
@@ -26,15 +27,16 @@ public class Commands {
     /**
      * Searches command through TreeMap and calls method Do
      *
-     * @param name       name of command
+     * @param name      name of command
      * @param parameter first parameter to transmit to command
      */
     public Commands(String name, String parameter, Movie movie) {
         this.name = name;
         this.parameter = parameter;
         this.movie = movie;
+        CommandHistory commandHistory = new CommandHistory();
+        commandHistory.addCommand(name);
     }
-
 
     public String execute() throws IOException {
         return commands.get(name).Do(parameter, movie);

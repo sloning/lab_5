@@ -7,10 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+import static data.FileCheck.checkFile;
+
 public class SaveMovies {
     public void getOut() throws IOException {
         String fileName = "write1.csv";
-        if (InputOutput.checkFile(fileName) == 0) {
+        if (checkFile(fileName) == 0) {
             MovieCollection movieCollection = new MovieCollection();
 
             FileWriter writer = new FileWriter(fileName);

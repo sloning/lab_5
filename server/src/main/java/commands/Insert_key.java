@@ -1,7 +1,6 @@
 package commands;
 
 import data.MovieCollection;
-import input_output.FabricOfMovies;
 import movie.Movie;
 
 import java.io.IOException;
