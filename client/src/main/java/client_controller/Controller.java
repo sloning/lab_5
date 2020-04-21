@@ -39,7 +39,7 @@ public class Controller {
 
 
         CommandHistory commandHistory = new CommandHistory();
-        commandHistory.addCommand(nameCommands[0]);     // TODO сделать статиком
+        commandHistory.addCommand(nameCommands[0]);
     }
 
     public Shell getShell(){

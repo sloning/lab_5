@@ -6,51 +6,47 @@ import data.Shell;
 import java.io.*;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 public class Client {
     public static void main(String[] args) throws Exception {
-        try {
-            // String[] messages = {"I like non-blocking servers", "Hello non-blocking world!", "One more message..", "exit"};
-            SocketChannel client = SocketChannel.open(new InetSocketAddress("localhost", 1111));
+        try (
+                Socket socket = new Socket("127.0.0.1", 1111);
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                OutputStream serializer = socket.getOutputStream();
+                ObjectOutputStream out = new ObjectOutputStream(byteArrayOutputStream);
+        ) {
+            System.out.println("Подключился");
             InputOutput inputOutput = new InputOutput();
-            // Using this to send stuff
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-            // Using this to receive stuff
-            ByteBuffer data = ByteBuffer.allocate(1024);
+            inputOutput.Input();
+            Shell shell = inputOutput.getShell();
+            out.writeObject(shell);
+            byte[] outBytes = byteArrayOutputStream.toByteArray();
+            serializer.write(outBytes);
+            serializer.flush();
+            System.out.println("Отправил сообщение");
 
-//            for (String msg : messages) {
-//                System.out.println("Prepared message: " + msg);
-//                ByteBuffer buffer = ByteBuffer.allocate(1024);
-//                buffer.put(msg.getBytes());
-//                buffer.flip();
-//                int bytesWritten = client.write(buffer);
-//                System.out.println(String.format("Sending Message: %s\nbufforBytes: %d", msg, bytesWritten));
-//            }
 
-            while (true) {
-                inputOutput.Input();
-                objectOutputStream.writeObject(inputOutput.getShell());
-                objectOutputStream.flush();
-                client.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()));
-                System.out.println("Сообщение отправлено");
+            InputStream inputStream = socket.getInputStream();
+            ByteBuffer outBuffer = ByteBuffer.allocate(10000000);
+            int quantityOfReadBytes = inputStream.read(outBuffer.array());
+            byte[] inBytes = new byte[1000000];
+            outBuffer.rewind();
+            outBuffer.get(inBytes, 0, quantityOfReadBytes);
 
-                System.out.println("Жду сообщение");
-                client.read(data);
-                System.out.println("Сообщение принято");
-                ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data.array());
-                ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-                String response = (String) objectInputStream.readObject();
-                System.out.println(response);
-            }
-        } catch (ConnectException e1) {
-            System.out.println("Ошибка подключения");
-            System.exit(0);
-        } catch (EOFException e2) {
-            System.out.println("EOF");
-            System.exit(0);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(inBytes);
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            String answer = (String) objectInputStream.readObject();
+            System.out.println(answer);
+        } catch (Throwable cause) {
+            cause.printStackTrace();
+//            System.out.println("Ошибка подключения: " + cause.getMessage());
         }
+
+
     }
 }

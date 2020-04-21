@@ -58,7 +58,7 @@ public class Validation {
 
     public void insertKeyCheck(String parameter) {
         String key = parameter;
-        if (parameter == null) {        // TODO а не лучше while сделать?
+        if (parameter == null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите ключ");
             System.out.print("$ ");
