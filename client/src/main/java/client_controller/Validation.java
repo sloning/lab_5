@@ -19,9 +19,8 @@ public class Validation {
     private static boolean signal = false;
     private List<String> fileNames = new ArrayList<>();
 
-    public Validation(String name, String parameter) throws IOException {
+    public Validation(String name) throws IOException {
         this.name = name;
-        this.parameter = parameter;
         check();
     }
 
@@ -109,7 +108,6 @@ public class Validation {
                 signal = true;
                 fileNames.add(fileName);
                 inputOutput.InputFile(fileName);
-                signal = false;
             }
         }
     }
@@ -189,5 +187,13 @@ public class Validation {
 
     public void setParameter(String parameter) {
         this.parameter = parameter;
+    }
+
+    public static boolean getSignal(){
+        return signal;
+    }
+
+    public static void setSignal(boolean c){
+        signal = c;
     }
 }

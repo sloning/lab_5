@@ -1,5 +1,7 @@
 package lab;
 
+import client_controller.Validation;
+import input_output.FabricOfShell;
 import input_output.InputOutput;
 import data.Shell;
 
@@ -23,8 +25,19 @@ public class Client {
             System.out.println("Подключился");
             InputOutput inputOutput = new InputOutput();
             inputOutput.Input();
-            Shell shell = inputOutput.getShell();
-            out.writeObject(shell);
+
+            if (Validation.getSignal()) {
+                Shell shell = inputOutput.getShell();
+                out.writeObject(shell);
+            } else {
+                FabricOfShell fabricOfShell = new FabricOfShell();
+                for (int i=0; i<fabricOfShell.getSize(); i++){
+                    out.writeObject(fabricOfShell.getShell(i));
+                }
+                Validation.setSignal(false);
+                fabricOfShell.clearCollection();
+            }
+
             byte[] outBytes = byteArrayOutputStream.toByteArray();
             serializer.write(outBytes);
             serializer.flush();

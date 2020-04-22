@@ -53,13 +53,14 @@ public class InputOutput {
             if (checkFile(nameFile) == 0) {
                 FileReader fileReader = new FileReader(file);
                 String str;
-
+                FabricOfShell fabricOfShell = new FabricOfShell();
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 while (bufferedReader.ready()) {
                     str = bufferedReader.readLine().replaceAll("\\s+", " ");
                     if (str.isEmpty()) continue;
                     count++;
-                    Controller controller = new Controller(str);
+                    controller = new Controller(str);
+                    fabricOfShell.addShell(controller.getShell());
                     if (Pattern.matches("insert\\s[A-Za-z0-9_]+", str)) {
                         for (int i = 0; i < 14; i++) {
                             bufferedReader.readLine();

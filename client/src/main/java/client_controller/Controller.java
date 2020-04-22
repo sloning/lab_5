@@ -2,9 +2,11 @@ package client_controller;
 
 import data.Shell;
 import command_history.CommandHistory;
+import input_output.InputOutput;
 import movie.Movie;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 /**
  * Process commands and pass it to command module
@@ -24,22 +26,37 @@ public class Controller {
     public Controller(String command) throws IOException {
 
         String[] nameCommands = new String[2];
-        nameCommands = command.split(" ");      // TODO добавить исключение, если в команде будет 3+ слова
+        nameCommands = command.split(" ");
 
-        Validation validation = new Validation(nameCommands[0], null);
+        if (nameCommands.length<=2) {
 
-        if (nameCommands.length == 2) {
-            validation.setParameter(nameCommands[1]);
+            Validation validation = new Validation(nameCommands[0]);
+
+            if (nameCommands.length == 2) {
+                validation.setParameter(nameCommands[1]);
+            }
+
+            this.name = validation.getName();
+            this.parameter = validation.getParameter();
+            this.movie = validation.getMovie();
+
+            shell = new Shell(name, parameter, movie);
+
+
+            CommandHistory commandHistory = new CommandHistory();
+            commandHistory.addCommand(nameCommands[0]);
+        } else {
+            System.out.println("Введено больше допустимого количество аргументов");
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Введите команду");
+                System.out.print("$ ");
+                String nameofcommand = sc.nextLine();
+                Controller controller = new Controller(nameofcommand);
+            } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+                System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
+            }
         }
-        this.name = validation.getName();
-        this.parameter = validation.getParameter();
-        this.movie = validation.getMovie();
-
-        shell = new Shell(name, parameter, movie);
-
-
-        CommandHistory commandHistory = new CommandHistory();
-        commandHistory.addCommand(nameCommands[0]);
     }
 
     public Shell getShell(){
