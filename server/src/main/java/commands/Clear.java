@@ -1,6 +1,6 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 /**
@@ -35,7 +35,7 @@ public class Clear implements ICommand {
     @Override
     public String Do(String parameter1, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        movieCollection.clearMovies();
+        movieCollection.getMovies().clear();
         return "Коллекция успешно очищена";
     }
 }

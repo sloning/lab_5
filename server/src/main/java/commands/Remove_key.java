@@ -1,11 +1,9 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
-import javax.lang.model.element.NestingKind;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Removes movie by key
@@ -41,10 +39,9 @@ public class Remove_key implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
-        {
             MovieCollection movieCollection = new MovieCollection();
-            movieCollection.removeMovie(parameter);
-        }
+            movieCollection.getMovies().remove(parameter);
+
         return "Значение по ключу " + parameter + " успешно удалено";
     }
 }

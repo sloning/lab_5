@@ -1,7 +1,9 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
+
+import java.util.Comparator;
 
 /**
  * Prints all movies in collection
@@ -29,9 +31,25 @@ public class Show implements ICommand {
         return name + ": вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
+    class ShowInfo{
+        private String info = "";
+
+        public void addInfo(String info){
+            this.info += info;
+        }
+
+        public String getInfo(){
+            return info;
+        }
+    }
+
     @Override
     public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        return movieCollection.showMovies();
+        ShowInfo showInfo = new ShowInfo();
+        movieCollection.getMovies().entrySet().stream().sorted(Comparator.comparing(p -> p.getValue().getName())).forEach(x -> showInfo.addInfo("\n" + x.getValue().getInfo() + "\nMovie Key: " + x.getKey()));
+        return showInfo.getInfo();
     }
+
+    //добавить сортировку
 }

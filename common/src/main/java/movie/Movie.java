@@ -115,6 +115,14 @@ public class Movie {
         }
     }
 
+    public boolean checkGenre(String parameter) {
+        if (parameter.equals(genre.toString())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @param genre genre of movie
      */
@@ -147,7 +155,7 @@ public class Movie {
         return "Movie: " + name + " (ID " + id + ") " + date;
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 }

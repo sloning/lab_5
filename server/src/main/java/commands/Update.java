@@ -1,10 +1,9 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Replace movie by it's id
@@ -40,7 +39,7 @@ public class Update implements ICommand {
     @Override //Гениальный класс
     public String Do(String parameter, Movie movie) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
-            movieCollection.replaceMovie(parameter, movie);
+            movieCollection.getMovies().replace(parameter, movie);
         return "Объект по ключу " + parameter + " успешно обновлен";
     }
 }

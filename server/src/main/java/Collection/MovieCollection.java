@@ -1,10 +1,9 @@
-package data;
+package Collection;
 
 import movie.*;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * This class stores and protects collection with movies
@@ -27,6 +26,9 @@ public class MovieCollection {
         this.dateCreation = new Date();
     }
 
+    public Map<String, Movie> getMovies() {
+        return Movies;
+    }
 
     /**
      * Puts movie to collection
@@ -36,22 +38,6 @@ public class MovieCollection {
      */
     public void putMovie(String key, Movie movie) {
         Movies.put(key, movie);
-    }
-
-    /**
-     * Removes movie by id or key
-     *
-     * @param key key of movie
-     */
-    public void removeMovie(String key) {
-        Movies.remove(key);
-    }
-
-    /**
-     * Completely clears collection
-     */
-    public void clearMovies() {
-        Movies.clear();
     }
 
     /**
@@ -73,29 +59,6 @@ public class MovieCollection {
         return Movies.get(key);
     }
 
-    /**
-     * Prints info about collection
-     */
-    public String getInfo() {
-        String result = "тип коллекции: LinkedHashMap";
-        result += "количество элементов коллекции: " + Movies.size();
-        result += "дата создания колекции: " + dateCreation;
-        return result;
-    }
-
-    /**
-     * Iterates through all movies and returns information about them
-     *
-     * @return info about all movies
-     */
-    public String showMovies() {
-        String moviesInfo = "";
-        for (Map.Entry<String, Movie> entry : Movies.entrySet()) {
-            Movie movie = entry.getValue();
-            moviesInfo = moviesInfo + "\n" + movie.getInfo() + "\nMovie Key: " + entry.getKey();
-        }
-        return moviesInfo;
-    }
 
     /**
      * Replaces movie by id
@@ -117,6 +80,10 @@ public class MovieCollection {
         return Movies.get(key);
     }
 
+    public void setMovies(Map<String, Movie> newMovies){
+        Movies = newMovies;
+    }
+
     /**
      * Returns this collection
      *
@@ -126,15 +93,8 @@ public class MovieCollection {
         return new LinkedHashMap<>(Movies);
     }
 
-    public String getMinimumId() {
-        Long minId = Long.MAX_VALUE;
-        String response = "";
-        for (Map.Entry<String, Movie> elementOfMap : getMap().entrySet()) {
-            if (elementOfMap.getValue().getId() < minId) {
-                minId = elementOfMap.getValue().getId();
-                response = getValue(elementOfMap.getKey()).toString();
-            }
-        }
-        return response;
+    public Date getDateCreation() {
+        return dateCreation;
     }
+
 }

@@ -1,10 +1,9 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Replace element if it new element has lower length
@@ -40,12 +39,13 @@ public class Replace_if_lowe implements ICommand {
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
-            Movie oldMovie = movieCollection.getMovie(parameter);
-
-            if (movie.getLength() < oldMovie.getLength()) {
-                movieCollection.replaceMovie(parameter, movie);
+            if (movieCollection.getMovies().entrySet().stream()
+                    .filter(p -> p.getKey() == parameter)
+                    .allMatch(p -> p.getValue().getLength() > movie.getLength())) {
+                movieCollection.getMovies().replace(parameter, movie);
                 return "Значение по ключу успешно заменено";
+            } else {
+                return "не удалось заменить значение по ключу";
             }
-        return "не удалось заменить значение по ключу";
     }
 }

@@ -1,6 +1,6 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 /**
@@ -37,6 +37,9 @@ public class Info implements ICommand {
     @Override
     public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        return movieCollection.getInfo();
+        String result = "тип коллекции: LinkedHashMap";
+        result += "количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count();
+        result += "дата создания колекции: " + movieCollection.getDateCreation();
+        return result;
     }
 }

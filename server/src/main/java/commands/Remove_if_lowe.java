@@ -1,10 +1,9 @@
 package commands;
-import data.MovieCollection;
+import Collection.MovieCollection;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import movie.*;
 /**
  * Remove movie if it's id lower than my
@@ -40,17 +39,11 @@ public class Remove_if_lowe implements ICommand {
     @Override
     public String Do(String parameter, Movie oldMovie) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
-            Iterator it = movieCollection.getMap().entrySet().iterator();
-            long givenId = Long.parseLong(parameter);
-            while (it.hasNext()) {
-                Map.Entry pair = (Map.Entry) it.next();
-                Movie movie = (Movie) pair.getValue();
-                long currentId = movie.getId();
-                if (currentId < givenId) {
-                    it.remove(); // avoids a ConcurrentModificationException
-                    movieCollection.removeMovie((String) pair.getKey());
-                }
-        }
+
+            movieCollection.setMovies(movieCollection.getMovies().entrySet().stream()
+                    .filter(p -> p.getValue().getId() >= Long.parseLong(parameter))
+                    .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
+
         return "Все значение, меньшие по ключи, чем новые, были удалены (если они были в коллекции)";
     }
 }

@@ -1,6 +1,6 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 import java.io.IOException;
@@ -39,18 +39,8 @@ public class Insert_key implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie movie) throws IOException {
-        String key = parameter;
-//        } else {
-            MovieCollection movieCollection = new MovieCollection();
-//            if (!Execute_script.getSignal()) {
-                movieCollection.putMovie(key, movie);
-
-                return "В коллекцию успешно добавлен фильм " + movie.getName();
-//            } else {
-
-//
-//                System.out.println("В коллекцию успешно добавлен элемент " + movie.getName());
-//            }
-//        }
+        MovieCollection movieCollection = new MovieCollection();
+        movieCollection.getMovies().put(parameter, movie);
+        return "В коллекцию успешно добавлен фильм " + movie.getName();
     }
 }

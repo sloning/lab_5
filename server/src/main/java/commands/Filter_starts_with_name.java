@@ -1,11 +1,9 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.*;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.Comparator;
 
 /**
  * Prints all movies which names starts with this name
@@ -24,6 +22,18 @@ public class Filter_starts_with_name implements ICommand {
         Commands.addNewCommand(name, this);
     }
 
+    class ShowInfo{
+        private String info = "";
+
+        public void addInfo(String info){
+            this.info += info;
+        }
+
+        public String getInfo(){
+            return info;
+        }
+    }
+
     /**
      * Iterates through all elements of collection and print elements which names starts with this name
      *
@@ -32,18 +42,13 @@ public class Filter_starts_with_name implements ICommand {
     @Override
     public String Do(String parameter, Movie Movie) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
-            Iterator it = movieCollection.getMap().entrySet().iterator();
-            while (it.hasNext()) {
-                Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
-                String movieName = movie.getName();
-                String result=null;
-                if (movieName.substring(0, parameter.length()).compareTo(parameter) == 0) {
-                    result += movieName;
-                }
-                it.remove(); // avoids a ConcurrentModificationException
-                return result;
-            }
-            return null;
+            ShowInfo showInfo = new ShowInfo();
+            movieCollection.getMovies().entrySet().stream()
+                    .filter(p -> p.getValue().getName().substring(0, parameter.length()).compareTo(parameter) == 0)
+                    .sorted(Comparator.comparing(p -> p.getValue().getName()))
+                    .forEach(x -> showInfo.addInfo("\n" + x.getValue().getInfo() + "\nMovie Key: " + x.getKey()));;
+
+            return showInfo.getInfo();
     }
 
     /**

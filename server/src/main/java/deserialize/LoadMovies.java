@@ -1,6 +1,6 @@
 package deserialize;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.*;
 
 import java.io.BufferedReader;

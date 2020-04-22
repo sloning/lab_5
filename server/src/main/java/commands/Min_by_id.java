@@ -1,6 +1,6 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.Movie;
 
 /**
@@ -37,7 +37,9 @@ public class Min_by_id implements ICommand {
     @Override
     public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        return movieCollection.getMinimumId();
+        return movieCollection.getMovies().entrySet().stream()
+                .min((p,o) -> p.getValue().getId().compareTo(o.getValue().getId()))
+                .get().toString();
     }
 
     //TODO добавить исключение если не будет элементов в коллекции

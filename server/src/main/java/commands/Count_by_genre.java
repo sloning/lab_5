@@ -1,11 +1,8 @@
 package commands;
 
-import data.MovieCollection;
+import Collection.MovieCollection;
 import movie.*;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Count how many movies of this genre collection has
@@ -39,17 +36,12 @@ public class Count_by_genre implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie Movie) throws IOException {
-            int count = 0;
             MovieCollection movieCollection = new MovieCollection();
-            Iterator it = movieCollection.getMap().entrySet().iterator();
-            while (it.hasNext()) {
-                Movie movie = (Movie) ((Map.Entry) it.next()).getValue();
-                String movieGenre = movie.getGenre();
-                if (parameter.equals(movieGenre)) {
-                    count++;
-                }
-                it.remove(); // avoids a ConcurrentModificationException
-            }
-            return "Количество фильмов жанра " + parameter + " - " + count;
+
+            return "Количество фильмов жанра " + parameter + " - "
+                    + movieCollection.getMovies().entrySet().stream()
+                    .filter((p) -> p.getValue().getGenre().equals(parameter))
+                    .count();
+
     }
 }
