@@ -1,11 +1,12 @@
-package input_output;
+package data;
 
 import data.Shell;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FabricOfShell {
+public class FabricOfShell implements Serializable {
     private static List<Shell> ShellCollection = new ArrayList<>();
 
     public void addShell(Shell shell){

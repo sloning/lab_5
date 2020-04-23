@@ -8,7 +8,8 @@ public class Shell implements Serializable {
     private String name = null;
     private String parameter = null;
     private Movie movie = null;
-    public Shell(String name, String parameter, Movie movie){
+
+    public Shell(String name, String parameter, Movie movie) {
         this.name = name;
         this.parameter = parameter;
         this.movie = movie;

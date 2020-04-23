@@ -1,5 +1,8 @@
 package movie;
-public enum MovieGenre {
+
+import java.io.Serializable;
+
+public enum MovieGenre implements Serializable {
     COMEDY,
     MUSICAL,
     FANTASY
