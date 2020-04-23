@@ -4,6 +4,7 @@ import data.Shell;
 import commands.*;
 import deserialize.*;
 
+import javax.crypto.Cipher;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
 public class Server {
     private static Selector selector = null;
     static Logger LOGGER = Logger.getLogger(Server.class.getName());
+    private static int offset = 0;
 
     public static void main(String[] args) throws Exception {
         Clear clear = new Clear();
@@ -69,7 +71,7 @@ public class Server {
 
                     if (key.isAcceptable()) {
                         // New client has been accepted
-                        handleAccept(socket, key);
+                        handleAccept(socket);
                     }
                     if (key.isReadable()) {
                         // We can run non-blocking operation READ on our client
@@ -84,11 +86,10 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("Соединение разорвано");
-            LOGGER.warning(e.getMessage());
         }
     }
 
-    private static void handleAccept(ServerSocketChannel mySocket, SelectionKey key) throws IOException {
+    private static void handleAccept(ServerSocketChannel mySocket) throws IOException {
         LOGGER.info("Соединение установлено");
 
         // Accept the connection and set non-blocking mode
@@ -101,16 +102,22 @@ public class Server {
 
     private static String handleRead(SelectionKey key) throws Exception {
         LOGGER.info("Читаю");
-        // create a ServerSocketChannel to read the request
         SocketChannel client = (SocketChannel) key.channel();
-//        // Get msg from client
-        ByteBuffer data = ByteBuffer.allocate(10000000);
-        client.read(data);      // TODO вот этот метод записывает в дату и прошлую команду и настоящую
-        // data.mark();
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data.array());
+
+        ByteBuffer outBuffer = ByteBuffer.allocate(512);
+        int quantityOfReadBytes = client.read(outBuffer);       // TODO попытаться сделать все по солиду
+        byte[] inBytes = new byte[512];
+        outBuffer.rewind();
+        outBuffer.get(inBytes, 0, quantityOfReadBytes);
+//        byte[] header = new byte[94];
+//        if (offset > 0) System.arraycopy(inBytes, offset, inBytes, 94, outBuffer.position() - offset);
+//        offset = outBuffer.position();
+        outBuffer.clear();
+
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(inBytes);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
-        // Parse data from buffer to String
         Shell shell = (Shell) objectInputStream.readObject();
+
         Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
         LOGGER.info("Получена команда: " + shell.getName());
         client.register(selector, SelectionKey.OP_WRITE);
@@ -125,14 +132,8 @@ public class Server {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
         objectOutputStream.writeObject(response);
         objectOutputStream.flush();
-        client.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()));
+        client.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()));     // TODO handle value from it
 
-//        ByteBuffer buffer = ByteBuffer.allocate(10000000);
-//        buffer.put(response.getBytes());
-//        buffer.flip();
-//        client.write(buffer);
-
-//        client.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()));
         LOGGER.info("Отправлен ответ: " + response);
         client.register(selector, SelectionKey.OP_READ);
     }
