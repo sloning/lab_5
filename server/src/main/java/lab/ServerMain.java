@@ -29,9 +29,9 @@ public class ServerMain {
         if (args.length > 0) {
             LoadMovies loader = new LoadMovies();
             loader.load(args[0]);
+            LOGGER.info("Десериализация выполнена");
         }
 
-        LOGGER.info("Десериализация выполнена");
         Server server = new Server();
     }
 }

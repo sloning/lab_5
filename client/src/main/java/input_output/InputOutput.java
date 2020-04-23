@@ -4,6 +4,7 @@ import client_controller.*;
 import data.Shell;
 
 import java.io.*;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -30,7 +31,12 @@ public class InputOutput {
             Scanner sc = new Scanner(System.in);
             System.out.println("Введите команду");
             System.out.print("$ ");
-            String command = sc.nextLine();
+            String command = null;
+            try {
+                command = sc.nextLine();
+            } catch (NoSuchElementException e) {
+                System.exit(0);
+            }
             controller = new Controller(command);
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");

@@ -10,7 +10,7 @@ public class Serializer {
         try (ObjectOutputStream out = new ObjectOutputStream(byteArrayOutputStream)) {
             out.writeObject(object);
         } catch (IOException e) {
-            System.out.println("Ошибка сериализации");
+            System.err.println("Ошибка сериализации");
         }
         return byteArrayOutputStream.toByteArray();
     }
@@ -20,20 +20,27 @@ public class Serializer {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream)) {
             return (T) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException | ClassCastException e) {
-            System.out.println("Ошибка десериализации");
+            e.printStackTrace();
+            System.err.println("Ошибка десериализации");
         }
         return null;
     }
 
-    public boolean checkByteArray(byte[] bytes) throws IOException, ClassNotFoundException {
+    public int checkByteArray(byte[] bytes) throws IOException, ClassNotFoundException {
+        try(
         ByteArrayInputStream byteInputStream = new ByteArrayInputStream(bytes);
         ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
-        Object object = objectInputStream.readObject();
-        if (Shell.class.isInstance(object)) {
-            return true;
-        } else {
-            return false;
+        ) {
+            Object object = objectInputStream.readObject();
+            if (Shell.class.isInstance(object)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Ошибка десериализации");
         }
-
+        return -1;
     }
 }

@@ -7,6 +7,9 @@ subprojects {
 project(':server') {
     apply plugin: 'application'
     mainClassName = 'lab.ServerMain'
+    run {
+        standardInput = System.in
+    }
     dependencies {
         implementation project(':common')
     }
@@ -32,9 +35,3 @@ project(':client') {
         }
     }
 }
-
-//
-//task run {
-//    compileJava ':server
-//    compileJava
-//}

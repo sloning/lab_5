@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.ByteBuffer;
 
 public class Connection {
@@ -11,6 +12,9 @@ public class Connection {
         try {
             OutputStream outputStream = socket.getOutputStream();
             outputStream.write(bytes);
+        } catch (SocketException e) {
+            System.err.println("Соеденение с сервером потеряно\nКоманда не передана\nОтключаюсь");
+            System.exit(0);
         } catch (IOException e) {
             try {
                 socket.close();
@@ -29,6 +33,9 @@ public class Connection {
         try {
             InputStream inputStream = socket.getInputStream();
             quantityOfReadBytes = inputStream.read(outBuffer.array());
+        } catch (SocketException e) {
+            System.err.println("Соеденение с сервером потеряно\nОтключаюсь");
+            System.exit(0);
         } catch (IOException e) {
             try {
                 socket.close();
@@ -46,7 +53,7 @@ public class Connection {
                 e.printStackTrace();
                 System.exit(1);
             }
-            System.err.println("Reached an end of inputStream: " + socket.getInetAddress().getHostAddress());
+            System.err.println("Достигнут конец inputStream'а: " + socket.getInetAddress().getHostAddress());
         }
 
         byte[] bytes = new byte[bufferSize];

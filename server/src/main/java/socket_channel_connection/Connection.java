@@ -18,7 +18,7 @@ public class Connection {
                 ex.printStackTrace();
                 System.exit(1);
             }
-            System.err.println("Ошибка записи");
+            System.err.println("Соединение с клиентом потеряно PeepoHands");
         }
     }
 
@@ -35,7 +35,8 @@ public class Connection {
                 ex.printStackTrace();
                 System.exit(1);
             }
-            System.err.println("Ошибка чтения");
+            System.err.println("Соединение с клиентом потеряно PeepoHands");
+            return null;
         }
 
         if (quantityOfReadBytes == -1) {
@@ -45,7 +46,7 @@ public class Connection {
                 e.printStackTrace();
                 System.exit(1);
             }
-            System.err.println("Reached end-of-stream of channel: " + socketChannel.getRemoteAddress());
+            System.err.println("Достигнут конец stream'а: " + socketChannel.getRemoteAddress());
         }
 
         byte[] bytes = new byte[bufferSize];

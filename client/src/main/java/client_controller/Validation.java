@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Validation {
+public class Validation {       // TODO сделать обработку неизвестных команд, а то все падает
     private String name = null;
     private String parameter = null;
     private Movie movie = null;
