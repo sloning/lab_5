@@ -55,6 +55,9 @@ public class Controller {
                 System.out.print("$ ");
                 String nameofcommand = sc.nextLine();
                 Controller controller = new Controller(nameofcommand);
+                shell = controller.getShell();
+                CommandHistory commandHistory = new CommandHistory();
+                commandHistory.addCommand(nameCommands[0]);
             } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
                 System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
             }

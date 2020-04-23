@@ -27,7 +27,13 @@ public class ClientMain {
                     inputOutput.Input();
                     if (!Validation.getSignal()) {
                         Shell shell = inputOutput.getShell();
-                        connection.write(serializer.toByteArray(shell), socket);
+                            connection.write(serializer.toByteArray(shell), socket);
+                            System.out.println("Сообщение отправлено");
+
+                            String answer = serializer.fromByteArray(connection.read(socket), String.class);
+                            if (answer != null) System.out.println(answer);
+                            else System.out.println("Сервер предпочёл промолчать");
+
                     } else {
                         FabricOfShell fabricOfShell = new FabricOfShell();
                         CollectionOfShells collectionOfShells = new CollectionOfShells();
@@ -35,12 +41,12 @@ public class ClientMain {
                         connection.write(serializer.toByteArray(fabricOfShell), socket);
                         Validation.setSignal(false);
                         collectionOfShells.clearCollection();
-                    }
-                    System.out.println("Сообщение отправлено");
+                        System.out.println("Сообщение отправлено");
 
-                    String answer = serializer.fromByteArray(connection.read(socket), String.class);
-                    if (answer != null) System.out.println(answer);
-                    else System.out.println("Сервер предпочёл промолчать");
+                        String answer = serializer.fromByteArray(connection.read(socket), String.class);
+                        if (answer != null) System.out.println(answer);
+                        else System.out.println("Сервер предпочёл промолчать");
+                    }
                 }
             } catch (ConnectException e) {
                 System.err.println("Ошибка подключения к серверу");

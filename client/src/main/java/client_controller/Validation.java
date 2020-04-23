@@ -27,27 +27,32 @@ public class Validation {       // TODO сделать обработку неи
         if ((name.equals("insert")) || (name.equals("update_id") )) {
             this.insertKeyCheck(parameter);
             this.insertValidation(parameter);
-        }
+        } else
         if (name.equals("count_by_genre")) {
             this.countByGenreCheck(parameter);
-        }
+        } else
         if (name.equals("execute_script")) {
             this.executeScriptCheck(parameter);
-        }
+        } else
         if (name.equals("exit")) {
             System.exit(0);
-        }
+        } else
         if (name.equals("filter_starts_with_name")) {
             this.filterStartsWithNameCheck(parameter);
-        }
+        } else
         if (name.equals("remove_if_lowe")) {
             this.insertKeyCheck(parameter);
-        }
+        } else
         if (name.equals("remove")) {
             this.removeKeyCheck(parameter);
-        }
+        } else
         if (name.equals("replace_if_lowe")) {
             this.insertKeyCheck(parameter);
+        } else if (name.equals("clear") || name.equals("help") || name.equals("min_by_id") || name.equals("show") || name.equals("history") || name.equals("info")) {
+
+        } else {
+            System.out.println("Вы ввели неверное название команды");
+            name = null;
         }
 
     }
