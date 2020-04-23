@@ -52,6 +52,7 @@ public class Validation {       // TODO сделать обработку неи
 
         } else {
             System.out.println("Вы ввели неверное название команды");
+            System.out.println("Но мы все равно отправим ее на сервер");
             name = null;
         }
 

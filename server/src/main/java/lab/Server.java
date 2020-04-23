@@ -10,10 +10,7 @@ import socket_channel_connection.Connection;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -103,7 +100,7 @@ public class Server {
                 }
                 return result;
             } else return null;
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | ClosedChannelException e) {
             System.err.println("Соединение с клиентом неожиданно (нет) потеряно");
             return null;
         }
