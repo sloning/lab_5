@@ -30,6 +30,7 @@ public class ServerMain {
             LoadMovies loader = new LoadMovies();
             loader.load(args[0]);
         }
+
         LOGGER.info("Десериализация выполнена");
         Server server = new Server();
     }

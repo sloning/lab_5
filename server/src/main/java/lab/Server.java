@@ -1,6 +1,7 @@
 package lab;
 
 import commands.Commands;
+import data.FabricOfShell;
 import data.Shell;
 import serializer.Serializer;
 import socket_channel_connection.Connection;
@@ -72,13 +73,26 @@ public class Server {
     private String handleRead(SelectionKey key, Serializer serializer, Connection connection) throws Exception {
         LOGGER.info("Читаю");
         SocketChannel socketChannel = (SocketChannel) key.channel();
-        Shell shell = serializer.fromByteArray(connection.read(socketChannel), Shell.class);
-
-        Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
-        LOGGER.info("Получена команда: " + shell.getName());
-
-        socketChannel.register(selector, SelectionKey.OP_WRITE);
-        return useCommands.execute();
+        byte[] byteArray = connection.read(socketChannel);
+        if (serializer.checkByteArray(byteArray)) {
+            Shell shell = serializer.fromByteArray(byteArray, Shell.class);
+            Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+            LOGGER.info("Получена команда: " + shell.getName());
+            socketChannel.register(selector, SelectionKey.OP_WRITE);
+            return useCommands.execute();
+        } else {
+            String result = "";
+            FabricOfShell fabricOfShell = serializer.fromByteArray(byteArray, FabricOfShell.class);
+            LOGGER.info("начало работы со скриптом");
+            for (int i = 0; i < fabricOfShell.getSize(); i++) {
+                Shell shell = fabricOfShell.getShell(i);
+                Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                LOGGER.info("Получена команда: " + shell.getName());
+                socketChannel.register(selector, SelectionKey.OP_WRITE);
+                result += useCommands.execute();
+            }
+            return result;
+        }
     }
 
     private void handleWrite(SelectionKey key, String response, Serializer serializer, Connection connection) throws IOException {

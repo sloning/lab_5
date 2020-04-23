@@ -37,8 +37,8 @@ public class Info implements ICommand {
     @Override
     public String Do(String parameter, Movie movie) {
         MovieCollection movieCollection = new MovieCollection();
-        String result = "тип коллекции: LinkedHashMap";
-        result += "количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count();
+        String result = "тип коллекции: LinkedHashMap\n";
+        result += "количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count() +"\n";
         result += "дата создания колекции: " + movieCollection.getDateCreation();
         return result;
     }

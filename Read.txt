@@ -1,2 +1,2 @@
-
-execute_script Read1.txt
+help
+info

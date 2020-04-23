@@ -55,7 +55,7 @@ public class Commands {
         Collection<ICommand> Val = commands.values();
         String result = null;
         for (ICommand com : Val) {
-            result += com.info();
+            result += com.info() + "\n";
         }
         return result;
     }

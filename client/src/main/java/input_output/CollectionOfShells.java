@@ -1,18 +1,19 @@
-package data;
+package input_output;
 
 import data.Shell;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FabricOfShell implements Serializable {
-    private List<Shell> ShellCollection = new ArrayList<>();
+public class CollectionOfShells {
+    private static List<Shell> ShellCollection = new ArrayList<>();
 
     public void addShell(Shell shell){
         ShellCollection.add(shell);
     }
-
+    public List<Shell> getShellCollection(){
+        return ShellCollection;
+    }
     public void clearCollection(){
         ShellCollection.clear();
     }
@@ -23,9 +24,5 @@ public class FabricOfShell implements Serializable {
 
     public int getSize(){
         return ShellCollection.size();
-    }
-
-    public void setShellCollection(List<Shell> shellCollection){
-        ShellCollection = shellCollection;
     }
 }

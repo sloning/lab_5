@@ -36,6 +36,8 @@ public class Controller {
                 validation.setParameter(nameCommands[1]);
             }
 
+            validation.check();
+
             this.name = validation.getName();
             this.parameter = validation.getParameter();
             this.movie = validation.getMovie();

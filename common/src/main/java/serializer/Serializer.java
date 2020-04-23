@@ -24,4 +24,16 @@ public class Serializer {
         }
         return null;
     }
+
+    public boolean checkByteArray(byte[] bytes) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream byteInputStream = new ByteArrayInputStream(bytes);
+        ObjectInputStream objectInputStream = new ObjectInputStream(byteInputStream);
+        Object object = objectInputStream.readObject();
+        if (Shell.class.isInstance(object)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

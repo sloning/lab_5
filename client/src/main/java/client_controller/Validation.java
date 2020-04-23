@@ -21,13 +21,10 @@ public class Validation {
 
     public Validation(String name) throws IOException {
         this.name = name;
-        check();
     }
 
     public void check() throws IOException {
         if ((name.equals("insert")) || (name.equals("update_id") )) {
-            FabricOfMovies fabricOfMovies = new FabricOfMovies();
-            movie = fabricOfMovies.create();
             this.insertKeyCheck(parameter);
             this.insertValidation(parameter);
         }
@@ -170,6 +167,9 @@ public class Validation {
                 movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, locZ));
             else
                 movie.setDirector(dirName, dirHeight, dirWeight, new Location(locName, locX, Long.parseLong(locYString), locZ));
+        } else {
+            FabricOfMovies fabricOfMovies = new FabricOfMovies();
+            movie = fabricOfMovies.create();
         }
     }
 
