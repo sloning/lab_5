@@ -17,6 +17,7 @@ public class Validation {       // TODO сделать обработку неи
     private Movie movie = null;
     private static String fileName;
     private static boolean signal = false;
+    public static boolean sendReady = true;
     private List<String> fileNames = new ArrayList<>();
 
     public Validation(String name) throws IOException {
@@ -24,6 +25,7 @@ public class Validation {       // TODO сделать обработку неи
     }
 
     public void check() throws IOException {
+        sendReady = true;
         if ((name.equals("insert")) || (name.equals("update_id") )) {
             this.insertKeyCheck(parameter);
             this.insertValidation(parameter);
@@ -48,11 +50,11 @@ public class Validation {       // TODO сделать обработку неи
         } else
         if (name.equals("replace_if_lowe")) {
             this.insertKeyCheck(parameter);
-        } else if (name.equals("clear") || name.equals("help") || name.equals("min_by_id") || name.equals("show") || name.equals("history") || name.equals("info")) {
-
-        } else {
+        } else if (name.equals("clear") || name.equals("help") || name.equals("min_by_id") || name.equals("show") || name.equals("history") || name.equals("info")) { }
+        else {
             System.out.println("Вы ввели неверное название команды");
-            System.out.println("Но мы все равно отправим ее на сервер");
+//            System.out.println("Но мы все равно отправим ее на сервер");
+            sendReady = false;
             name = null;
         }
 
