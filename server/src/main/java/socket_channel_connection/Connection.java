@@ -8,7 +8,7 @@ import java.nio.channels.NotYetConnectedException;
 import java.nio.channels.SocketChannel;
 
 public class Connection {
-    public static void write(byte[] bytes, SocketChannel socketChannel) {
+    public void write(byte[] bytes, SocketChannel socketChannel) {
         try {
             socketChannel.write(ByteBuffer.wrap(bytes));
         } catch (IOException | NotYetConnectedException | NonWritableChannelException e) {
@@ -22,7 +22,7 @@ public class Connection {
         }
     }
 
-    public static byte[] read(SocketChannel socketChannel) throws IOException {
+    public byte[] read(SocketChannel socketChannel) throws IOException {
         int quantityOfReadBytes = 0;
         int bufferSize = 10000000;
         ByteBuffer outBuffer = ByteBuffer.allocate(bufferSize);

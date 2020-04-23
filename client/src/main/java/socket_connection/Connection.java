@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 
 public class Connection {
-    public static void write(byte[] bytes, Socket socket) {
+    public void write(byte[] bytes, Socket socket) {
         try {
             OutputStream outputStream = socket.getOutputStream();
             outputStream.write(bytes);
@@ -22,7 +22,7 @@ public class Connection {
         }
     }
 
-    public static byte[] read(Socket socket) {
+    public byte[] read(Socket socket) {
         int quantityOfReadBytes = 0;
         int bufferSize = 10000000;
         ByteBuffer outBuffer = ByteBuffer.allocate(bufferSize);

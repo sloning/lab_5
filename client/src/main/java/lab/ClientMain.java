@@ -13,13 +13,15 @@ public class ClientMain {
 
         System.out.println("Подключение успешно совершено");
         InputOutput inputOutput = new InputOutput();
+        Serializer serializer = new Serializer();
+        Connection connection = new Connection();
         while (true) {
             inputOutput.Input();
             Shell shell = inputOutput.getShell();
-            Connection.write(Serializer.toByteArray(shell), socket);
+            connection.write(serializer.toByteArray(shell), socket);
             System.out.println("Сообщение отправлено");
 
-            String answer = Serializer.fromByteArray(Connection.read(socket), String.class);
+            String answer = serializer.fromByteArray(connection.read(socket), String.class);
             System.out.println(answer);
 
 //                if (Validation.getSignal()) {

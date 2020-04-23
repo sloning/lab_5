@@ -29,6 +29,8 @@ public class Server {
             socket.configureBlocking(false);
             int ops = socket.validOps();
             socket.register(selector, ops, null);
+            Serializer serializer = new Serializer();
+            Connection connection = new Connection();
             String response = null;
             LOGGER.info("Сервер готов к работёнке");
 
@@ -44,10 +46,10 @@ public class Server {
                         handleAccept(socket);
                     }
                     if (key.isReadable()) {
-                        response = handleRead(key);
+                        response = handleRead(key, serializer, connection);
                     }
                     if (key.isWritable()) {
-                        handleWrite(key, response);
+                        handleWrite(key, response, serializer, connection);
                     }
                     iterator.remove();
                 }
@@ -67,10 +69,10 @@ public class Server {
         client.register(selector, SelectionKey.OP_READ);
     }
 
-    private String handleRead(SelectionKey key) throws Exception {
+    private String handleRead(SelectionKey key, Serializer serializer, Connection connection) throws Exception {
         LOGGER.info("Читаю");
         SocketChannel socketChannel = (SocketChannel) key.channel();
-        Shell shell = Serializer.fromByteArray(Connection.read(socketChannel), Shell.class);
+        Shell shell = serializer.fromByteArray(connection.read(socketChannel), Shell.class);
 
         Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
         LOGGER.info("Получена команда: " + shell.getName());
@@ -79,11 +81,11 @@ public class Server {
         return useCommands.execute();
     }
 
-    private void handleWrite(SelectionKey key, String response) throws IOException {
+    private void handleWrite(SelectionKey key, String response, Serializer serializer, Connection connection) throws IOException {
         LOGGER.info("Пишу ответочку");
         SocketChannel socketChannel = (SocketChannel) key.channel();
 
-        Connection.write(Serializer.toByteArray(response), socketChannel);
+        connection.write(serializer.toByteArray(response), socketChannel);
         LOGGER.info("Отправлен ответ: " + response);
 
         socketChannel.register(selector, SelectionKey.OP_READ);
