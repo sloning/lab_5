@@ -8,13 +8,17 @@ import java.net.SocketException;
 import java.nio.ByteBuffer;
 
 public class Connection {
+    public static boolean connFlag = true;
+
     public void write(byte[] bytes, Socket socket) {
+        connFlag = true;
         try {
             OutputStream outputStream = socket.getOutputStream();
             outputStream.write(bytes);
         } catch (SocketException e) {
-            System.err.println("Соеденение с сервером потеряно\nКоманда не передана\nОтключаюсь");
-            System.exit(0);
+            System.err.println("Соеденение с сервером потеряно\nКоманда не передана\n");
+//            System.exit(0);
+            connFlag = false;
         } catch (IOException e) {
             try {
                 socket.close();
@@ -34,8 +38,9 @@ public class Connection {
             InputStream inputStream = socket.getInputStream();
             quantityOfReadBytes = inputStream.read(outBuffer.array());
         } catch (SocketException e) {
-            System.err.println("Соеденение с сервером потеряно\nОтключаюсь");
-            System.exit(0);
+            System.err.println("Соеденение с сервером потеряно\n");
+//            System.exit(0);
+            return null;
         } catch (IOException e) {
             try {
                 socket.close();
@@ -54,6 +59,7 @@ public class Connection {
                 System.exit(1);
             }
             System.err.println("Достигнут конец inputStream'а: " + socket.getInetAddress().getHostAddress());
+            return null;
         }
 
         byte[] bytes = new byte[bufferSize];

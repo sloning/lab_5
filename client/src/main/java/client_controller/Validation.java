@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Validation {       // TODO сделать обработку неизвестных команд, а то все падает
-    private String name = null;
+public class Validation {
+    private String name;
     private String parameter = null;
     private Movie movie = null;
     private static String fileName;
-    private static boolean signal = false;
+    private static boolean signal = false;      // Если true, то выполняется сценарий с отправкой скрипта
     public static boolean sendReady = true;
     private List<String> fileNames = new ArrayList<>();
 
-    public Validation(String name) throws IOException {
+    public Validation(String name) {
         this.name = name;
     }
 
@@ -50,8 +50,7 @@ public class Validation {       // TODO сделать обработку неи
         } else
         if (name.equals("replace_if_lowe")) {
             this.insertKeyCheck(parameter);
-        } else if (name.equals("clear") || name.equals("help") || name.equals("min_by_id") || name.equals("show") || name.equals("history") || name.equals("info")) { }
-        else {
+        } else {
             System.out.println("Вы ввели неверное название команды");
 //            System.out.println("Но мы все равно отправим ее на сервер");
             sendReady = false;
@@ -62,12 +61,12 @@ public class Validation {       // TODO сделать обработку неи
 
     public void insertKeyCheck(String parameter) {
         String key = parameter;
-        if (parameter == null) {
+        if (key == null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите ключ");
             System.out.print("$ ");
             key = scanner.nextLine();
-            if (key.equals("") || key == null) {
+            if (key.equals("")) {
                 System.out.println("Ключ не может быть null");
                 this.insertKeyCheck(key);
             } else {
@@ -83,7 +82,7 @@ public class Validation {       // TODO сделать обработку неи
             System.out.println("Введите жанр");
             System.out.print("$");
             key = scanner.nextLine();
-            if (key.equals("") || key == null) {
+            if (key.equals("")) {
                 System.out.println("жанр не может быть null");
                 this.countByGenreCheck(key);
             } else {
@@ -93,7 +92,7 @@ public class Validation {       // TODO сделать обработку неи
     }
 
     public void executeScriptCheck(String parameter) throws IOException {
-        this.fileName = parameter;
+        fileName = parameter;
         if (fileName == null) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Введите название файла");
@@ -104,6 +103,7 @@ public class Validation {       // TODO сделать обработку неи
                 this.executeScriptCheck(fileName);
             } else {
                 this.parameter = fileName;
+                executeScriptCheck(fileName);
             }
         } else {
             InputOutput inputOutput = new InputOutput();
@@ -124,7 +124,7 @@ public class Validation {       // TODO сделать обработку неи
             System.out.println("Введите подстроку");
             System.out.print("$");
             key = scanner.nextLine();
-            if (key.equals("") || key == null) {
+            if (key.equals("")) {
                 System.out.println("подстрока не может быть null");
                 this.filterStartsWithNameCheck(key);
             } else {
@@ -140,7 +140,7 @@ public class Validation {       // TODO сделать обработку неи
             System.out.println("Введите ключ объекта, который хотите удалить");
             System.out.print("$");
             key = scanner.nextLine();
-            if (key.equals("") || key == null) {
+            if (key.equals("")) {
                 System.out.println("Ключ не может быть null");
                 this.removeKeyCheck(key);
             } else {

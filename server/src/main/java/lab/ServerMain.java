@@ -32,6 +32,6 @@ public class ServerMain {
             LOGGER.info("Десериализация выполнена");
         }
 
-        Server server = new Server();
+       Server server = new Server();
     }
 }

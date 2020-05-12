@@ -101,6 +101,10 @@ public class Movie implements Serializable {
         return this.name;
     }
 
+    public int getOscars() {
+        return this.oscarsCount;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -117,11 +121,7 @@ public class Movie implements Serializable {
     }
 
     public boolean checkGenre(String parameter) {
-        if (parameter.equals(genre.toString())) {
-            return true;
-        } else {
-            return false;
-        }
+        return parameter.equals(genre.toString());
     }
 
     /**
