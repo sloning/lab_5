@@ -2,7 +2,8 @@ package client_controller;
 
 import input_output.FabricOfMovies;
 import input_output.InputOutput;
-import movie.*;
+import movie.Location;
+import movie.Movie;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,7 +19,7 @@ public class Validation {
     private static String fileName;
     private static boolean signal = false;      // Если true, то выполняется сценарий с отправкой скрипта
     public static boolean sendReady = true;
-    private List<String> fileNames = new ArrayList<>();
+    private final List<String> fileNames = new ArrayList<>();
 
     public Validation(String name) {
         this.name = name;
@@ -26,37 +27,44 @@ public class Validation {
 
     public void check() throws IOException {
         sendReady = true;
-        if ((name.equals("insert")) || (name.equals("update_id") )) {
-            this.insertKeyCheck(parameter);
-            this.insertValidation(parameter);
-        } else
-        if (name.equals("count_by_genre")) {
-            this.countByGenreCheck(parameter);
-        } else
-        if (name.equals("execute_script")) {
-            this.executeScriptCheck(parameter);
-        } else
-        if (name.equals("exit")) {
-            System.exit(0);
-        } else
-        if (name.equals("filter_starts_with_name")) {
-            this.filterStartsWithNameCheck(parameter);
-        } else
-        if (name.equals("remove_if_lowe")) {
-            this.insertKeyCheck(parameter);
-        } else
-        if (name.equals("remove")) {
-            this.removeKeyCheck(parameter);
-        } else
-        if (name.equals("replace_if_lowe")) {
-            this.insertKeyCheck(parameter);
-        } else {
-            System.out.println("Вы ввели неверное название команды");
-//            System.out.println("Но мы все равно отправим ее на сервер");
-            sendReady = false;
-            name = null;
+        switch (name) {
+            case "insert":
+            case "update_id":
+                this.insertKeyCheck(parameter);
+                this.insertValidation(parameter);
+                break;
+            case "count_by_genre":
+                this.countByGenreCheck(parameter);
+                break;
+            case "execute_script":
+                this.executeScriptCheck(parameter);
+                break;
+            case "exit":
+                System.exit(0);
+            case "filter_starts_with_name":
+                this.filterStartsWithNameCheck(parameter);
+                break;
+            case "remove_if_lowe":
+            case "replace_if_lowe":
+                this.insertKeyCheck(parameter);
+                break;
+            case "remove":
+                this.removeKeyCheck(parameter);
+                break;
+            case "clear":
+            case "help":
+            case "min_by_id":
+            case "show":
+            case "history":
+            case "info":
+                break;
+            default:
+                System.out.println("Вы ввели неверное название команды");
+                //System.out.println("Но мы все равно отправим ее на сервер");
+                sendReady = false;
+                name = null;
+                break;
         }
-
     }
 
     public void insertKeyCheck(String parameter) {

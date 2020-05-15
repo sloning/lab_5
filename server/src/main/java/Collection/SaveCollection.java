@@ -1,7 +1,6 @@
 package Collection;
 
-import Collection.MovieCollection;
-import movie.*;
+import movie.Movie;
 
 import java.io.BufferedReader;
 import java.io.FileWriter;
@@ -11,7 +10,7 @@ import java.util.Map;
 
 import static data.FileCheck.checkFile;
 
-public class SaveMovies {
+public class SaveCollection {
     private Thread backgroundReaderThread = null;
 
     public void save() throws IOException {

@@ -1,13 +1,13 @@
 package lab;
 
-import Collection.SaveMovies;
+import Collection.SaveCollection;
 import commands.Commands;
 import data.FabricOfShell;
 import data.Shell;
 import serializer.Serializer;
 import socket_channel_connection.Connection;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.channels.*;
@@ -30,8 +30,8 @@ public class Server {
             socket.register(selector, ops, null);
             Serializer serializer = new Serializer();
             Connection connection = new Connection();
-            SaveMovies saveMovie = new SaveMovies();
-            saveMovie.checkForSaveCommand();
+            SaveCollection saveCollection = new SaveCollection();
+            saveCollection.checkForSaveCommand();
             String response = null;
             LOGGER.info("Сервер готов к работёнке");
 
@@ -90,7 +90,7 @@ public class Server {
             } else if(flag == 0) {
                 String result = "";
                 FabricOfShell fabricOfShell = serializer.fromByteArray(byteArray, FabricOfShell.class);
-                LOGGER.info("начало работы со скриптом");
+                LOGGER.info("Начало работы со скриптом");
                 for (int i = 0; i < fabricOfShell.getSize(); i++) {
                     Shell shell = fabricOfShell.getShell(i);
                     Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
