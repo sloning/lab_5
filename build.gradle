@@ -2,6 +2,9 @@ defaultTasks 'run'
 
 subprojects {
     apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
 }
 
 project(':server') {
@@ -12,6 +15,7 @@ project(':server') {
     }
     dependencies {
         implementation project(':common')
+        implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.12'
     }
     jar {
         manifest {

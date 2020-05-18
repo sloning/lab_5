@@ -33,7 +33,7 @@ public class Server {
             SaveCollection saveCollection = new SaveCollection();
             saveCollection.checkForSaveCommand();
             String response = null;
-            LOGGER.info("Сервер готов к работёнке");
+            LOGGER.info("Сервер готов к работе");
 
             while (true) {
                 selector.select();
