@@ -18,21 +18,26 @@ import java.util.logging.Logger;
 public class Server {
     private static Selector selector = null;
     static Logger LOGGER = Logger.getLogger(Server.class.getName());
+    // Все вынес сюда, надеюсь, что многопоточности не повредит.
+    ServerSocketChannel socket = ServerSocketChannel.open();
+    ServerSocket serverSocket = socket.socket();
+    Serializer serializer = new Serializer();
+    Connection connection = new Connection();
+    SaveCollection saveCollection = new SaveCollection();
+    SelectionKey key;
+    String response;
+    DB_Connection db_connection;
 
-    public Server() throws Exception {
+    public Server(String db_url, String db_user, String db_pass, int port) throws Exception {
+        db_connection = new DB_Connection(db_url, db_user, db_pass);
         try {
             selector = Selector.open();
-            ServerSocketChannel socket = ServerSocketChannel.open();
-            ServerSocket serverSocket = socket.socket();
-            serverSocket.bind(new InetSocketAddress("localhost", 1111));
+            serverSocket.bind(new InetSocketAddress("localhost", port));
             socket.configureBlocking(false);
             int ops = socket.validOps();
             socket.register(selector, ops, null);
-            Serializer serializer = new Serializer();
-            Connection connection = new Connection();
-            SaveCollection saveCollection = new SaveCollection();
             saveCollection.checkForSaveCommand();
-            String response = null;
+            response = null;
             LOGGER.info("Сервер готов к работе");
 
             while (true) {
@@ -41,20 +46,20 @@ public class Server {
                 Iterator<SelectionKey> iterator = selectedKeys.iterator();
 
                 while (iterator.hasNext()) {
-                    SelectionKey key = iterator.next();
+                    key = iterator.next();
 
                     if (key.isAcceptable()) {
-                        handleAccept(socket);
+                        handleAccept();
                     }
                     if (key.isReadable()) {
-                        response = handleRead(key, serializer, connection);
+                        response = handleRead();
                         if (response == null) {
                             iterator.remove();
                             continue;
                         }
                     }
                     if (key.isWritable()) {
-                        handleWrite(key, response, serializer, connection);
+                        handleWrite();
                     }
                     iterator.remove();
                 }
@@ -62,19 +67,21 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("Соединение разорвано");
+        } finally {
+            db_connection.close();
         }
     }
 
-    private void handleAccept(ServerSocketChannel mySocket) throws IOException {
+    private void handleAccept() throws IOException {
         LOGGER.info("Соединение установлено");
 
-        SocketChannel client = mySocket.accept();
+        SocketChannel client = socket.accept();
         client.configureBlocking(false);
 
         client.register(selector, SelectionKey.OP_READ);
     }
 
-    private String handleRead(SelectionKey key, Serializer serializer, Connection connection) throws Exception {
+    private String handleRead() throws Exception {
         try {
             LOGGER.info("Читаю");
             SocketChannel socketChannel = (SocketChannel) key.channel();
@@ -106,7 +113,7 @@ public class Server {
         }
     }
 
-    private void handleWrite(SelectionKey key, String response, Serializer serializer, Connection connection) throws IOException {
+    private void handleWrite() throws IOException {
         LOGGER.info("Пишу ответочку");
         SocketChannel socketChannel = (SocketChannel) key.channel();
 

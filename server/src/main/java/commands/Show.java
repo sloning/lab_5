@@ -14,7 +14,7 @@ public class Show implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public Show() {
         name = "show";
@@ -31,14 +31,14 @@ public class Show implements ICommand {
         return name + ": вывести в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
-    class ShowInfo{
+    class ShowInfo {
         private String info = "";
 
-        public void addInfo(String info){
+        public void addInfo(String info) {
             this.info += info;
         }
 
-        public String getInfo(){
+        public String getInfo() {
             return info;
         }
     }
@@ -50,6 +50,4 @@ public class Show implements ICommand {
         movieCollection.getMovies().entrySet().stream().sorted(Comparator.comparing(p -> p.getValue().getName())).forEach(x -> showInfo.addInfo("\n" + x.getValue().getInfo() + "\nMovie Key: " + x.getKey()));
         return showInfo.getInfo();
     }
-
-    //добавить сортировку
 }
