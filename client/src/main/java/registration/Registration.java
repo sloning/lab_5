@@ -25,6 +25,7 @@ public class Registration {
             this.registration();
         } else {
             this.password = Hash.encryptThisString(firstPassword);
+            //хеширование
             userShell = new UserShell(this.login, this.password, false);
         }
     }
