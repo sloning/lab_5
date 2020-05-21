@@ -38,6 +38,16 @@ public class Movie implements Serializable {
         this.director = director;
     }
 
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+
+    public MpaaRating getMpaaRating() {
+        return mpaaRating;
+    }
+
     /**
      * @param rating rating of movie
      */
