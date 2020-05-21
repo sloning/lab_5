@@ -24,7 +24,7 @@ public class Registration {
             System.out.println("Введенные пароли не совпадают. Повторите попытку");
             this.registration();
         } else {
-            this.password = firstPassword;
+            this.password = Hash.encryptThisString(firstPassword);
             userShell = new UserShell(this.login, this.password, false);
         }
     }
@@ -40,7 +40,8 @@ public class Registration {
             this.login = login;
             System.out.println("Введите пароль");
             System.out.print("$");
-            this.password = scanner.nextLine();
+            String newPassword = scanner.nextLine();
+            this.password = Hash.encryptThisString(newPassword);
             userShell = new UserShell(this.login, this.password, true);
         }
     }
