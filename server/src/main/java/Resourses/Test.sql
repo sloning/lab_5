@@ -39,3 +39,9 @@ movie_rating rating NOT NULL,
 director uuid REFERENCES directors(director_id) NOT NULL,
 movie_key text NOT NULL
 );
+
+create table users (
+id serial primary key,
+username varchar(100) not null,
+password varchar(100) not null
+);

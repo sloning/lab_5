@@ -44,6 +44,6 @@ public class Remove_if_lowe implements ICommand {
                     .filter(p -> p.getValue().getId() >= Long.parseLong(parameter))
                     .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
 
-        return "Все значение, меньшие по ключи, чем новые, были удалены (если они были в коллекции)";
+        return "Все значение, меньшие по ключу, чем новые, были удалены (если они были в коллекции)";
     }
 }

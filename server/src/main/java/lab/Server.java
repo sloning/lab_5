@@ -1,9 +1,11 @@
 package lab;
 
 import Collection.SaveCollection;
+import DB.Login;
 import commands.Commands;
 import data.FabricOfShell;
 import data.Shell;
+import data.UserShell;
 import serializer.Serializer;
 import socket_channel_connection.Connection;
 
@@ -92,6 +94,13 @@ public class Server {
                 LOGGER.info("Получена команда: " + shell.getName());
                 socketChannel.register(selector, SelectionKey.OP_WRITE);
                 return useCommands.execute();
+            } else if (flag == 2) {
+                UserShell userShell = serializer.fromByteArray(byteArray, UserShell.class);
+                Login login = new Login(userShell);
+                login.authorisation();
+                LOGGER.info("Получен пользователь: " + userShell.getLogin());
+                socketChannel.register(selector, SelectionKey.OP_WRITE);
+                return login.getInfo();
             } else if(flag == 0) {
                 String result = "";
                 FabricOfShell fabricOfShell = serializer.fromByteArray(byteArray, FabricOfShell.class);
