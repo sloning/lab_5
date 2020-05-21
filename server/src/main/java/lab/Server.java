@@ -8,6 +8,7 @@ import serializer.Serializer;
 import socket_channel_connection.Connection;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.channels.*;
@@ -62,6 +63,10 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("Соединение разорвано");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.info("Нет доступных подключений");
         }
     }
 

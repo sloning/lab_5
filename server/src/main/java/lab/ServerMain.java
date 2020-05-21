@@ -1,5 +1,6 @@
 package lab;
 
+import DB.DBWorker;
 import commands.*;
 
 import java.sql.Connection;
@@ -8,9 +9,6 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 public class ServerMain {
-    static final String DB_URL = "jdbc:postgresql://localhost:5433/postgres";
-    static final String USER = "postgres";
-    static final String PASS = "vlad";
     static Logger LOGGER = Logger.getLogger(ServerMain.class.getName());
 
     public static void main(String[] args) throws Exception {
@@ -23,7 +21,7 @@ public class ServerMain {
 //            LOGGER.info("Десериализация выполнена");
 //        }
 
-        initDB();
+        DBWorker dbWorker = new DBWorker();
         Server server = new Server();
     }
 
@@ -43,32 +41,5 @@ public class ServerMain {
         Replace_if_lowe replace_if_lowe = new Replace_if_lowe();
         Show show = new Show();
         Update update_id = new Update();
-    }
-
-    private static void initDB() {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            LOGGER.info("PostgreSQL JDBC Driver не найден");
-            e.printStackTrace();
-            return;
-        }
-
-        LOGGER.info("PostgreSQL JDBC Driver успешно подключён");
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (SQLException e) {
-            LOGGER.info("Не удалось установить соединение с БД");
-            e.printStackTrace();
-            return;
-        }
-
-        if (connection != null) {
-            LOGGER.info("Подключение к БД выполнено успешно");
-        } else {
-            LOGGER.info("Не удалось установить соединение с БД");
-        }
     }
 }

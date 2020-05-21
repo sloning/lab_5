@@ -159,4 +159,44 @@ public class Movie implements Serializable {
     public Long getId() {
         return this.id;
     }
+
+    public int getCoordinatesX() {
+        return coordinates.getX();
+    }
+
+    public float getCoordinatesY() {
+        return coordinates.getY();
+    }
+
+    public String getDirectorName() {
+        return director.getName();
+    }
+
+    public Date getDirectorBirthday() {
+        return director.getBirthday();
+    }
+
+    public Double getDirectorHeight() {
+        return director.getHeight();
+    }
+
+    public Float getDirectorWeight() {
+        return director.getWeight();
+    }
+
+    public Integer getDirectorLocationX() {
+        return director.getLocationX();
+    }
+
+    public long getDirectorLocationY() {
+        return director.getLocationY();
+    }
+
+    public Integer getDirectorLocationZ() {
+        return director.getLocationZ();
+    }
+
+    public String getDirectorLocationName() {
+        return director.getLocationName();
+    }
 }

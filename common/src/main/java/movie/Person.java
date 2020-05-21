@@ -10,6 +10,39 @@ public class Person implements Serializable {
     private java.util.Date birthday; //Поле не может быть null
     private Double height; //Поле может быть null, Значение поля должно быть больше 0
     private Float weight; //Поле может быть null, Значение поля должно быть больше 0
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public Float getWeight() {
+        return weight;
+    }
+
+    public Integer getLocationX() {
+        return location.getX();
+    }
+
+    public long getLocationY() {
+        return location.getY();
+    }
+
+    public Integer getLocationZ() {
+        return location.getZ();
+    }
+
+    public String getLocationName() {
+        return location.getName();
+    }
+
     private Location location; //Поле может быть null
 
     /**
