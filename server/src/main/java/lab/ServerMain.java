@@ -1,11 +1,14 @@
 package lab;
 
+import DB.DBLoader;
 import DB.DBWorker;
 import commands.*;
+import movie.Movie;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class ServerMain {
@@ -22,6 +25,8 @@ public class ServerMain {
 //        }
 
         DBWorker dbWorker = new DBWorker();
+        //класс, отвечающий за автозаполнение коллекции из бд (находится в доработке)
+        //DBLoader dbLoader = new DBLoader();
         Server server = new Server();
     }
 
@@ -42,4 +47,7 @@ public class ServerMain {
         Show show = new Show();
         Update update_id = new Update();
     }
+
+
+
 }

@@ -90,6 +90,12 @@ public class Movie implements Serializable {
         director = new Person(name, height, weight, location);
     }
 
+    public void setDirectorWithLocation(String name, Double height, Float weight, String locationName, int x, long y, int z) {
+        Location location = new Location(locationName, x, y, z);
+        director = new Person(name, height, weight, location);
+    }
+
+
     /**
      * @return length of movie
      */
@@ -164,6 +170,15 @@ public class Movie implements Serializable {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String date = dateFormat.format(this.creationDate);
         return "Movie: " + name + " (ID " + id + ") " + date;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package lab;
 
 import Collection.SaveCollection;
+import DB.DBLoader;
 import DB.Login;
 import commands.Commands;
 import data.FabricOfShell;
