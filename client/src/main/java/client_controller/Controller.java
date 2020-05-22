@@ -67,4 +67,8 @@ public class Controller {
     public Shell getShell(){
         return shell;
     }
+
+    public void setUser(String user) {
+        this.shell.setUser(user);
+    }
 }

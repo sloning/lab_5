@@ -35,7 +35,7 @@ public class Min_by_id implements ICommand {
      * @param parameter ignore this
      */
     @Override
-    public String Do(String parameter, Movie movie) {
+    public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
         return movieCollection.getMovies().entrySet().stream()
                 .min((p,o) -> p.getValue().getId().compareTo(o.getValue().getId()))

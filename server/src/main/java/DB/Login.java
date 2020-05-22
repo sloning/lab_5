@@ -32,13 +32,12 @@ public class Login {
                         if (userShell.getPassword().equals(result)) {
                             this.info = "Авторизация прошла успешно";
                             LOGGER.info("Пользователь прошел авторизацию");
-                            resultSet.close();
                         } else {
                             this.info = "Неверный пароль. Повторите попытку";
                             LOGGER.info("Авторизация не удалась");
-                            resultSet.close();
                         }
                     }
+                    resultSet.close();
                 }
             } else {
                 //добавление нового пользователя в базу данных

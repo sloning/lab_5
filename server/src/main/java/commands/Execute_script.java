@@ -36,7 +36,7 @@ public class Execute_script implements ICommand {
     }
 
     @Override
-    public String Do(String parameter, Movie movie) throws IOException {
+    public String Do(String parameter, Movie movie, String user) throws IOException {
         return null;
     }
 

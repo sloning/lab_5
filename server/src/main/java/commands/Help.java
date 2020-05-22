@@ -29,7 +29,7 @@ public class Help implements ICommand {
     }
 
     @Override
-    public String Do(String parameter, Movie movie) {
+    public String Do(String parameter, Movie movie, String user) {
         return Commands.help();
     }
 }

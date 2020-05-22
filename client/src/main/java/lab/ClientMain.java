@@ -43,6 +43,7 @@ public class ClientMain {
         Serializer serializer = new Serializer();
         Connection connection = new Connection();
         Registration registration = new Registration();
+        String user = null;
         boolean flag = false;
         while (!flag) {
             registration.authorization();
@@ -51,12 +52,16 @@ public class ClientMain {
             byte[] inputBytes;
             inputBytes = connection.read(socket);
             String answer = serializer.fromByteArray(inputBytes, String.class);
-            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) flag = true;
+            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {
+                flag = true;
+                user = userShell.getLogin();
+            }
             System.out.println(answer);
         }
 
         while (true) {
             inputOutput.Input();
+            inputOutput.setUser(user);
             if (!Validation.getSignal()) {
                 if (sendMsg(inputOutput, serializer, connection, socket)) break;
             } else {

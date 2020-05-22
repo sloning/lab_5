@@ -43,6 +43,10 @@ public class InputOutput {
         }
     }
 
+    public void setUser(String user) {
+        this.controller.setUser(user);
+    }
+
     public Shell getShell(){
         return controller.getShell();
     }

@@ -90,7 +90,7 @@ public class Server {
             int flag = serializer.checkByteArray(byteArray);
             if (flag == 1) {
                 Shell shell = serializer.fromByteArray(byteArray, Shell.class);
-                Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie(), shell.getUser());
                 LOGGER.info("Получена команда: " + shell.getName());
                 socketChannel.register(selector, SelectionKey.OP_WRITE);
                 return useCommands.execute();
@@ -107,7 +107,7 @@ public class Server {
                 LOGGER.info("Начало работы со скриптом");
                 for (int i = 0; i < fabricOfShell.getSize(); i++) {
                     Shell shell = fabricOfShell.getShell(i);
-                    Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                    Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie(), shell.getUser());
                     LOGGER.info("Получена команда: " + shell.getName());
                     socketChannel.register(selector, SelectionKey.OP_WRITE);
                     result += useCommands.execute();

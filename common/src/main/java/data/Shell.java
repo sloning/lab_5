@@ -8,11 +8,16 @@ public class Shell implements Serializable {
     private String name = null;
     private String parameter = null;
     private Movie movie = null;
+    private String user = null;
 
     public Shell(String name, String parameter, Movie movie) {
         this.name = name;
         this.parameter = parameter;
         this.movie = movie;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getName(){
@@ -25,6 +30,10 @@ public class Shell implements Serializable {
 
     public Movie getMovie(){
         return movie;
+    }
+
+    public String getUser() {
+        return user;
     }
 
     @Override

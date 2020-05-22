@@ -93,6 +93,10 @@ public class MovieCollection {
         return new LinkedHashMap<>(Movies);
     }
 
+    public int getSize() {
+        return Movies.size();
+    }
+
     public Date getDateCreation() {
         return dateCreation;
     }

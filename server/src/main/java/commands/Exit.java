@@ -29,7 +29,7 @@ public class Exit implements ICommand {
     }
 
     @Override
-    public String Do(String parameter, Movie movie) {
+    public String Do(String parameter, Movie movie, String user) {
         System.exit(0);
         return "выход из программы";
     }

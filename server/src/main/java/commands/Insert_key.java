@@ -42,7 +42,7 @@ public class Insert_key implements ICommand {
      * @param parameter key to HashMap to insert movie
      */
     @Override
-    public String Do(String parameter, Movie movie) throws IOException {
+    public String Do(String parameter, Movie movie, String user) throws IOException {
         try {
             Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             String CoordinatesQuery = "insert into coords(x,y) values (" + movie.getCoordinatesX() + ", " + movie.getCoordinatesY() + ")";
@@ -63,9 +63,9 @@ public class Insert_key implements ICommand {
             resultDirectorSet.afterLast();
             resultDirectorSet.previous();
             String DirectorId = resultDirectorSet.getString(1);
-            String MovieQuery = "insert into movies(movie_name, movie_coords, date_of_creation, oscars, length, movie_genre, movie_rating, director, movie_key) values ('"
+            String MovieQuery = "insert into movies(movie_name, movie_coords, date_of_creation, oscars, length, movie_genre, movie_rating, director, movie_key, usernames) values ('"
                     + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre().toString() + "', '"
-                    + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + parameter + "')";
+                    + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + parameter + "', '" + user + "')";
             statement. executeUpdate(MovieQuery);
 
             MovieCollection movieCollection = new MovieCollection();

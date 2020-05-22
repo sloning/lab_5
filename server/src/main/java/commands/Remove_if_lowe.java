@@ -37,7 +37,7 @@ public class Remove_if_lowe implements ICommand {
      * @param parameter id, all movie's which has lower id's than this will be removed from collection
      */
     @Override
-    public String Do(String parameter, Movie oldMovie) throws IOException {
+    public String Do(String parameter, Movie oldMovie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
 
             movieCollection.setMovies(movieCollection.getMovies().entrySet().stream()

@@ -41,7 +41,7 @@ public class Update implements ICommand {
      * @param parameter key to HashMap and id of new movie
      */
     @Override //Гениальный класс
-    public String Do(String parameter, Movie movie) throws IOException {
+    public String Do(String parameter, Movie movie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
             movieCollection.getMovies().replace(parameter, movie);
 
