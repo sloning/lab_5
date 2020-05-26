@@ -40,7 +40,7 @@ public class Filter_starts_with_name implements ICommand {
      * @param parameter name to filter
      */
     @Override
-    public String Do(String parameter, Movie Movie) throws IOException {
+    public String Do(String parameter, Movie Movie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
             ShowInfo showInfo = new ShowInfo();
             movieCollection.getMovies().entrySet().stream()

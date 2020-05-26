@@ -35,7 +35,7 @@ public class Count_by_genre implements ICommand {
      * @param parameter name of genre
      */
     @Override
-    public String Do(String parameter, Movie Movie) throws IOException {
+    public String Do(String parameter, Movie Movie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
 
             return "Количество фильмов жанра " + parameter + " - "

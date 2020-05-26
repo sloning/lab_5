@@ -1,13 +1,17 @@
 package lab;
 
 import Collection.SaveCollection;
+import DB.DBLoader;
+import DB.Login;
 import commands.Commands;
 import data.FabricOfShell;
 import data.Shell;
+import data.UserShell;
 import serializer.Serializer;
 import socket_channel_connection.Connection;
 
 import java.io.IOException;
+import java.net.BindException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.nio.channels.*;
@@ -70,6 +74,10 @@ public class Server {
         } finally {
             db_connection.close();
         }
+        catch (Exception e) {
+            e.printStackTrace();
+            LOGGER.info("Нет доступных подключений");
+        }
     }
 
     private void handleAccept() throws IOException {
@@ -90,17 +98,24 @@ public class Server {
             int flag = serializer.checkByteArray(byteArray);
             if (flag == 1) {
                 Shell shell = serializer.fromByteArray(byteArray, Shell.class);
-                Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie(), shell.getUser());
                 LOGGER.info("Получена команда: " + shell.getName());
                 socketChannel.register(selector, SelectionKey.OP_WRITE);
                 return useCommands.execute();
+            } else if (flag == 2) {
+                UserShell userShell = serializer.fromByteArray(byteArray, UserShell.class);
+                Login login = new Login(userShell);
+                login.authorisation();
+                LOGGER.info("Получен пользователь: " + userShell.getLogin());
+                socketChannel.register(selector, SelectionKey.OP_WRITE);
+                return login.getInfo();
             } else if(flag == 0) {
                 String result = "";
                 FabricOfShell fabricOfShell = serializer.fromByteArray(byteArray, FabricOfShell.class);
                 LOGGER.info("Начало работы со скриптом");
                 for (int i = 0; i < fabricOfShell.getSize(); i++) {
                     Shell shell = fabricOfShell.getShell(i);
-                    Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie());
+                    Commands useCommands = new Commands(shell.getName(), shell.getParameter(), shell.getMovie(), shell.getUser());
                     LOGGER.info("Получена команда: " + shell.getName());
                     socketChannel.register(selector, SelectionKey.OP_WRITE);
                     result += useCommands.execute();

@@ -1,6 +1,7 @@
 package serializer;
 
 import data.Shell;
+import data.UserShell;
 
 import java.io.*;
 
@@ -36,6 +37,8 @@ public class Serializer {
             Object object = objectInputStream.readObject();
             if (Shell.class.isInstance(object)) {
                 return 1;
+            } else if (UserShell.class.isInstance(object)) {
+                return 2;
             } else {
                 return 0;
             }

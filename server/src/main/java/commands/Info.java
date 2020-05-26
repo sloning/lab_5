@@ -35,7 +35,7 @@ public class Info implements ICommand {
      * @param parameter nothing here
      */
     @Override
-    public String Do(String parameter, Movie movie) {
+    public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
         String result = "тип коллекции: LinkedHashMap\n";
         result += "количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count() +"\n";

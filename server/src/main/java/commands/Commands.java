@@ -15,13 +15,15 @@ import java.util.TreeMap;
  * @author Abay
  */
 public class Commands {
+    private String name;
+    private String parameter;
+    private Movie movie;
+    private String user;
+
     /**
      * Collection with object of all commands
      */
-    private static final Map<String, ICommand> commands = new TreeMap<>();
-    private final String name;
-    private final String parameter;
-    private final Movie movie;
+    private static Map<String, ICommand> commands = new TreeMap<>();
 
     /**
      * Searches command through TreeMap and calls method Do
@@ -29,16 +31,17 @@ public class Commands {
      * @param name      name of command
      * @param parameter first parameter to transmit to command
      */
-    public Commands(String name, String parameter, Movie movie) {
+    public Commands(String name, String parameter, Movie movie, String user) {
         this.name = name;
         this.parameter = parameter;
         this.movie = movie;
+        this.user = user;
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.addCommand(name);
     }
 
     public String execute() throws IOException {
-        return commands.get(name).Do(parameter, movie);
+        return commands.get(name).Do(parameter, movie, user);
     }
     /**
      * Adds new command to collection
@@ -52,7 +55,7 @@ public class Commands {
 
     static String help() {
         Collection<ICommand> Val = commands.values();
-        String result = "";
+        String result = null;
         for (ICommand com : Val) {
             result += com.info() + "\n";
         }

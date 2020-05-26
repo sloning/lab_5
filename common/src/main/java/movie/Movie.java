@@ -38,6 +38,16 @@ public class Movie implements Serializable {
         this.director = director;
     }
 
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+
+    public MpaaRating getMpaaRating() {
+        return mpaaRating;
+    }
+
     /**
      * @param rating rating of movie
      */
@@ -79,6 +89,12 @@ public class Movie implements Serializable {
     public void setDirector(String name, Double height, Float weight, Location location) {
         director = new Person(name, height, weight, location);
     }
+
+    public void setDirectorWithLocation(String name, Double height, Float weight, String locationName, int x, long y, int z) {
+        Location location = new Location(locationName, x, y, z);
+        director = new Person(name, height, weight, location);
+    }
+
 
     /**
      * @return length of movie
@@ -156,7 +172,56 @@ public class Movie implements Serializable {
         return "Movie: " + name + " (ID " + id + ") " + date;
     }
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public Long getId() {
         return this.id;
+    }
+
+    public int getCoordinatesX() {
+        return coordinates.getX();
+    }
+
+    public float getCoordinatesY() {
+        return coordinates.getY();
+    }
+
+    public String getDirectorName() {
+        return director.getName();
+    }
+
+    public Date getDirectorBirthday() {
+        return director.getBirthday();
+    }
+
+    public Double getDirectorHeight() {
+        return director.getHeight();
+    }
+
+    public Float getDirectorWeight() {
+        return director.getWeight();
+    }
+
+    public Integer getDirectorLocationX() {
+        return director.getLocationX();
+    }
+
+    public long getDirectorLocationY() {
+        return director.getLocationY();
+    }
+
+    public Integer getDirectorLocationZ() {
+        return director.getLocationZ();
+    }
+
+    public String getDirectorLocationName() {
+        return director.getLocationName();
     }
 }

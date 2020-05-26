@@ -37,13 +37,13 @@ public class Remove_if_lowe implements ICommand {
      * @param parameter id, all movie's which has lower id's than this will be removed from collection
      */
     @Override
-    public String Do(String parameter, Movie oldMovie) throws IOException {
+    public String Do(String parameter, Movie oldMovie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
 
             movieCollection.setMovies(movieCollection.getMovies().entrySet().stream()
                     .filter(p -> p.getValue().getId() >= Long.parseLong(parameter))
                     .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue())));
 
-        return "Все значение, меньшие по ключи, чем новые, были удалены (если они были в коллекции)";
+        return "Все значение, меньшие по ключу, чем новые, были удалены (если они были в коллекции)";
     }
 }

@@ -1,28 +1,33 @@
 package lab;
 
+import DB.DBLoader;
+import DB.DBWorker;
 import commands.*;
-import deserialize.LoadMovies;
+import movie.Movie;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class ServerMain {
-    static final String DB_URL = "jdbc:postgresql://localhost:5433/movie_collection";
-    static final String USER = "postgres";
-    static final String PASS = "vlad";
-    static final int PORT = 1111;
     static Logger LOGGER = Logger.getLogger(ServerMain.class.getName());
 
     public static void main(String[] args) throws Exception {
         initCommands();
         LOGGER.info("Сервер запущен");
 
-        if (args.length > 0) {
-            LoadMovies loader = new LoadMovies();
-            loader.load(args[0]);
-            LOGGER.info("Десериализация выполнена");
-        }
+//        if (args.length > 0) {
+//            LoadMovies loader = new LoadMovies();
+//            loader.load(args[0]);
+//            LOGGER.info("Десериализация выполнена");
+//        }
 
-        Server server = new Server(DB_URL, USER, PASS, PORT);
+        DBWorker dbWorker = new DBWorker();
+        //класс, отвечающий за автозаполнение коллекции из бд (находится в доработке)
+        //DBLoader dbLoader = new DBLoader();
+        Server server = new Server();
     }
 
     private static void initCommands() {
@@ -42,4 +47,7 @@ public class ServerMain {
         Show show = new Show();
         Update update_id = new Update();
     }
+
+
+
 }

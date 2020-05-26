@@ -37,7 +37,7 @@ public class Replace_if_lowe implements ICommand {
      * @param parameter key to HashMap
      */
     @Override
-    public String Do(String parameter, Movie movie) throws IOException {
+    public String Do(String parameter, Movie movie, String user) throws IOException {
             MovieCollection movieCollection = new MovieCollection();
             if (movieCollection.getMovies().entrySet().stream()
                     .filter(p -> p.getKey() == parameter)

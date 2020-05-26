@@ -18,6 +18,14 @@ public class Coordinates implements Serializable {
     /**
      * @return string with coordinates
      */
+    public Integer getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
     public String getCoordinates() {
         return "x = " + this.x + ", y = " + this.y;
     }

@@ -6,6 +6,23 @@ public class Location implements Serializable {
     private Integer x; //Поле не может быть null
     private long y;
     private Integer z; //Поле не может быть null
+
+    public Integer getX() {
+        return x;
+    }
+
+    public long getY() {
+        return y;
+    }
+
+    public Integer getZ() {
+        return z;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private String name; //Поле не может быть null
 
     public Location(String name, int x, long y, int z) {

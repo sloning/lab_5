@@ -3,6 +3,11 @@ package commands;
 import Collection.MovieCollection;
 import movie.Movie;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 /**
  * Printing element with minimal id
  *
@@ -35,7 +40,7 @@ public class Min_by_id implements ICommand {
      * @param parameter ignore this
      */
     @Override
-    public String Do(String parameter, Movie movie) {
+    public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
         return movieCollection.getMovies().entrySet().stream()
                 .min((p,o) -> p.getValue().getId().compareTo(o.getValue().getId()))
