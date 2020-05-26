@@ -13,7 +13,7 @@ import static data.FileCheck.checkFile;
 public class SaveCollection {
     private Thread backgroundReaderThread = null;
 
-    public void save() throws IOException {
+    public void save() throws IOException {     //TODO переписать под БД
         String fileName = "write1.csv";
         if (checkFile(fileName) == 0) {
             MovieCollection movieCollection = new MovieCollection();

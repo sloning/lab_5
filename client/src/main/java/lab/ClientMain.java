@@ -10,7 +10,6 @@ import registration.Registration;
 import serializer.Serializer;
 import socket_connection.Connection;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
@@ -44,16 +43,16 @@ public class ClientMain {
         Connection connection = new Connection();
         Registration registration = new Registration();
         String user = null;
-        boolean flag = false;
-        while (!flag) {
+        boolean logged = false;
+        while (!logged) {
             registration.authorization();
             UserShell userShell = registration.getUserShell();
             connection.write(serializer.toByteArray(userShell), socket);
             byte[] inputBytes;
             inputBytes = connection.read(socket);
             String answer = serializer.fromByteArray(inputBytes, String.class);
-            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {
-                flag = true;
+            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {    //TODO fix crash if server stops here
+                logged = true;
                 user = userShell.getLogin();
             }
             System.out.println(answer);

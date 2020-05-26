@@ -1,17 +1,15 @@
 package DB;
 
-import lab.Server;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
 public class DBWorker {
-    private Logger LOGGER = Logger.getLogger(DBWorker.class.getName());
-    private final String DB_URL = "jdbc:postgresql://localhost:5432/test";
+    private final Logger LOGGER = Logger.getLogger(DBWorker.class.getName());
+    private final String DB_URL = "jdbc:postgresql://localhost:5433/movie_collection";
     private final String USER = "postgres";
-    private final String PASS = "1234";
+    private final String PASS = "vlad";
     private static Connection connection;
 
     public DBWorker() {

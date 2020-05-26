@@ -1,18 +1,14 @@
 package lab;
 
-import DB.DBLoader;
 import DB.DBWorker;
 import commands.*;
-import movie.Movie;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.*;
 import java.util.logging.Logger;
 
 public class ServerMain {
     static Logger LOGGER = Logger.getLogger(ServerMain.class.getName());
+    static final int PORT = 1111;
+    static final int MAX_THREADS = 8;
 
     public static void main(String[] args) throws Exception {
         initCommands();
@@ -24,10 +20,9 @@ public class ServerMain {
 //            LOGGER.info("Десериализация выполнена");
 //        }
 
-        DBWorker dbWorker = new DBWorker();
         //класс, отвечающий за автозаполнение коллекции из бд (находится в доработке)
-        //DBLoader dbLoader = new DBLoader();
-        Server server = new Server();
+        DBWorker dbWorker = new DBWorker();
+        Server server = new Server(PORT, MAX_THREADS);
     }
 
     private static void initCommands() {
@@ -47,7 +42,4 @@ public class ServerMain {
         Show show = new Show();
         Update update_id = new Update();
     }
-
-
-
 }
