@@ -12,18 +12,20 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 
 public class Server {
-    private static Selector selector = null;
+    static Selector selector = null;
     static Logger LOGGER = Logger.getLogger(Server.class.getName());
     ServerSocketChannel socket = ServerSocketChannel.open();
     ServerSocket serverSocket = socket.socket();
     Connection connection = new Connection();
     SaveCollection saveCollection = new SaveCollection();
     SelectionKey key;
-    String response = "";
+    String response = "1";
 
     public Server(int port, int max_threads) throws Exception {
         try {
@@ -33,7 +35,9 @@ public class Server {
             int ops = socket.validOps();
             socket.register(selector, ops, null);
             saveCollection.checkForSaveCommand();
+            ForkJoinPool pool = new ForkJoinPool();
             LOGGER.info("Сервер готов к работе");
+            ReentrantLock locker = new ReentrantLock();
 
             while (true) {
                 selector.select();
@@ -47,22 +51,34 @@ public class Server {
                         handleAccept();
                     }
                     if (key.isReadable()) {
-                        ReadHandler read = new ReadHandler(key, connection, max_threads);
+                        ReadHandler read = new ReadHandler(key, connection, max_threads, selector);
                         FutureTask<String> futureTask = new FutureTask<String>(read);
                         Thread t = new Thread(futureTask);
+                        System.out.println("server thread in read: " + Thread.currentThread());
                         t.start();
                         response = futureTask.get();
-                        key.channel().register(selector, SelectionKey.OP_WRITE);
                         if (response == null) {
                             iterator.remove();
                             continue;
                         }
                     }
-                    if (key.isWritable()) {
-                        //ForkJoinPool
-                        WriteHandler write = new WriteHandler(key, response, connection);
+                    if (key.isWritable() && !response.equals("1")) {     //TODO test requests from several clients
+                        System.out.println("server thread in write (before fork join): " + Thread.currentThread());
+                        try {
+                            ForkJoinPool.managedBlock(new ManagedLocker(locker));
+                            WriteHandler write = new WriteHandler(key, response, connection, selector);
+                            pool.execute(write);
+                        } finally {
+                            locker.unlock();
+                        }
 
-                        key.channel().register(selector, SelectionKey.OP_READ);
+                        System.out.println("Всего потоков: " + Thread.getAllStackTraces().keySet().size());
+                        int nbRunning = 0;
+                        for (Thread t : Thread.getAllStackTraces().keySet()) {
+                            if (t.getState() == Thread.State.RUNNABLE) nbRunning++;
+                        }
+                        System.out.println("Работающих потоков: " + nbRunning);
+                        response = "1";
                     }
                     iterator.remove();
                 }

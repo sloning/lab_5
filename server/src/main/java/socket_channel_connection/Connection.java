@@ -3,7 +3,6 @@ package socket_channel_connection;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.NonReadableChannelException;
-import java.nio.channels.NonWritableChannelException;
 import java.nio.channels.NotYetConnectedException;
 import java.nio.channels.SocketChannel;
 
@@ -11,12 +10,10 @@ public class Connection {
     public void write(byte[] bytes, SocketChannel socketChannel) {
         try {
             socketChannel.write(ByteBuffer.wrap(bytes));
-        } catch (IOException | NotYetConnectedException | NonWritableChannelException e) {
+        } catch (Exception e) {
             try {
                 socketChannel.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                System.exit(1);
+            } catch (IOException ignored) {
             }
             System.err.println("Соединение с клиентом потеряно PeepoHands");
         }

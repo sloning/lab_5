@@ -6,6 +6,7 @@ import socket_channel_connection.Connection;
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.*;
 import java.util.logging.Logger;
@@ -15,20 +16,24 @@ public class ReadHandler implements Callable<String> {
     SelectionKey key;
     Connection connection;
     int max_threads;
+    Selector selector;
 
-    public ReadHandler(SelectionKey key, Connection connection, int max_threads) {
+    public ReadHandler(SelectionKey key, Connection connection, int max_threads, Selector selector) {
         this.key = key;
         this.connection = connection;
         this.max_threads = max_threads;
+        this.selector = selector;
     }
 
     @Override
     public String call() throws IOException {
         Serializer serializer = new Serializer();
         try {
+            System.out.println("ReadHandler thread: " + Thread.currentThread());
             LOGGER.info("Читаю");
             SocketChannel socketChannel = (SocketChannel) key.channel();
             byte[] byteArray = connection.read(socketChannel);
+            key.channel().register(selector, SelectionKey.OP_WRITE);
             if (byteArray == null) return null;
             int flag = serializer.checkByteArray(byteArray);
 

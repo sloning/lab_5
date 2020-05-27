@@ -24,6 +24,7 @@ public class Command_Executer implements Callable<String> {
     }
 
     public String call() throws IOException {
+        System.out.println("comExe thread: " + Thread.currentThread());
         if (flag == 1) {
             return handle_command();
         } else if (flag == 2) {

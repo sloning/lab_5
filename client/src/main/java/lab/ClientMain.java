@@ -73,7 +73,9 @@ public class ClientMain {
     private static boolean sendMsg(InputOutput inputOutput, Serializer serializer, Connection connection, Socket socket) {
         Shell shell = inputOutput.getShell();
         if (Validation.sendReady) {
+            System.out.println("Перед отправкой");
             connection.write(serializer.toByteArray(shell), socket);
+            System.out.println("После отправкой");
             if (Connection.connFlag) {
                 System.out.println("Сообщение отправлено");
             } else return true;

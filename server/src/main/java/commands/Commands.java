@@ -15,15 +15,14 @@ import java.util.TreeMap;
  * @author Abay
  */
 public class Commands {
-    private String name;
-    private String parameter;
-    private Movie movie;
-    private String user;
-
     /**
      * Collection with object of all commands
      */
-    private static Map<String, ICommand> commands = new TreeMap<>();
+    private static final Map<String, ICommand> commands = new TreeMap<>();
+    private final String name;
+    private final String parameter;
+    private final Movie movie;
+    private final String user;
 
     /**
      * Searches command through TreeMap and calls method Do
@@ -55,7 +54,7 @@ public class Commands {
 
     static String help() {
         Collection<ICommand> Val = commands.values();
-        String result = null;
+        String result = "";
         for (ICommand com : Val) {
             result += com.info() + "\n";
         }

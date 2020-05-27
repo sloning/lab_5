@@ -17,7 +17,6 @@ public class Connection {
             outputStream.write(bytes);
         } catch (SocketException e) {
             System.err.println("Соеденение с сервером потеряно\nКоманда не передана\n");
-//            System.exit(0);
             connFlag = false;
         } catch (IOException e) {
             try {
@@ -39,7 +38,6 @@ public class Connection {
             quantityOfReadBytes = inputStream.read(outBuffer.array());
         } catch (SocketException e) {
             System.err.println("Соеденение с сервером потеряно\n");
-//            System.exit(0);
             return null;
         } catch (IOException e) {
             try {
