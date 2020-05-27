@@ -4,18 +4,15 @@ import DB.DBWorker;
 import movie.Movie;
 
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.*;
-import java.util.*;
-
-import static data.FileCheck.checkFile;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Collection;
 
 public class SaveCollection {
-    private Thread backgroundReaderThread = null;
-
-    public void save() throws IOException {     //TODO переписать под БД
+    public void save() {     //TODO переписать под БД
         try {
             Statement statement = DBWorker.getConnection().createStatement();
             MovieCollection movieCollection = new MovieCollection();
@@ -23,17 +20,18 @@ public class SaveCollection {
             statement.executeUpdate("delete from directors");
             statement.executeUpdate("delete from coords");
             statement.executeUpdate("delete from locations");
-            Collection<String> collection= movieCollection.getMovies().keySet();
-            for(Movie movie : movieCollection.getMovies().values()) {
+            Collection<String> collection = movieCollection.getMovies().keySet();
+            for (Movie movie : movieCollection.getMovies().values()) {
                 String key = null;
                 for (String key1 : collection) {
                     Movie obj = movieCollection.getMovies().get(key1);
                     if (key1 != null) {
                         if (movie.equals(obj)) {
-                            key = key1;//
+                            key = key1;
                         }
                     }
                 }
+                // TODO code duplicate, put into method
                 String CoordinatesQuery = "insert into coords(x,y) values (" + movie.getCoordinatesX() + ", " + movie.getCoordinatesY() + ")";
                 statement.executeUpdate(CoordinatesQuery);
                 ResultSet resultCoordinatesSet = statement.executeQuery("select coords_id from coords");
@@ -53,7 +51,7 @@ public class SaveCollection {
                 resultDirectorSet.previous();
                 String DirectorId = resultDirectorSet.getString(1);
                 String MovieQuery = "insert into movies(movie_name, movie_coords, date_of_creation, oscars, length, movie_genre, movie_rating, director, movie_key, usernames) values ('"
-                        + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre().toString() + "', '"
+                        + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre() + "', '"
                         + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + key + "', '" + movie.getUser() + "')";
                 statement.executeUpdate(MovieQuery);
 
@@ -67,21 +65,21 @@ public class SaveCollection {
         }
     }
 
-    public void checkForSaveCommand() throws IOException {
-        backgroundReaderThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
-                    while (!Thread.interrupted()) {
-                        String line = bufferedReader.readLine();
-                        if (line == null) {
-                            break;
-                        }
-                        if (line.equalsIgnoreCase("save")) save();
+    public void checkForSaveCommand() {
+        Thread backgroundReaderThread = new Thread(() -> {
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
+                while (!Thread.interrupted()) {
+                    String line = bufferedReader.readLine();
+                    if (line == null) {
+                        break;
                     }
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    if (line.equalsIgnoreCase("save")) {
+                        System.out.println("SAVING...");
+                        save();
+                    }
                 }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
         backgroundReaderThread.setDaemon(true);
