@@ -9,29 +9,21 @@ import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Collection;
+import java.util.Map;
 
 public class SaveCollection {
     public void save() {     //TODO переписать под БД
         try {
-            Statement statement = DBWorker.getConnection().createStatement();
+            Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             MovieCollection movieCollection = new MovieCollection();
             statement.executeUpdate("delete from movies");
             statement.executeUpdate("delete from directors");
             statement.executeUpdate("delete from coords");
             statement.executeUpdate("delete from locations");
-            Collection<String> collection = movieCollection.getMovies().keySet();
-            for (Movie movie : movieCollection.getMovies().values()) {
-                String key = null;
-                for (String key1 : collection) {
-                    Movie obj = movieCollection.getMovies().get(key1);
-                    if (key1 != null) {
-                        if (movie.equals(obj)) {
-                            key = key1;
-                        }
-                    }
-                }
-                // TODO code duplicate, put into method
+
+            for (Map.Entry<String, Movie> elementOfMap : movieCollection.getMap().entrySet()) {
+                Movie movie = elementOfMap.getValue();
+                String key = elementOfMap.getKey();
                 String CoordinatesQuery = "insert into coords(x,y) values (" + movie.getCoordinatesX() + ", " + movie.getCoordinatesY() + ")";
                 statement.executeUpdate(CoordinatesQuery);
                 ResultSet resultCoordinatesSet = statement.executeQuery("select coords_id from coords");
@@ -50,15 +42,14 @@ public class SaveCollection {
                 resultDirectorSet.afterLast();
                 resultDirectorSet.previous();
                 String DirectorId = resultDirectorSet.getString(1);
+                String rating = (movie.getMpaaRating() != null) ? movie.getMpaaRating().toString() : null;
                 String MovieQuery = "insert into movies(movie_name, movie_coords, date_of_creation, oscars, length, movie_genre, movie_rating, director, movie_key, usernames) values ('"
                         + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre() + "', '"
-                        + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + key + "', '" + movie.getUser() + "')";
+                        + rating + "', '" + DirectorId + "', '" + key + "', '" + movie.getUser() + "')";
                 statement.executeUpdate(MovieQuery);
-
                 resultCoordinatesSet.close();
                 resultLocationSet.close();
                 resultDirectorSet.close();
-
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -76,6 +67,7 @@ public class SaveCollection {
                     if (line.equalsIgnoreCase("save")) {
                         System.out.println("SAVING...");
                         save();
+                        System.out.println("SAVED.");
                     }
                 }
             } catch (IOException e) {

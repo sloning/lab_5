@@ -26,7 +26,6 @@ public class WriteHandler extends RecursiveAction {
 
     @Override
     protected void compute() {
-        System.out.println("WriteHandler thread (fork join): " + Thread.currentThread());
         Serializer serializer = new Serializer();
         LOGGER.info("Пишу ответочку");
         SocketChannel socketChannel = (SocketChannel) key.channel();

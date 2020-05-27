@@ -29,7 +29,6 @@ public class ReadHandler implements Callable<String> {
     public String call() throws IOException {
         Serializer serializer = new Serializer();
         try {
-            System.out.println("ReadHandler thread: " + Thread.currentThread());
             LOGGER.info("Читаю");
             SocketChannel socketChannel = (SocketChannel) key.channel();
             byte[] byteArray = connection.read(socketChannel);

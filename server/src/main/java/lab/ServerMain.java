@@ -1,5 +1,6 @@
 package lab;
 
+import DB.DBLoader;
 import DB.DBWorker;
 import commands.*;
 
@@ -14,14 +15,9 @@ public class ServerMain {
         initCommands();
         LOGGER.info("Сервер запущен");
 
-//        if (args.length > 0) {
-//            LoadMovies loader = new LoadMovies();
-//            loader.load(args[0]);
-//            LOGGER.info("Десериализация выполнена");
-//        }
-
         //класс, отвечающий за автозаполнение коллекции из бд (находится в доработке)
         DBWorker dbWorker = new DBWorker();
+        DBLoader dbLoader = new DBLoader();
         Server server = new Server(PORT, MAX_THREADS);
     }
 

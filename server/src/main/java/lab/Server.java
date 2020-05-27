@@ -71,13 +71,6 @@ public class Server {
                         } finally {
                             locker.unlock();
                         }
-
-                        System.out.println("Всего потоков: " + Thread.getAllStackTraces().keySet().size());
-                        int nbRunning = 0;
-                        for (Thread t : Thread.getAllStackTraces().keySet()) {
-                            if (t.getState() == Thread.State.RUNNABLE) nbRunning++;
-                        }
-                        System.out.println("Работающих потоков: " + nbRunning);
                         response = "1";
                     }
                     iterator.remove();
