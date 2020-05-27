@@ -19,6 +19,7 @@ public class Movie implements Serializable {
     private MovieGenre genre; //Поле может быть null
     private MpaaRating mpaaRating; //Поле может быть null
     private Person director; //Поле не может быть null
+    private String user;
 
     /**
      * Constructors, creates new movie
@@ -121,6 +122,14 @@ public class Movie implements Serializable {
         return this.oscarsCount;
     }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getUser() {
+       return user;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -162,7 +171,7 @@ public class Movie implements Serializable {
         return "Movie: " + name + "\nID: " + id + "\nCoordinates: " + this.coordinates.getCoordinates() +
                 "\nDate of creation: " + date + "\nCount of oscars: " + oscarsCount +
                 "\nLength: " + length + "\nGenre: " + getGenre() + "\nMPAA rating: " + mpaaRating +
-                "\nDirector: " + director.getPerson();
+                "\nDirector: " + director.getPerson() + "\nUser: " + user +"\n";
     }
 
     @Override

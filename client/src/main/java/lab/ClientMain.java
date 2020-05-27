@@ -43,6 +43,7 @@ public class ClientMain {
         Connection connection = new Connection();
         Registration registration = new Registration();
         String user = null;
+        String password = null;
         boolean logged = false;
         while (!logged) {
             registration.authorization();
@@ -54,6 +55,7 @@ public class ClientMain {
             if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {    //TODO fix crash if server stops here
                 logged = true;
                 user = userShell.getLogin();
+                password = userShell.getPassword();
             }
             System.out.println(answer);
         }
@@ -61,6 +63,7 @@ public class ClientMain {
         while (true) {
             inputOutput.Input();
             inputOutput.setUser(user);
+            inputOutput.setPassword(password);
             if (!Validation.getSignal()) {
                 if (sendMsg(inputOutput, serializer, connection, socket)) break;
             } else {
@@ -73,9 +76,7 @@ public class ClientMain {
     private static boolean sendMsg(InputOutput inputOutput, Serializer serializer, Connection connection, Socket socket) {
         Shell shell = inputOutput.getShell();
         if (Validation.sendReady) {
-            System.out.println("Перед отправкой");
             connection.write(serializer.toByteArray(shell), socket);
-            System.out.println("После отправкой");
             if (Connection.connFlag) {
                 System.out.println("Сообщение отправлено");
             } else return true;

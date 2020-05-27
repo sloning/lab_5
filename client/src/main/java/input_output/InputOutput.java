@@ -47,6 +47,10 @@ public class InputOutput {
         this.controller.setUser(user);
     }
 
+    public void setPassword(String password) {
+        this.controller.setPassword(password);
+    }
+
     public Shell getShell(){
         return controller.getShell();
     }

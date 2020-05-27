@@ -74,6 +74,7 @@ public class Insert_key implements ICommand {
                         + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + parameter + "', '" + user + "')";
                 statement.executeUpdate(MovieQuery);
 
+                movie.setUser(user);
                 MovieCollection movieCollection = new MovieCollection();
                 movieCollection.getMovies().put(parameter, movie);
                 resultCoordinatesSet.close();

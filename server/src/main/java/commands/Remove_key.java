@@ -45,28 +45,16 @@ public class Remove_key implements ICommand {
      */
     @Override
     public String Do(String parameter, Movie movie, String user) throws IOException {
-            MovieCollection movieCollection = new MovieCollection();
-
-        try {
-            Statement statement = DBWorker.getConnection().createStatement();
-            ResultSet resultMoviesSet = statement.executeQuery("select movie_key from movies where movie_key = '" + parameter + "' and usernames = '" + user + "'");
-            int i = 0;
-            while (resultMoviesSet.next()){
-                i++;
-            }
-            if (i == 0) {
-                if (movieCollection.getMovies().get(parameter) == null) {
-                    return "Значения по ключу " + parameter + " не существует";
-                } else
-                return "Нельзя удалить фильм по ключу " + parameter + ", потому что он вам не принадлежит";
-            } else {
-                statement.executeUpdate("delete from movies where movie_key = '" + parameter + "' and usernames = '" + user + "'");
+       try {
+           MovieCollection movieCollection = new MovieCollection();
+           if (movieCollection.getMovie(parameter).getUser().equals(user)) {
                 movieCollection.getMovies().remove(parameter);
-                return "Значение по ключу " + parameter + " успешно удалено";
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return "Произошла ошибка при удалении фильма";
-        }
+           } else {
+               return "Вы не можете удалить этот фильм, поскольку он вам не принадлежит";
+           }
+       } catch (NullPointerException e) {
+           return "В коллекции нет фильма с таким ключом";
+       }
+       return "Произошла ошибка при попытки удаления фильма";
     }
 }

@@ -9,6 +9,7 @@ public class Shell implements Serializable {
     private String parameter = null;
     private Movie movie = null;
     private String user = null;
+    private String password = null;
 
     public Shell(String name, String parameter, Movie movie) {
         this.name = name;
@@ -18,6 +19,10 @@ public class Shell implements Serializable {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName(){

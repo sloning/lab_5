@@ -71,4 +71,8 @@ public class Controller {
     public void setUser(String user) {
         this.shell.setUser(user);
     }
+
+    public void setPassword(String password) {
+        this.shell.setPassword(password);
+    }
 }
