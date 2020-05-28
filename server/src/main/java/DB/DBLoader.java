@@ -35,6 +35,8 @@ public class DBLoader {
                 movie.setCreationDate(resultMoviesSet.getDate("date_of_creation"));
                 String directorId = resultMoviesSet.getString("director");
                 String coordsId = resultMoviesSet.getString("movie_coords");
+                String user = resultMoviesSet.getString("usernames");
+                movie.setUser(user);
                 resultMoviesSet.close();
 
                 ResultSet resultCoordsSet = statement.executeQuery("select * from coords where coords_id = '" + coordsId + "'");
