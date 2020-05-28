@@ -1,6 +1,5 @@
 package commands;
-//TODO этот класс я так понимаю нужно убрать или перенести в клиент
-
+// TODO класс, который ничего не делает
 import command_history.CommandHistory;
 import movie.Movie;
 
@@ -13,7 +12,7 @@ public class History implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public History() {
         name = "history";

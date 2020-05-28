@@ -3,16 +3,15 @@ package DB;
 import Collection.MovieCollection;
 import movie.Movie;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBLoader {
     public DBLoader(){
         try {
             Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY, ResultSet.HOLD_CURSORS_OVER_COMMIT);
             MovieCollection movieCollection = new MovieCollection();
-            List<Movie> movies = new ArrayList<>();
             ResultSet resultSet = statement.executeQuery("select * from movies");
 
             int i = -1;
@@ -21,7 +20,6 @@ public class DBLoader {
 
             for (int c = 1; c <= i; c++) {
                 ResultSet resultMoviesSet = statement.executeQuery("select * from movies");
-                System.out.println(c);
                 resultMoviesSet.absolute(c);
                 resultMoviesSet.previous();
                 resultMoviesSet.next();

@@ -10,7 +10,7 @@ public class CommandHistory {
     /**
      * Place there commands stores
      */
-    private static List<String> history = new ArrayList<String>();
+    private static final List<String> history = new ArrayList<String>();
 
     /**
      * Adds new command to collection and removes the oldest
@@ -26,10 +26,10 @@ public class CommandHistory {
      * @return
      */
     public String printHistory() {
-        String result = null;
+        String result = "";
         List<String> print = history.subList(Math.max(history.size() - 6, 0), history.size());
-        for (int i=0; i<print.size(); i++){
-            result = print.get(i);
+        for (String s : print) {
+            result += s + "\n";
         }
         return result;
     }

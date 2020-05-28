@@ -1,6 +1,6 @@
 package input_output;
 
-import client_controller.*;
+import client_controller.Controller;
 import data.Shell;
 
 import java.io.*;
@@ -16,7 +16,7 @@ import static data.FileCheck.checkFile;
  * @author Abay
  */
 public class InputOutput {
-    Controller controller = null;
+    Controller controller = new Controller();
 
     public static int count = 0;
 
@@ -37,7 +37,7 @@ public class InputOutput {
             } catch (NoSuchElementException e) {
                 System.exit(0);
             }
-            controller = new Controller(command);
+            if (!controller.commandController(command)) Input();
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
         }
@@ -73,7 +73,7 @@ public class InputOutput {
                     str = bufferedReader.readLine().replaceAll("\\s+", " ");
                     if (str.isEmpty()) continue;
                     count++;
-                    controller = new Controller(str);
+                    controller.commandController(str);
                     CollectionOfShells sheelCollection = new CollectionOfShells();
                     sheelCollection.addShell(controller.getShell());
                     if (Pattern.matches("insert\\s[A-Za-z0-9_]+", str)) {

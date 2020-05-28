@@ -11,7 +11,7 @@ public class Exit implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public Exit() {
         name = "exit";
@@ -25,12 +25,12 @@ public class Exit implements ICommand {
      */
     @Override
     public String info() {
-        return name + ": завершить программу (без сохранения в файл)";
+        return name + ": завершить программу (без сохранения)";
     }
 
     @Override
     public String Do(String parameter, Movie movie, String user) {
         System.exit(0);
-        return "выход из программы";
+        return "Выход из программы";
     }
 }

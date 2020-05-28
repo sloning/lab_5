@@ -1,8 +1,7 @@
 package client_controller;
 
-import data.Shell;
 import command_history.CommandHistory;
-import input_output.InputOutput;
+import data.Shell;
 import movie.Movie;
 
 import java.io.IOException;
@@ -18,35 +17,41 @@ public class Controller {
     Shell shell = null;
     String name = null;
     String parameter = null;
+
     /**
      * Splits string with commands to command name and parameters
      *
      * @param command command to process
      */
-    public Controller(String command) throws IOException {
-
+    public boolean commandController(String command) throws IOException {
+        CommandHistory commandHistory = new CommandHistory();
         String[] nameCommands = new String[2];
         nameCommands = command.split(" ");
 
-        if (nameCommands.length<=2) {
-
+        if (nameCommands.length <= 2) {
             Validation validation = new Validation(nameCommands[0]);
 
             if (nameCommands.length == 2) {
                 validation.setParameter(nameCommands[1]);
             }
 
-            validation.check();
+            if (validation.check()) {
+                commandHistory.addCommand(nameCommands[0]);
+                this.name = validation.getName();
+                this.parameter = validation.getParameter();
+                this.movie = validation.getMovie();
 
-            this.name = validation.getName();
-            this.parameter = validation.getParameter();
-            this.movie = validation.getMovie();
+                if (!nameCommands[0].equals("history")) {
+                    shell = new Shell(name, parameter, movie);
+                    return true;
+                } else {
+                    System.out.println(commandHistory.printHistory());
+                    return false;
+                }
 
-            shell = new Shell(name, parameter, movie);
-
-
-            CommandHistory commandHistory = new CommandHistory();
-            commandHistory.addCommand(nameCommands[0]);
+            } else {
+                return false;
+            }
         } else {
             System.out.println("Введено больше допустимого количество аргументов");
             try {
@@ -54,14 +59,15 @@ public class Controller {
                 System.out.println("Введите команду");
                 System.out.print("$ ");
                 String nameofcommand = sc.nextLine();
-                Controller controller = new Controller(nameofcommand);
+                Controller controller = new Controller();
+                controller.commandController(nameofcommand);
                 shell = controller.getShell();
-                CommandHistory commandHistory = new CommandHistory();
                 commandHistory.addCommand(nameCommands[0]);
             } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
                 System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
             }
         }
+        return false;
     }
 
     public Shell getShell(){

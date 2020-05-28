@@ -52,7 +52,7 @@ public class ClientMain {
             byte[] inputBytes;
             inputBytes = connection.read(socket);
             String answer = serializer.fromByteArray(inputBytes, String.class);
-            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {    //TODO fix crash if server stops here
+            if (!answer.equals("null") && answer.equals("Авторизация прошла успешно")) {
                 logged = true;
                 user = userShell.getLogin();
                 password = userShell.getPassword();

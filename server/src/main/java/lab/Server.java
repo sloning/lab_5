@@ -34,7 +34,7 @@ public class Server {
             socket.configureBlocking(false);
             int ops = socket.validOps();
             socket.register(selector, ops, null);
-            saveCollection.checkForSaveCommand();
+            saveCollection.checkForCommand();
             ForkJoinPool pool = new ForkJoinPool();
             LOGGER.info("Сервер готов к работе");
             ReentrantLock locker = new ReentrantLock();
@@ -54,7 +54,6 @@ public class Server {
                         ReadHandler read = new ReadHandler(key, connection, max_threads, selector);
                         FutureTask<String> futureTask = new FutureTask<String>(read);
                         Thread t = new Thread(futureTask);
-                        System.out.println("server thread in read: " + Thread.currentThread());
                         t.start();
                         response = futureTask.get();
                         if (response == null) {
@@ -62,8 +61,7 @@ public class Server {
                             continue;
                         }
                     }
-                    if (key.isWritable() && !response.equals("1")) {     //TODO test requests from several clients
-                        System.out.println("server thread in write (before fork join): " + Thread.currentThread());
+                    if (key.isWritable() && !response.equals("1")) {
                         try {
                             ForkJoinPool.managedBlock(new ManagedLocker(locker));
                             WriteHandler write = new WriteHandler(key, response, connection, selector);

@@ -3,10 +3,8 @@ package commands;
 import Collection.MovieCollection;
 import movie.Movie;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 /**
  * Printing element with minimal id
@@ -17,7 +15,7 @@ public class Min_by_id implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public Min_by_id() {
         name = "min_by_id";
@@ -42,10 +40,13 @@ public class Min_by_id implements ICommand {
     @Override
     public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
-        return movieCollection.getMovies().entrySet().stream()
-                .min((p,o) -> p.getValue().getId().compareTo(o.getValue().getId()))
-                .get().toString();
+        String result = "В коллекции нет элементов";
+        try {
+            result = movieCollection.getMovies().entrySet().stream()
+                    .min(Comparator.comparing(p -> p.getValue().getId()))
+                    .get().toString();
+        } catch (NoSuchElementException ignored) {
+        }
+        return result;
     }
-
-    //TODO добавить исключение если не будет элементов в коллекции
 }

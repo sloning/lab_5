@@ -1,13 +1,9 @@
 package commands;
 
 import Collection.MovieCollection;
-import DB.DBWorker;
 import movie.Movie;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Replace movie by it's id
@@ -18,7 +14,7 @@ public class Update implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public Update() {
         name = "update";
@@ -47,7 +43,7 @@ public class Update implements ICommand {
                 movieCollection.getMovies().replace(parameter, movie);
                 return "Объект по ключу " + parameter + " успешно обновлен";
             } else {
-                return "Не удалось удалить объект по ключу";
+                return "Не удалось обновить объект по ключу";
             }
     }
 }

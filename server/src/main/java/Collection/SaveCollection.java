@@ -1,6 +1,7 @@
 package Collection;
 
 import DB.DBWorker;
+import commands.Commands;
 import movie.Movie;
 
 import java.io.BufferedReader;
@@ -12,7 +13,7 @@ import java.sql.Statement;
 import java.util.Map;
 
 public class SaveCollection {
-    public void save() {     //TODO переписать под БД
+    public void save() {
         try {
             Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             MovieCollection movieCollection = new MovieCollection();
@@ -56,7 +57,7 @@ public class SaveCollection {
         }
     }
 
-    public void checkForSaveCommand() {
+    public void checkForCommand() {
         Thread backgroundReaderThread = new Thread(() -> {
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))) {
                 while (!Thread.interrupted()) {
@@ -68,6 +69,10 @@ public class SaveCollection {
                         System.out.println("SAVING...");
                         save();
                         System.out.println("SAVED.");
+                    }
+                    if (line.equalsIgnoreCase("exit")) {
+                        Commands useCommands = new Commands("exit", null, null, null);
+                        useCommands.execute();
                     }
                 }
             } catch (IOException e) {

@@ -39,9 +39,10 @@ public class Commands {
         commandHistory.addCommand(name);
     }
 
-    public String execute() throws IOException {
+    public String execute() throws IOException {    //TODO краш при вызове команды remove_if_lowe
         return commands.get(name).Do(parameter, movie, user);
     }
+
     /**
      * Adds new command to collection
      *

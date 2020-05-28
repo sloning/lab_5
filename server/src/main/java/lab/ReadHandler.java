@@ -44,7 +44,7 @@ public class ReadHandler implements Callable<String> {
             service.shutdown();
             return response;
         } catch (NullPointerException | ClosedChannelException e) {
-            System.err.println("Соединение с клиентом неожиданно (нет) потеряно");
+//            System.err.println("Соединение с клиентом неожиданно (нет) потеряно");
             return null;
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();

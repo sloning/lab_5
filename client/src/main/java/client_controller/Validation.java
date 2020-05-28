@@ -25,45 +25,45 @@ public class Validation {
         this.name = name;
     }
 
-    public void check() throws IOException {
+    public boolean check() throws IOException {
         sendReady = true;
         switch (name) {
             case "insert":
             case "update_id":
                 this.insertKeyCheck(parameter);
                 this.insertValidation(parameter);
-                break;
+                return true;
             case "count_by_genre":
                 this.countByGenreCheck(parameter);
-                break;
+                return true;
             case "execute_script":
                 this.executeScriptCheck(parameter);
-                break;
+                return true;
             case "exit":
                 System.exit(0);
             case "filter_starts_with_name":
                 this.filterStartsWithNameCheck(parameter);
-                break;
+                return true;
             case "remove_if_lowe":
             case "replace_if_lowe":
                 this.insertKeyCheck(parameter);
-                break;
+                return true;
             case "remove":
                 this.removeKeyCheck(parameter);
-                break;
+                return true;
             case "clear":
             case "help":
             case "min_by_id":
             case "show":
             case "history":
             case "info":
-                break;
+                return true;
             default:
                 System.out.println("Вы ввели неверное название команды");
                 //System.out.println("Но мы все равно отправим ее на сервер");
                 sendReady = false;
                 name = null;
-                break;
+                return false;
         }
     }
 
@@ -146,7 +146,7 @@ public class Validation {
             Scanner scanner = new Scanner(System.in);
             String key;
             System.out.println("Введите ключ объекта, который хотите удалить");
-            System.out.print("$");
+            System.out.print("$ ");
             key = scanner.nextLine();
             if (key.equals("")) {
                 System.out.println("Ключ не может быть null");
