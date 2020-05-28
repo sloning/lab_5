@@ -10,17 +10,21 @@ import java.util.List;
 public class DBLoader {
     public DBLoader(){
         try {
-            Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            Statement statement = DBWorker.getConnection().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY, ResultSet.HOLD_CURSORS_OVER_COMMIT);
             MovieCollection movieCollection = new MovieCollection();
             List<Movie> movies = new ArrayList<>();
             ResultSet resultSet = statement.executeQuery("select * from movies");
 
             int i = -1;
-            while (resultSet.last()) {
-                i = resultSet.getRow();
-            }
-            ResultSet resultMoviesSet = statement.executeQuery("select * from movies");
-            while (i > 0) {
+            resultSet.last();
+            i = resultSet.getRow();
+
+            for (int c = 1; c <= i; c++) {
+                ResultSet resultMoviesSet = statement.executeQuery("select * from movies");
+                System.out.println(c);
+                resultMoviesSet.absolute(c);
+                resultMoviesSet.previous();
+                resultMoviesSet.next();
                 Movie movie = new Movie();
                 String key = resultMoviesSet.getString("movie_key");
                 movie.setName(resultMoviesSet.getString("movie_name"));
@@ -30,7 +34,10 @@ public class DBLoader {
                 movie.setMpaaRating(resultMoviesSet.getString("movie_rating"));
                 movie.setCreationDate(resultMoviesSet.getDate("date_of_creation"));
                 String directorId = resultMoviesSet.getString("director");
-                ResultSet resultCoordsSet = statement.executeQuery("select * from coords where coords_id = '" + resultMoviesSet.getString("movie_coords") + "'");
+                String coordsId = resultMoviesSet.getString("movie_coords");
+                resultMoviesSet.close();
+
+                ResultSet resultCoordsSet = statement.executeQuery("select * from coords where coords_id = '" + coordsId + "'");
                 int x = 0;
                 float y = 0;
                 while (resultCoordsSet.next()) {
@@ -67,10 +74,7 @@ public class DBLoader {
                 movie.setDirectorWithLocation(directorName, directorHeight, directorWeight, locationName, locationX, locationY, locationZ);
 
                 movieCollection.putMovie(key, movie);
-                i--;
-                resultMoviesSet.next();
             }
-        resultMoviesSet.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
