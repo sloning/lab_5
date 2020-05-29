@@ -25,6 +25,10 @@ public class Shell implements Serializable {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public String getName(){
         return name;
     }

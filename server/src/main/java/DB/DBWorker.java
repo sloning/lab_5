@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 
 public class DBWorker {
     private final Logger LOGGER = Logger.getLogger(DBWorker.class.getName());
-//    private final String PASS = "1234";
-private static Connection connection;
+    //private final String PASS = "1234";
+    private static Connection connection;
     private final String DB_URL = "jdbc:postgresql://localhost:5433/test";
     private final String USER = "postgres";
     private final String PASS = "vlad";
