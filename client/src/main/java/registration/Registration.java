@@ -9,7 +9,7 @@ public class Registration {
     private String password;
     private UserShell userShell;
 
-    public void registration(){
+    public void registration() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите логин для нового пользователя");
         System.out.print("$ ");
@@ -25,12 +25,11 @@ public class Registration {
             this.registration();
         } else {
             this.password = Hash.encryptThisString(firstPassword);
-            //хеширование
             userShell = new UserShell(this.login, this.password, false);
         }
     }
 
-    public void authorization(){
+    public void authorization() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите логин или введите registration, чтобы зарегистрироваться");
         System.out.print("$ ");

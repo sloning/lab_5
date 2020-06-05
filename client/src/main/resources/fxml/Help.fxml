@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0"
+      xmlns="http://javafx.com/javafx/8.0.171" fx:controller="lab.FXMLDocumentController">
+    <children>
+        <GridPane prefHeight="302.0" prefWidth="700.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                    <children>
+                        <Button fx:id="helpCloseButton" mnemonicParsing="false" onAction="#onHelpCloseButton"
+                                text="Close"/>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.hgrow="ALWAYS"
+                      GridPane.vgrow="ALWAYS">
+                    <GridPane.margin>
+                        <Insets left="5.0" right="5.0"/>
+                    </GridPane.margin>
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="clear: очистить коллекцию count_by_genre: вывести количество элементов, значения поля genre которых равно заданому execute_script: считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме exit: завершить программу (без сохранения) filter_starts_with_name: вывести элементы, значение поля name которых начинается с заданной подстроки help: вывести справку по доступным командам history: вывести последние 6 команд (без их аргументов) info: вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д. insert: добавить новый элемент с заданным ключом min_by_id: вывести любой объект из коллекции, значение поля id которого является минимальным remove: удалить элемент из коллекции по его ключу remove_lower_key: удалить значение по ключу, если новое значение меньше старого replace_if_lowe: заменить значение по ключу, если новое значение меньше старого show: вывести в стандартный поток вывода все элементы коллекции в строковом представлении update: обновить значение элемента коллекции, ключ которого равен зададному"
+                              textAlignment="JUSTIFY" wrappingWidth="690.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</VBox>
