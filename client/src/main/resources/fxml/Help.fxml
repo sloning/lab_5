@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
       minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0"
-      xmlns="http://javafx.com/javafx/8.0.171" fx:controller="lab.FXMLDocumentController">
+      xmlns="http://javafx.com/javafx/8.0.171" fx:controller="FXMLControllers.FXMLDocumentController">
     <children>
         <GridPane prefHeight="302.0" prefWidth="700.0">
             <columnConstraints>

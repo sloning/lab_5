@@ -1,4 +1,4 @@
-package lab;
+package FXMLControllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import registration.Auth;
+import registration.Hash;
 
 public class FXMLAuthController {
     public TextField inLogin;
@@ -29,6 +30,8 @@ public class FXMLAuthController {
             Stage stage = (Stage) singInButton.getScene().getWindow();
             stage.close();
             setCurrentUser();
+            setUser(userName);
+            setCurrentPassword(Hash.encryptThisString(password));
             setChangeUserButton();
         } else {
             inErrorLabel.setText(response); //TODO fix rus encoding
@@ -54,6 +57,13 @@ public class FXMLAuthController {
 
     private void setCurrentUser() {
         mainController.setCurrentUser(Auth.login);
+    }
+
+    private void setUser(String user) {
+        mainController.setUser(user);
+    }
+    private void setCurrentPassword(String password) {
+        mainController.setCurrentPassword(password);
     }
 
     public void setMainController(FXMLDocumentController mainController) {

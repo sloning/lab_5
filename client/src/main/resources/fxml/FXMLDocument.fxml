@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
-      fx:controller="lab.FXMLDocumentController">
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControllers.FXMLDocumentController">
     <children>
         <BorderPane VBox.vgrow="ALWAYS">
             <center>
                 <GridPane prefHeight="375.0" prefWidth="541.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <TableView prefHeight="386.0" prefWidth="541.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn prefWidth="75.0" text="Фильм"/>
-                                <TableColumn prefWidth="75.0" text="ID"/>
-                                <TableColumn prefWidth="75.0" text="X"/>
-                                <TableColumn prefWidth="75.0" text="Y"/>
-                                <TableColumn prefWidth="75.0" text="Дата создания"/>
-                                <TableColumn prefWidth="75.0" text="Количество оскаров"/>
-                                <TableColumn prefWidth="75.0" text="Длина"/>
-                                <TableColumn prefWidth="75.0" text="Жанр"/>
-                                <TableColumn prefWidth="75.0" text="Рейтинг"/>
-                                <TableColumn prefWidth="75.0" text="Режиссёр"/>
-                                <TableColumn prefWidth="75.0" text="ДР"/>
-                                <TableColumn prefWidth="75.0" text="Высота"/>
-                                <TableColumn prefWidth="75.0" text="Вес"/>
-                                <TableColumn prefWidth="75.0" text="Локация"/>
-                                <TableColumn prefWidth="75.0" text="X"/>
-                                <TableColumn prefWidth="75.0" text="Y"/>
-                                <TableColumn prefWidth="75.0" text="Z"/>
-                                <TableColumn prefWidth="75.0" text="Пользователь"/>
-                                <TableColumn prefWidth="75.0" text="Ключ"/>
+                                <TableColumn prefWidth="75.0" text="Фильм" />
+                                <TableColumn prefWidth="75.0" text="ID" />
+                                <TableColumn prefWidth="75.0" text="X" />
+                                <TableColumn prefWidth="75.0" text="Y" />
+                                <TableColumn prefWidth="75.0" text="Дата создания" />
+                                <TableColumn prefWidth="75.0" text="Количество оскаров" />
+                                <TableColumn prefWidth="75.0" text="Длина" />
+                                <TableColumn prefWidth="75.0" text="Жанр" />
+                                <TableColumn prefWidth="75.0" text="Рейтинг" />
+                                <TableColumn prefWidth="75.0" text="Режиссёр" />
+                                <TableColumn prefWidth="75.0" text="ДР" />
+                                <TableColumn prefWidth="75.0" text="Высота" />
+                                <TableColumn prefWidth="75.0" text="Вес" />
+                                <TableColumn prefWidth="75.0" text="Локация" />
+                                <TableColumn prefWidth="75.0" text="X" />
+                                <TableColumn prefWidth="75.0" text="Y" />
+                                <TableColumn prefWidth="75.0" text="Z" />
+                                <TableColumn prefWidth="75.0" text="Пользователь" />
+                                <TableColumn prefWidth="75.0" text="Ключ" />
                             </columns>
                         </TableView>
                     </children>
@@ -45,50 +54,43 @@
             <left>
                 <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Label alignment="CENTER" contentDisplay="CENTER" text="Пользователь:"
-                                       textAlignment="CENTER"/>
+                                <Label alignment="CENTER" contentDisplay="CENTER" text="Пользователь:" textAlignment="CENTER" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                             <children>
-                                <Label fx:id="currentUser" alignment="CENTER" contentDisplay="CENTER"
-                                       textAlignment="CENTER"/>
+                                <Label fx:id="currentUser" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" />
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0"
-                              GridPane.rowIndex="2">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                             <children>
-                                <Button fx:id="changeUserButton" alignment="CENTER" contentDisplay="CENTER"
-                                        graphicTextGap="0.0" mnemonicParsing="false" onAction="#changeUser"
-                                        prefHeight="72.0" prefWidth="82.0" text="Войти" textAlignment="CENTER"
-                                        wrapText="true">
+                                <Button fx:id="changeUserButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#changeUser" prefHeight="72.0" prefWidth="82.0" text="Войти" textAlignment="CENTER" wrapText="true">
                                     <font>
-                                        <Font size="10.0"/>
+                                        <Font size="10.0" />
                                     </font>
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0"
-                              GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                             <children>
-                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                                        onAction="#onClickMethod" text="Помощь" textAlignment="CENTER"/>
+                                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickMethod" text="Помощь" textAlignment="CENTER" />
                             </children>
                         </HBox>
                     </children>
                 </GridPane>
             </left>
         </BorderPane>
+      <TextField fx:id="commandField" onAction="#useCommand" promptText="enter the command..." />
     </children>
 </VBox>

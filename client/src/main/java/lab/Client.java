@@ -60,6 +60,41 @@ public class Client implements Runnable {
         }
     }
 
+    public String clientOneCommand(String text, String user, String password) {
+        InputOutput inputOutput = new InputOutput();
+        try {
+            inputOutput.InputOneCommand(text);
+            inputOutput.setUser(user);
+            inputOutput.setPassword(password);
+            if (!Validation.getSignal()) {
+                boolean c = sendMsg(inputOutput, serializer, connection, socket);
+            } else {
+                boolean g = (sendMsgWithScript(serializer, connection, socket));
+            }
+            byte[] inputBytes;
+            inputBytes = connection.read(socket);
+            if (inputBytes == null) System.out.println("ноу");
+            String answer = serializer.fromByteArray(inputBytes, String.class);
+            if (answer != null) System.out.println(answer);
+            return answer;
+        } catch (IOException e) {
+            System.err.println("Ошибка подключения к серверу");
+            if (++reconnectionAttempts >= maxReconnectionAttempts) {
+                System.err.println("Превышено количество попыток подключения");
+                System.exit(0);
+            } else {
+                System.err.println("Повторое подключение будет совершено через " + msToReconnect / 1000 + " секунды");
+                try {
+                    Thread.sleep(msToReconnect);
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }
+
+            return "упс";
+        }
+    }
+
     private boolean sendMsg(InputOutput inputOutput, Serializer serializer, Connection connection, Socket socket) {
         Shell shell = inputOutput.getShell();
         if (Validation.sendReady) {

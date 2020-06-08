@@ -43,6 +43,14 @@ public class InputOutput {
         }
     }
 
+    public void InputOneCommand(String command) throws IOException {
+        try {
+        boolean f = controller.commandController(command);
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+            System.out.println("Вы ввели неверное название команды (введите help, чтобы получить справку по доступным командам)");
+        }
+    }
+
     public void setUser(String user) {
         this.controller.setUser(user);
     }
