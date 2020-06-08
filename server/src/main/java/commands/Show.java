@@ -47,7 +47,7 @@ public class Show implements ICommand {
     public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
         ShowInfo showInfo = new ShowInfo();
-        movieCollection.getMovies().entrySet().stream().sorted(Comparator.comparing(p -> p.getValue().getName())).forEach(x -> showInfo.addInfo("\n" + x.getValue().getInfo() + "Movie Key: " + x.getKey() + "\n"));
+        movieCollection.getMovies().entrySet().stream().sorted(Comparator.comparing(p -> p.getValue().getName())).forEach(x -> showInfo.addInfo(x.getValue().getInfo() + "Movie Key: " + x.getKey() + "\nConec1cc\"\n"));
         return showInfo.getInfo();
     }
 }

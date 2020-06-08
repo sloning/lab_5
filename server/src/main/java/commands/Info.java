@@ -12,7 +12,7 @@ public class Info implements ICommand {
     /**
      * @param name name of command
      */
-    private String name;
+    private final String name;
 
     public Info() {
         name = "info";
@@ -37,9 +37,9 @@ public class Info implements ICommand {
     @Override
     public String Do(String parameter, Movie movie, String user) {
         MovieCollection movieCollection = new MovieCollection();
-        String result = "тип коллекции: LinkedHashMap\n";
-        result += "количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count() +"\n";
-        result += "дата создания колекции: " + movieCollection.getDateCreation();
+        String result = "Тип коллекции: LinkedHashMap\n";
+        result += "Количество элементов коллекции: " + movieCollection.getMovies().entrySet().stream().count() + "\n";
+        result += "Дата создания колекции: " + movieCollection.getDateCreation();
         return result;
     }
 }

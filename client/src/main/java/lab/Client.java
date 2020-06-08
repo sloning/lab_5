@@ -30,18 +30,22 @@ public class Client implements Runnable {
                 System.out.println("Подключение успешно совершено");
                 clientRun(socket);
             } catch (IOException e) {
-                System.err.println("Ошибка подключения к серверу");
-                if (++reconnectionAttempts >= maxReconnectionAttempts) {
-                    System.err.println("Превышено количество попыток подключения");
-                    System.exit(0);
-                } else {
-                    System.err.println("Повторое подключение будет совершено через " + msToReconnect / 1000 + " секунды");
-                    try {
-                        Thread.sleep(msToReconnect);
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
-                }
+                handleDisconnect();
+            }
+        }
+    }
+
+    private void handleDisconnect() {
+        System.err.println("Ошибка подключения к серверу");
+        if (++reconnectionAttempts >= maxReconnectionAttempts) {
+            System.err.println("Превышено количество попыток подключения");
+            System.exit(0);
+        } else {
+            System.err.println("Повторое подключение будет совершено через " + msToReconnect / 1000 + " секунды");
+            try {
+                Thread.sleep(msToReconnect);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
             }
         }
     }
@@ -78,19 +82,7 @@ public class Client implements Runnable {
             if (answer != null) System.out.println(answer);
             return answer;
         } catch (IOException e) {
-            System.err.println("Ошибка подключения к серверу");
-            if (++reconnectionAttempts >= maxReconnectionAttempts) {
-                System.err.println("Превышено количество попыток подключения");
-                System.exit(0);
-            } else {
-                System.err.println("Повторое подключение будет совершено через " + msToReconnect / 1000 + " секунды");
-                try {
-                    Thread.sleep(msToReconnect);
-                } catch (InterruptedException interruptedException) {
-                    interruptedException.printStackTrace();
-                }
-            }
-
+            handleDisconnect();
             return "упс";
         }
     }

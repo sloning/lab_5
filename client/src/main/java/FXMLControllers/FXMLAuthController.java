@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import registration.Auth;
 import registration.Hash;
 
-public class FXMLAuthController {
+public class FXMLAuthController implements IController {
     public TextField inLogin;
     public PasswordField inPass;
     public TextField upLogin;
@@ -45,7 +45,6 @@ public class FXMLAuthController {
         String response = auth.registerUser(userName, password);
 
         if (response.equals("Successful singed up")) {
-//            currentUser.setText(Auth.login);
             Stage stage = (Stage) singUpButton.getScene().getWindow();
             stage.close();
             setCurrentUser();

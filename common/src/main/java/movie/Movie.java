@@ -20,6 +20,7 @@ public class Movie implements Serializable {
     private MpaaRating mpaaRating; //Поле может быть null
     private Person director; //Поле не может быть null
     private String user;
+    private String movieKey;
 
     /**
      * Constructors, creates new movie
@@ -232,5 +233,13 @@ public class Movie implements Serializable {
 
     public String getDirectorLocationName() {
         return director.getLocationName();
+    }
+
+    public String getMovieKey() {
+        return movieKey;
+    }
+
+    public void setMovieKey(String key) {
+        movieKey = key;
     }
 }

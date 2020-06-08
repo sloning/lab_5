@@ -1,24 +1,24 @@
 package FXMLControllers;
 
-import client_controller.Controller;
-import client_controller.Validation;
-import input_output.InputOutput;
+import deserialize.LoadMovies;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import lab.Client;
+import movie.Movie;
+import movie.MpaaRating;
 
 import java.io.IOException;
-import java.net.Socket;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
 
 public class FXMLDocumentController {
     @FXML
@@ -28,12 +28,30 @@ public class FXMLDocumentController {
     public Label currentUser;
     public String user;
     public String currentPassword;
+    public TableColumn<Movie, String> movieCol;
+    public TableColumn<Movie, Long> IDCol;
+    public TableColumn<Movie, Integer> X1Col;
+    public TableColumn<Movie, Float> Y1Col;
+    public TableColumn<Movie, Date> dateCol;
+    public TableColumn<Movie, Integer> coutnCol;
+    public TableColumn<Movie, Integer> lengthCol;
+    public TableColumn<Movie, String> genreCol;
+    public TableColumn<Movie, MpaaRating> ratingCol;
+    public TableColumn<Movie, String> direcotrCol;
+    public TableColumn<Movie, Date> birthDayCol;
+    public TableColumn<Movie, Double> heightCol;
+    public TableColumn<Movie, Float> weightCol;
+    public TableColumn<Movie, String> locCol;
+    public TableColumn<Movie, Integer> X2Col;
+    public TableColumn<Movie, Long> Y2Col;
+    public TableColumn<Movie, Integer> Z2Col;
+    public TableColumn<Movie, String> userCol;
+    public TableColumn<Movie, String> keyCol;
+    public TableView<Movie> mainTable;
     @FXML
     private FXMLAuthController authController;
     @FXML
     public TextField commandField;
-    @FXML
-    public Label resultText;
 
     //Выводит окно помощи
     public void onClickMethod(ActionEvent actionEvent) {    //TODO fix text
@@ -67,36 +85,106 @@ public class FXMLDocumentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        setMainController();
+        showAd();
+        setMainController(authController);
 
         Stage stage = new Stage();
         stage.setTitle("Auth");
         assert root != null;
         stage.setScene(new Scene(root));
+        stage.initOwner(changeUserButton.getScene().getWindow());
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
     }
 
     //Ввод команды
-    public void useCommand(ActionEvent actionEvent) {
+    public void useCommand(ActionEvent actionEvent) throws ParseException {
         Client client = new Client();
         String response = client.clientOneCommand(commandField.getText(), currentUser.getText(), currentPassword);
         System.out.println(response);
-        Parent root = null;
+        switch (commandField.getText()) {
+            case "help":
+            case "info":
+            case "history":
+                Parent root = null;
+                try {
+                    FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
+                    root = myloader.load();
+                    FXMLResultController resultController = myloader.getController();
+                    resultController.setResultLabel(response);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                showAd1();
+
+                Stage stage = new Stage();
+                stage.setTitle("Result");
+                assert root != null;
+                stage.setScene(new Scene(root));
+                stage.show();
+            default:
+                movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
+                IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
+                X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
+                Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
+                dateCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("CreationDate"));
+                coutnCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Oscars"));
+                lengthCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Length"));
+                genreCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Genre"));
+                ratingCol.setCellValueFactory(new PropertyValueFactory<Movie, MpaaRating>("MpaaRating"));
+                direcotrCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorName"));
+                birthDayCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("DirectorBirthday"));
+                heightCol.setCellValueFactory(new PropertyValueFactory<Movie, Double>("DirectorHeight"));
+                weightCol.setCellValueFactory(new PropertyValueFactory<Movie, Float>("DirectorWeight"));
+                locCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorLocationName"));
+                X2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationX"));
+                Y2Col.setCellValueFactory(new PropertyValueFactory<Movie, Long>("DirectorLocationY"));
+                Z2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationZ"));
+                userCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("user"));
+                keyCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("MovieKey"));
+
+                if (commandField.getText().equals("show")) {
+                    mainTable.getItems().clear();
+                    LoadMovies loadMovies = new LoadMovies();
+                    List<Movie> movieList = loadMovies.load(response);
+                    for (Movie movie : movieList) {
+                        mainTable.getItems().add(movie);
+                    }
+                }
+        }
+    }
+
+    public void showAd() {
         try {
-            FXMLLoader myloader = new FXMLLoader(getClass().getResource("/fxml/Result.fxml"));
-            root = myloader.load();
+            FXMLLoader myloader = new FXMLLoader(getClass().getResource("/fxml/ad.fxml"));
+            Parent adRoot = myloader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Leon.ru");
+            assert adRoot != null;
+            stage.setScene(new Scene(adRoot));
+            stage.initOwner(changeUserButton.getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-        resultText = new Label(response);
-
-        Stage stage = (Stage) commandField.getScene().getWindow();
-        stage.setTitle("Result");
-        if (root == null) throw new AssertionError();
-        stage.setScene(new Scene(root));
-        stage.show();
-
+    public void showAd1() {
+        try {
+            FXMLLoader myloader = new FXMLLoader(getClass().getResource("/fxml/ad1.fxml"));
+            Parent adRoot = myloader.load();
+            Stage stage = new Stage();
+            stage.setTitle("1xBet");
+            assert adRoot != null;
+            stage.setScene(new Scene(adRoot));
+            stage.initOwner(changeUserButton.getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCurrentUser(String text) {
@@ -107,8 +195,8 @@ public class FXMLDocumentController {
         currentPassword = password;
     }
 
-    public void setMainController() {
-        authController.setMainController(this);
+    public <T extends IController> void setMainController(T controller) {
+        controller.setMainController(this);
     }
 
     public void setChangeUserButton() {
@@ -117,6 +205,6 @@ public class FXMLDocumentController {
 
     public void setUser(String user) {
         this.user = user;
-
     }
+
 }
