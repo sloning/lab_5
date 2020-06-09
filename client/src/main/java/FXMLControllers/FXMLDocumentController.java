@@ -52,6 +52,18 @@ public class FXMLDocumentController {
     private FXMLAuthController authController;
     @FXML
     public TextField commandField;
+    @FXML
+    private Button showCommand;
+
+    @FXML
+    private Button clearCommand;
+
+    @FXML
+    private Button infoCommand;
+
+    @FXML
+    private Button insertCommand;
+
 
     //Выводит окно помощи
     public void onClickMethod(ActionEvent actionEvent) {    //TODO fix text
@@ -153,6 +165,91 @@ public class FXMLDocumentController {
                     }
                 }
         }
+    }
+
+    public void useShowCommand() {
+        Client client = new Client();
+        String response = client.clientOneCommand("show", currentUser.getText(), currentPassword);
+        movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
+        IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
+        X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
+        Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("CreationDate"));
+        coutnCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Oscars"));
+        lengthCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Length"));
+        genreCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Genre"));
+        ratingCol.setCellValueFactory(new PropertyValueFactory<Movie, MpaaRating>("MpaaRating"));
+        direcotrCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorName"));
+        birthDayCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("DirectorBirthday"));
+        heightCol.setCellValueFactory(new PropertyValueFactory<Movie, Double>("DirectorHeight"));
+        weightCol.setCellValueFactory(new PropertyValueFactory<Movie, Float>("DirectorWeight"));
+        locCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorLocationName"));
+        X2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationX"));
+        Y2Col.setCellValueFactory(new PropertyValueFactory<Movie, Long>("DirectorLocationY"));
+        Z2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationZ"));
+        userCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("user"));
+        keyCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("MovieKey"));
+
+        mainTable.getItems().clear();
+        LoadMovies loadMovies = new LoadMovies();
+        List<Movie> movieList = null;
+        try {
+            movieList = loadMovies.load(response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        for (Movie movie : movieList) {
+            mainTable.getItems().add(movie);
+        }
+    }
+
+    public void useInsertCommand() {
+        Client client = new Client();
+        Parent root = null;
+        try {
+            FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Insert.fxml")));
+            root = myloader.load();
+            FXMLInsertController insertController = myloader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Insert");
+        assert root != null;
+        stage.setScene(new Scene(root, 650, 500));
+        stage.show();
+    }
+
+    public void useHistoryCommand() {
+        Client client = new Client();
+        String response = client.clientOneCommand("history", currentUser.getText(), currentPassword);
+        resultMethod(response);
+    }
+
+    public void useInfoCommand() {
+        Client client = new Client();
+        String response = client.clientOneCommand("info", currentUser.getText(), currentPassword);
+        resultMethod(response);
+    }
+
+    public void resultMethod(String response) {
+        Parent root = null;
+        try {
+            FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
+            root = myloader.load();
+            FXMLResultController resultController = myloader.getController();
+            resultController.setResultLabel(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        showAd1();
+
+        Stage stage = new Stage();
+        stage.setTitle("Result");
+        assert root != null;
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     public void showAd() {

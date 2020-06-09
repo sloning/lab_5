@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControllers.FXMLInsertController">
+   <children>
+      <TextField fx:id="Name" layoutX="94.0" layoutY="67.0" promptText="Name" />
+      <Text layoutX="94.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите название фильма" wrappingWidth="202.3999603271484" />
+      <TextField layoutX="94.0" layoutY="127.0" prefHeight="26.0" prefWidth="69.0" promptText="X" />
+      <TextField fx:id="Y" layoutX="171.0" layoutY="127.0" prefHeight="26.0" prefWidth="70.0" promptText="Y" />
+      <TextField fx:id="oscars" layoutX="94.0" layoutY="189.0" promptText="Oscars" />
+      <TextField fx:id="length" layoutX="94.0" layoutY="254.0" promptText="Length" />
+      <TextField fx:id="directorName" layoutX="349.0" layoutY="67.0" promptText="Director's Name" />
+      <TextField fx:id="height" layoutX="349.0" layoutY="127.0" promptText="Director's Height" />
+      <TextField fx:id="weight" layoutX="349.0" layoutY="189.0" promptText="Director's Weight" />
+      <TextField fx:id="locationName" layoutX="349.0" layoutY="254.0" promptText="Location's Name" />
+      <TextField fx:id="locX" layoutX="349.0" layoutY="324.0" prefHeight="26.0" prefWidth="70.0" promptText="Loc X" />
+      <TextField fx:id="locY" layoutX="427.0" layoutY="324.0" prefHeight="26.0" prefWidth="70.0" promptText="Loc Y" />
+      <TextField fx:id="locZ" layoutX="349.0" layoutY="394.0" prefHeight="26.0" prefWidth="70.0" promptText="Loc Z" />
+      <ChoiceBox fx:id="Genre" layoutX="96.0" layoutY="325.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="MPARating" layoutX="97.0" layoutY="395.0" prefWidth="150.0" />
+      <Button fx:id="insert" layoutX="586.0" layoutY="459.0" mnemonicParsing="false" text="Insert" />
+      <Button fx:id="cancel" layoutX="506.0" layoutY="459.0" mnemonicParsing="false" onAction="#InsertClose" text="Cancel" />
+      <Text layoutX="96.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите координаты фильма" wrappingWidth="187.99995117187495" />
+      <Text layoutX="96.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите количество оскаров" wrappingWidth="173.5999877929687" />
+      <Text layoutX="96.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите длину фильма" wrappingWidth="173.5999877929687" />
+      <Text layoutX="96.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберете жанр фильма" wrappingWidth="166.93670654296875" />
+      <Text layoutX="97.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберете MPA рейтинг фильма" wrappingWidth="187.99995117187495" />
+   </children>
+</AnchorPane>
