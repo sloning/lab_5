@@ -1,5 +1,7 @@
 package movie;
 
+import sun.management.snmp.jvminstr.JvmMemPoolEntryImpl;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -135,6 +137,10 @@ public class Movie implements Serializable {
         this.name = name;
     }
 
+    public void setCoordinates(float y) {
+        coordinates.setY(y);
+    }
+
     /**
      * @return genre of movie
      */
@@ -241,5 +247,9 @@ public class Movie implements Serializable {
 
     public void setMovieKey(String key) {
         movieKey = key;
+    }
+
+    public void setDirector(Person director) {
+        this.director = director;
     }
 }

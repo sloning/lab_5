@@ -27,6 +27,8 @@ public class Person implements Serializable {
         return weight;
     }
 
+    private Location location; //Поле может быть null
+
     public Integer getLocationX() {
         return location.getX();
     }
@@ -43,7 +45,10 @@ public class Person implements Serializable {
         return location.getName();
     }
 
-    private Location location; //Поле может быть null
+
+    public Person() {
+        this.birthday = new Date();
+    }
 
     /**
      * Constructor, creates person
@@ -85,6 +90,26 @@ public class Person implements Serializable {
         this.birthday = date;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public void setWeight(Float weight) {
+        this.weight = weight;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     /**
      * @return string with information about person
      */
@@ -93,6 +118,5 @@ public class Person implements Serializable {
         String date = dateFormat.format(this.birthday);
         return "Name: " + name + "\nBirthday: " + date + "\nHeight: " + height + "\nWeight: " + weight + location.getLocation();
     }
-
 
 }

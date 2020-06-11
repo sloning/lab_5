@@ -71,7 +71,7 @@ public class Insert_key implements ICommand {
                 resultDirectorSet.previous();
                 String DirectorId = resultDirectorSet.getString(1);
                 String MovieQuery = "insert into movies(movie_name, movie_coords, date_of_creation, oscars, length, movie_genre, movie_rating, director, movie_key, usernames) values ('"
-                        + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre().toString() + "', '"
+                        + movie.getName() + "', '" + CoordinatesId + "', '" + movie.getCreationDate() + "', " + movie.getOscars() + ", " + movie.getLength() + ", '" + movie.getGenre() + "', '"
                         + movie.getMpaaRating().toString() + "', '" + DirectorId + "', '" + parameter + "', '" + user + "')";
                 statement.executeUpdate(MovieQuery);
 

@@ -87,8 +87,33 @@ public class Client implements Runnable {
         }
     }
 
+    public String clientOneCommandWithShell(Shell shell) {
+        try {
+            boolean c = sendMsg(shell, serializer, connection, socket);
+            byte[] inputBytes;
+            inputBytes = connection.read(socket);
+            if (inputBytes == null) System.out.println("ноу");
+            String answer = serializer.fromByteArray(inputBytes, String.class);
+            if (answer != null) System.out.println(answer);
+            return answer;
+        } catch (Exception e) {
+            handleDisconnect();
+            return "упс";
+        }
+    }
+
     private boolean sendMsg(InputOutput inputOutput, Serializer serializer, Connection connection, Socket socket) {
         Shell shell = inputOutput.getShell();
+        if (Validation.sendReady) {
+            connection.write(serializer.toByteArray(shell), socket);
+            if (Connection.connFlag) {
+                System.out.println("Сообщение отправлено");
+            } else return true;
+        }
+        return false;
+    }
+
+    private boolean sendMsg(Shell shell, Serializer serializer, Connection connection, Socket socket) {
         if (Validation.sendReady) {
             connection.write(serializer.toByteArray(shell), socket);
             if (Connection.connFlag) {

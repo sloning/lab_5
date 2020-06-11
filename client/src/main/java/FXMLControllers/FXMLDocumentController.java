@@ -1,5 +1,6 @@
 package FXMLControllers;
 
+import data.Shell;
 import deserialize.LoadMovies;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,8 +49,9 @@ public class FXMLDocumentController {
     public TableColumn<Movie, String> userCol;
     public TableColumn<Movie, String> keyCol;
     public TableView<Movie> mainTable;
-    @FXML
     private FXMLAuthController authController;
+    private FXMLInsertController insertController;
+
     @FXML
     public TextField commandField;
     @FXML
@@ -204,21 +206,23 @@ public class FXMLDocumentController {
     }
 
     public void useInsertCommand() {
-        Client client = new Client();
         Parent root = null;
         try {
             FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Insert.fxml")));
             root = myloader.load();
-            FXMLInsertController insertController = myloader.getController();
+            insertController = myloader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setMainController(insertController);
 
         Stage stage = new Stage();
         stage.setTitle("Insert");
         assert root != null;
         stage.setScene(new Scene(root, 650, 500));
         stage.show();
+
+
     }
 
     public void useHistoryCommand() {
@@ -302,6 +306,14 @@ public class FXMLDocumentController {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getUser() {
+        return currentUser.getText();
+    }
+
+    public String getPassword() {
+        return currentPassword;
     }
 
 }
