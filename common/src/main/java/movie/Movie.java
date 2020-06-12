@@ -190,6 +190,20 @@ public class Movie implements Serializable {
                 "\nDirector: " + director.getPerson() + "\nUser: " + user +"\n";
     }
 
+    public String getInfoAboutMovie() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(this.creationDate);
+        return "Movie: " + name + "\nID: " + id + "\nCoordinates: " + this.coordinates.getCoordinates() +
+                "\nDate of creation: " + date + "\nCount of oscars: " + oscarsCount +
+                "\nLength: " + length + "\nGenre: " + getGenre() + "\nMPAA rating: " + mpaaRating + "\nUser: " + user +"\n";
+    }
+
+    public String getInfoAboutDirector() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        String date = dateFormat.format(this.creationDate);
+        return "\nDirector: " + director.getPerson() + "\nUser: " + user +"\n";
+    }
+
     @Override
     public String toString() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

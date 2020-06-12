@@ -217,7 +217,7 @@ public class FXMLDocumentController {
                         FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
                         root = myloader.load();
                         FXMLInsertErrorController errorInsertController = myloader.getController();
-                        errorInsertController.setResultLabel(movie.getInfo());
+                        errorInsertController.setResultLabel(movie.getInfoAboutMovie());
                     } catch (IOException exp) {
                         exp.printStackTrace();
                     }
@@ -244,7 +244,7 @@ public class FXMLDocumentController {
                         FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
                         root = myloader.load();
                         FXMLInsertErrorController errorInsertController = myloader.getController();
-                        errorInsertController.setResultLabel(movie.getInfo());
+                        errorInsertController.setResultLabel(movie.getInfoAboutDirector());
                     } catch (IOException exp) {
                         exp.printStackTrace();
                     }
