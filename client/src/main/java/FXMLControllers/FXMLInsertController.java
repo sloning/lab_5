@@ -235,6 +235,7 @@ public class FXMLInsertController implements IController {
             System.out.println(answer);
 
             Stage stage = (Stage) insert.getScene().getWindow();
+            mainController.useShowCommand();
             stage.close();
         } catch (NumberFormatException e) {
             Parent root = null;

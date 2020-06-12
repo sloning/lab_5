@@ -311,6 +311,11 @@ public class FXMLDocumentController {
         stage.show();
     }
 
+    public void useMinByIDCommand() {
+        Client client = new Client();
+        String response = client.clientOneCommand("min_by_id", currentUser.getText(), currentPassword);
+        resultMethod(response);
+    }
 
     public void showAd() {
         try {

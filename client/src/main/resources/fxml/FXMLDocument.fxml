@@ -59,7 +59,7 @@
                   <Button fx:id="insertCommand" layoutX="18.0" layoutY="351.0" mnemonicParsing="false" onAction="#useInsertCommand" prefHeight="30.0" prefWidth="84.0" text="insert" />
                   <Button fx:id="updateCommand" layoutX="20.0" layoutY="395.0" mnemonicParsing="false" onAction="#useInsertCommand" prefHeight="30.0" prefWidth="82.0" text="update" />
                   <Button fx:id="removeCommand" layoutX="21.0" layoutY="436.0" mnemonicParsing="false" onAction="#useRemoveCommand" prefHeight="30.0" prefWidth="84.0" text="remove" />
-                  <Button fx:id="minByIDCommand" layoutX="1180.0" layoutY="219.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="84.0" text="min by id" />
+                  <Button fx:id="minByIDCommand" layoutX="1180.0" layoutY="219.0" mnemonicParsing="false" onAction="#useMinByIDCommand" prefHeight="30.0" prefWidth="84.0" text="min by id" />
                   <Button fx:id="historyCommand" layoutX="1180.0" layoutY="263.0" mnemonicParsing="false" onAction="#useHistoryCommand" prefHeight="30.0" prefWidth="84.0" text="history" />
                   <ComboBox fx:id="langBox" layoutX="1131.0" onAction="#changeLanguage" prefWidth="150.0" promptText="Choose language" />
             <Canvas fx:id="Visible" height="459.0" layoutX="213.0" layoutY="13.0" width="834.0" />
