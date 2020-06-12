@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171"
-      fx:controller="FXMLControllers.FXMLDocumentController">
+
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLControllers.FXMLDocumentController">
     <children>
         <AnchorPane prefHeight="635.0" prefWidth="1298.0">
             <children>
                 <HBox alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="80.0" prefWidth="84.0">
                     <children>
-                        <Label fx:id="currUserLabel" alignment="CENTER" contentDisplay="CENTER" text="User:"
-                               textAlignment="CENTER"/>
+                        <Label fx:id="currUserLabel" alignment="CENTER" contentDisplay="CENTER" text="User:" textAlignment="CENTER" />
                     </children>
                 </HBox>
                 <GridPane alignment="CENTER" layoutX="11.0" layoutY="38.0">
@@ -53,7 +61,7 @@
                   <Button fx:id="minByIDCommand" layoutX="1180.0" layoutY="219.0" mnemonicParsing="false" onAction="#useMinByIDCommand" prefHeight="30.0" prefWidth="84.0" text="min by id" />
                   <Button fx:id="historyCommand" layoutX="1180.0" layoutY="263.0" mnemonicParsing="false" onAction="#useHistoryCommand" prefHeight="30.0" prefWidth="84.0" text="history" />
                   <ComboBox fx:id="langBox" layoutX="1131.0" onAction="#changeLanguage" prefWidth="150.0" promptText="Choose language" />
-            <Canvas fx:id="Visible" height="459.0" layoutX="213.0" layoutY="13.0" width="834.0" />
+            <AnchorPane fx:id="rootPane" layoutX="190.0" layoutY="14.0" prefHeight="464.0" prefWidth="841.0" style="-fx-background-color: #FAFAFA;" />
          </children>
       </AnchorPane>
         <BorderPane VBox.vgrow="ALWAYS">
@@ -66,18 +74,17 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView fx:id="mainTable" editable="true" prefHeight="386.0" prefWidth="541.0"
-                                   GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                        <TableView fx:id="mainTable" editable="true" prefHeight="386.0" prefWidth="541.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="movieCol" prefWidth="75.0" text="Movie"/>
-                                <TableColumn fx:id="IDCol" prefWidth="75.0" text="ID"/>
-                                <TableColumn fx:id="X1Col" prefWidth="75.0" text="X"/>
-                                <TableColumn fx:id="Y1Col" prefWidth="75.0" text="Y"/>
-                                <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date of creation"/>
-                                <TableColumn fx:id="coutnCol" prefWidth="75.0" text="Oscars"/>
-                                <TableColumn fx:id="lengthCol" prefWidth="75.0" text="Length"/>
-                                <TableColumn fx:id="genreCol" prefWidth="75.0" text="Genre"/>
-                                <TableColumn fx:id="ratingCol" prefWidth="75.0" text="Rating"/>
+                                <TableColumn fx:id="movieCol" prefWidth="75.0" text="Movie" />
+                                <TableColumn fx:id="IDCol" prefWidth="75.0" text="ID" />
+                                <TableColumn fx:id="X1Col" prefWidth="75.0" text="X" />
+                                <TableColumn fx:id="Y1Col" prefWidth="75.0" text="Y" />
+                                <TableColumn fx:id="dateCol" prefWidth="75.0" text="Date of creation" />
+                                <TableColumn fx:id="coutnCol" prefWidth="75.0" text="Oscars" />
+                                <TableColumn fx:id="lengthCol" prefWidth="75.0" text="Length" />
+                                <TableColumn fx:id="genreCol" prefWidth="75.0" text="Genre" />
+                                <TableColumn fx:id="ratingCol" prefWidth="75.0" text="Rating" />
                                 <TableColumn fx:id="direcotrCol" prefWidth="75.0" text="Режиссёр" />
                                 <TableColumn fx:id="birthDayCol" prefWidth="75.0" text="Birth day" />
                                 <TableColumn fx:id="heightCol" prefWidth="75.0" text="Height" />

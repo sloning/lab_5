@@ -12,7 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -60,12 +63,15 @@ public class FXMLDocumentController {
     public Button removeCommand;
     public Button minByIDCommand;
     public Label currUserLabel;
+
+    @FXML
+    private AnchorPane rootPane;
     private FXMLAuthController authController;
     private FXMLInsertController insertController;
 
 
-    @FXML
-    private Canvas Visible;
+    //@FXML
+    //private Canvas Visible;
 
     @FXML
     private Button showCommand;
@@ -136,11 +142,11 @@ public class FXMLDocumentController {
     }
 
     public void useShowCommand() {
-        GraphicsContext context = Visible.getGraphicsContext2D();
         Client client = new Client();
         String response = client.clientOneCommand("show", currentUser.getText(), currentPassword);
         System.out.println(response);
         mainTable.setEditable(true);
+        rootPane.getChildren().clear();
 
         movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
 //        movieCol.setCellValueFactory(TextFieldTableCell.forTableColumn());
@@ -164,7 +170,6 @@ public class FXMLDocumentController {
         keyCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("MovieKey"));
 
         mainTable.getItems().clear();
-        context.clearRect(0, 0, Visible.getWidth(), Visible.getHeight());
         LoadMovies loadMovies = new LoadMovies();
         List<Movie> movieList = null;
         try {
@@ -194,29 +199,65 @@ public class FXMLDocumentController {
             int randomNumber1 = randomGenerator.nextInt(mColors.length);
             int randomNumber2 = randomGenerator.nextInt(mColors.length);
 
-            Button button = new Button();
-
 
             Color colorFill = mColors[randomNumber1];
             Color colorStroke = mColors[randomNumber2];
-            context.setFill(colorFill);
-            context.setStroke(colorStroke);
+            //context.setFill(colorFill);
+           //context.setStroke(colorStroke);
 
             Rectangle rectangle = new Rectangle(movie.getCoordinatesX(), movie.getCoordinatesY(), movie.getCoordinatesY(), movie.getCoordinatesX());
+            rectangle.setFill(colorFill);
+            rectangle.setStroke(colorStroke);
             rectangle.setOnMousePressed(new EventHandler<MouseEvent>()
             {
                 @Override
                 public void handle(MouseEvent t) {
-                    System.out.println("Has been clicked");
+                    Parent root = null;
+                    try {
+                        FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
+                        root = myloader.load();
+                        FXMLInsertErrorController errorInsertController = myloader.getController();
+                        errorInsertController.setResultLabel(movie.getInfo());
+                    } catch (IOException exp) {
+                        exp.printStackTrace();
+                    }
+
+                    Stage stage = new Stage();
+                    stage.setTitle("movie");
+                    assert root != null;
+                    stage.setScene(new Scene(root, 650, 500));
+                    stage.show();
                 }
             });
 
-            context.fillRect(movie.getCoordinatesX(), movie.getCoordinatesY(), movie.getCoordinatesY(), movie.getCoordinatesX());
-            context.fillOval(movie.getDirectorLocationX(), movie.getDirectorLocationY(), movie.getDirectorLocationX(), movie.getDirectorLocationY());
+            Label label = new Label(movie.getName());
 
-            //context.setFill(Color.BLACK);
-            //context.fillText(movie.getName(), movie.getCoordinatesX(), (movie.getCoordinatesY()+movie.getCoordinatesX())/2);
-            //context.fillText(movie.getDirectorName(), movie.getDirectorLocationX(), (movie.getDirectorLocationY() + movie.getDirectorLocationY())/2);
+            Ellipse ellipse = new Ellipse(movie.getDirectorLocationX(), movie.getDirectorLocationY());
+            ellipse.setFill(colorFill);
+            ellipse.setStroke(colorStroke);
+            ellipse.setOnMousePressed(new EventHandler<MouseEvent>()
+            {
+                @Override
+                public void handle(MouseEvent t) {
+                    Parent root = null;
+                    try {
+                        FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
+                        root = myloader.load();
+                        FXMLInsertErrorController errorInsertController = myloader.getController();
+                        errorInsertController.setResultLabel(movie.getInfo());
+                    } catch (IOException exp) {
+                        exp.printStackTrace();
+                    }
+
+                    Stage stage = new Stage();
+                    stage.setTitle("movie");
+                    assert root != null;
+                    stage.setScene(new Scene(root, 650, 500));
+                    stage.show();
+                }
+            });
+
+            rootPane.getChildren().addAll(rectangle, ellipse);
         }
 
     }
