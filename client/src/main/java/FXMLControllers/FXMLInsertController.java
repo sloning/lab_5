@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lab.Client;
+import lab.LanguageController;
 import movie.Location;
 import movie.Movie;
 import movie.Person;
@@ -20,6 +22,18 @@ import java.io.IOException;
 
 public class FXMLInsertController implements IController {
 
+    public Text insertMovieName;
+    public Text insertCoordsMovie;
+    public Text insertOscars;
+    public Text insertLegth;
+    public Text insertGenre;
+    public Text insertRating;
+    public Text insertKey;
+    public Text insertDirectorName;
+    public Text insertHieght;
+    public Text insertWeight;
+    public Text insertLocation;
+    public Text insertsLocCoords;
     ObservableList<String> genreList = FXCollections.observableArrayList("FANTASY", "MUSICAL", "COMEDY");
 
     ObservableList<String> MPARatingList = FXCollections.observableArrayList("G", "PG", "PG_13");
@@ -82,6 +96,34 @@ public class FXMLInsertController implements IController {
     private String password;
 
     private FXMLDocumentController mainController;
+
+    @FXML
+    public void initialize() {
+        genre.setValue("FANTASY");
+        genre.setItems(genreList);
+
+        MPARating.setValue("G");
+        MPARating.setItems(MPARatingList);
+
+        changeLangOfWindow();
+    }
+
+    private void changeLangOfWindow() {
+        insertMovieName.setText(LanguageController.loadLocale("insertMovieName"));
+        insertCoordsMovie.setText(LanguageController.loadLocale("insertCoordsMovie"));
+        insertOscars.setText(LanguageController.loadLocale("insertOscars"));
+        insertLegth.setText(LanguageController.loadLocale("insertLegth"));
+        insertGenre.setText(LanguageController.loadLocale("insertGenre"));
+        insertRating.setText(LanguageController.loadLocale("insertRating"));
+        insertKey.setText(LanguageController.loadLocale("insertKey"));
+        insertDirectorName.setText(LanguageController.loadLocale("insertDirectorName"));
+        insertHieght.setText(LanguageController.loadLocale("insertHieght"));
+        insertWeight.setText(LanguageController.loadLocale("insertWeight"));
+        insertLocation.setText(LanguageController.loadLocale("insertLocation"));
+        insertsLocCoords.setText(LanguageController.loadLocale("insertsLocCoords"));
+        insert.setText(LanguageController.loadLocale("insert"));
+        cancel.setText(LanguageController.loadLocale("cancel"));
+    }
 
     public void InsertClose() {
         Stage stage = (Stage) cancel.getScene().getWindow();
@@ -149,14 +191,6 @@ public class FXMLInsertController implements IController {
         movie.setGenre(genre.getValue().toString());
     }
 
-    public void initialize() {
-        genre.setValue("FANTASY");
-        genre.setItems(genreList);
-
-        MPARating.setValue("G");
-        MPARating.setItems(MPARatingList);
-    }
-
     public void setMPARating(Movie movie) {
         movie.setMpaaRating(MPARating.getValue().toString());
     }
@@ -207,8 +241,8 @@ public class FXMLInsertController implements IController {
             try {
                 FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
                 root = myloader.load();
-                FXMLResultController errorInsertController = myloader.getController();
-                errorInsertController.setResultLabel("Вы не заполнили корректно все поля");
+                FXMLInsertErrorController errorInsertController = myloader.getController();
+                errorInsertController.setInserErrorLabel("Вы не заполнили корректно все поля");
             } catch (IOException exp) {
                 exp.printStackTrace();
             }

@@ -1,11 +1,10 @@
 package FXMLControllers;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import lab.LanguageController;
 import registration.Auth;
 import registration.Hash;
 
@@ -18,7 +17,30 @@ public class FXMLAuthController implements IController {
     public Label inErrorLabel;
     public Button singInButton;
     public Button singUpButton;
+    public Label inLoginLabel;
+    public Label inPassLabel;
+    public Label upLoginLabel;
+    public Label upPassLabel;
+    public Tab inTab;
+    public Tab upTab;
     private FXMLDocumentController mainController;
+
+    @FXML
+    public void initialize() {
+        changeLangOfWindow();
+    }
+
+    private void changeLangOfWindow() {
+        singInButton.setText(LanguageController.loadLocale("singInButton"));
+        singUpButton.setText(LanguageController.loadLocale("singUpButton"));
+        inLoginLabel.setText(LanguageController.loadLocale("inLoginLabel"));
+        inPassLabel.setText(LanguageController.loadLocale("inPassLabel"));
+        upLoginLabel.setText(LanguageController.loadLocale("inLoginLabel"));
+        upPassLabel.setText(LanguageController.loadLocale("inPassLabel"));
+        inTab.setText(LanguageController.loadLocale("singInButton"));
+        upTab.setText(LanguageController.loadLocale("singUpButton"));
+    }
+    //TODO make method translator for errors
 
     public void singIn(ActionEvent actionEvent) {
         Auth auth = new Auth();
@@ -33,8 +55,9 @@ public class FXMLAuthController implements IController {
             setUser(userName);
             setCurrentPassword(Hash.encryptThisString(password));
             setChangeUserButton();
+            enableButtons();
         } else {
-            inErrorLabel.setText(response); //TODO fix rus encoding
+            inErrorLabel.setText(response);
         }
     }
 
@@ -49,9 +72,14 @@ public class FXMLAuthController implements IController {
             stage.close();
             setCurrentUser();
             setChangeUserButton();
+            enableButtons();
         } else {
-            upErrorLabel.setText(response); //TODO fix rus encoding
+            upErrorLabel.setText(response);
         }
+    }
+
+    private void enableButtons() {
+        mainController.enableButtons();
     }
 
     private void setCurrentUser() {
@@ -61,6 +89,7 @@ public class FXMLAuthController implements IController {
     private void setUser(String user) {
         mainController.setUser(user);
     }
+
     private void setCurrentPassword(String password) {
         mainController.setCurrentPassword(password);
     }

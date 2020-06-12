@@ -1,22 +1,35 @@
 package FXMLControllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import lab.LanguageController;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 public class FXMLInsertErrorController {
-    public Label resultLabel;
-    public Button resultButton;
+    public Label insertErrorLabel;
+    public Button insertErrorButton;
+
+    @FXML
+    public void initialize() {
+        changeLangOfWindow();
+    }
+
+    private void changeLangOfWindow() {
+        insertErrorLabel.setText(LanguageController.loadLocale("insertErrorLabel"));
+        insertErrorButton.setText(LanguageController.loadLocale("helpCloseButton"));
+    }
 
     public void resultButtonClose() {
-        Stage stage = (Stage) resultButton.getScene().getWindow();
+        Stage stage = (Stage) insertErrorButton.getScene().getWindow();
         stage.close();
     }
 
-    public void setResultLabel(String text) throws UnsupportedEncodingException {
-        resultLabel.setText(new String(text.getBytes("Windows-1251"), StandardCharsets.UTF_8));
+    // Перевод может перезаписывать текст, записанный этой функцией
+    public void setInserErrorLabel(String text) throws UnsupportedEncodingException {
+        insertErrorLabel.setText(new String(text.getBytes("Windows-1251"), StandardCharsets.UTF_8));
     }
 }

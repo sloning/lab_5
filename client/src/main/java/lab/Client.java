@@ -66,8 +66,12 @@ public class Client implements Runnable {
 
     public String clientOneCommand(String text, String user, String password) {
         InputOutput inputOutput = new InputOutput();
+        String history = "";
         try {
-            inputOutput.InputOneCommand(text);
+            history = inputOutput.InputOneCommand(text);
+            if (!history.equals("")) {
+                return history;
+            }
             inputOutput.setUser(user);
             inputOutput.setPassword(password);
             if (!Validation.getSignal()) {

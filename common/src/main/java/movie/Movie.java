@@ -1,11 +1,10 @@
 package movie;
 
-import sun.management.snmp.jvminstr.JvmMemPoolEntryImpl;
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -23,6 +22,7 @@ public class Movie implements Serializable {
     private Person director; //Поле не может быть null
     private String user;
     private String movieKey;
+    private Locale locale;
 
     /**
      * Constructors, creates new movie
@@ -45,6 +45,15 @@ public class Movie implements Serializable {
 
     public Date getCreationDate() {
         return creationDate;
+    }
+
+    public String getLocaleDate() {
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
+        return df.format(creationDate);
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 
 
@@ -215,6 +224,11 @@ public class Movie implements Serializable {
 
     public Date getDirectorBirthday() {
         return director.getBirthday();
+    }
+
+    public String getLocaleBirthday() {
+        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
+        return df.format(director.getBirthday());
     }
 
     public Double getDirectorHeight() {

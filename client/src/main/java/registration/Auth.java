@@ -2,6 +2,7 @@ package registration;
 
 import data.UserShell;
 import lab.Client;
+import lab.LanguageController;
 import serializer.Serializer;
 import socket_connection.Connection;
 
@@ -42,11 +43,11 @@ public class Auth {     //TODO запретить просмотр коллек�
     private String translateResponse(String response) {
         switch (response) {
             case "Данного пользователя нет в базе данных. Повторите попытку":
-                return "We didn't find this user.";
+                return LanguageController.loadLocale("upErrorLabel");
             case "Авторизация прошла успешно":
                 return "Successful singed in";
             case "Неверный пароль. Повторите попытку":
-                return "Wrong password";
+                return LanguageController.loadLocale("inErrorLabel");
             case "Регистрация пользователя прошла успешно":
                 return "Successful singed up";
         }

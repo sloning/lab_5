@@ -18,12 +18,13 @@
             <children>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                     <children>
-                        <Label fx:id="resultLabel"/>
+                        <Label fx:id="insertErrorLabel"/>
                     </children>
                 </VBox>
                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                     <children>
-                        <Button fx:id="resultButton" mnemonicParsing="false" onAction="#resultButtonClose" text="OK"/>
+                        <Button fx:id="insertErrorButton" mnemonicParsing="false" onAction="#resultButtonClose"
+                                text="OK"/>
                     </children>
                 </VBox>
             </children>

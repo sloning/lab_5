@@ -46,7 +46,6 @@ public class LoadMovies {
         movies = "\"" + movies;
         List<String> moviesList = stringCutter(movies, amountOfMovies);
 
-
         String regex = "\"Movie:\\s(\\w+\\s*\\w*\\s*\\w*)\",\"ID:\\s([-+]?\\d+)\",\"Coordinates:\\sx\\s=\\s(\\d+),\\sy\\s=\\s(\\d+.\\d+)\",\"Date\\sof\\screation:\\s(\\d{4}/\\d{2}/\\d{2}\\s\\d{2}:\\d{2}:\\d{2})\",\"Count of oscars:\\s(\\d+)\",\"Length:\\s(\\d+)\",\"Genre:\\s(\\w+)\",\"MPAA rating:\\s(\\w+)\",\"Director:\\sName:\\s(\\w+\\w*)\",\"Birthday:\\s(\\d{4}/\\d{2}/\\d{2}\\s\\d{2}:\\d{2}:\\d{2})\",\"Height:\\s(\\d+.\\d+)\",\"Weight:\\s(\\d+.\\d+)\",\"Location\\sname:\\s(\\w+\\s*\\w*)\",\"Location:\\sx\\s=\\s(\\d+)\\sy\\s=\\s(\\d+)\\sz\\s=\\s(\\d+)\",\"User:\\s(\\w+\\s*\\w*\\s*\\w*)\",\"Movie\\sKey:\\s([a-zA-Z0-9]+)\"";
         Pattern pattern = Pattern.compile(regex);
 

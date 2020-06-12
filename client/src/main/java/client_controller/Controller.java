@@ -17,6 +17,7 @@ public class Controller {
     Shell shell = null;
     String name = null;
     String parameter = null;
+    String history = "";
 
     /**
      * Splits string with commands to command name and parameters
@@ -45,7 +46,7 @@ public class Controller {
                     shell = new Shell(name, parameter, movie);
                     return true;
                 } else {
-                    System.out.println(commandHistory.printHistory());
+                    history = commandHistory.printHistory();
                     return false;
                 }
 
@@ -80,5 +81,9 @@ public class Controller {
 
     public void setPassword(String password) {
         this.shell.setPassword(password);
+    }
+
+    public String getHistory() {
+        return history;
     }
 }

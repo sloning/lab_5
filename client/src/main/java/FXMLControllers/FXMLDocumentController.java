@@ -1,6 +1,5 @@
 package FXMLControllers;
 
-import data.Shell;
 import deserialize.LoadMovies;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,17 +12,15 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lab.Client;
+import lab.LanguageController;
 import movie.Movie;
 import movie.MpaaRating;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 public class FXMLDocumentController {
-    @FXML
-    public Button helpCloseButton;
     @FXML
     public Button changeUserButton;
     public Label currentUser;
@@ -33,13 +30,13 @@ public class FXMLDocumentController {
     public TableColumn<Movie, Long> IDCol;
     public TableColumn<Movie, Integer> X1Col;
     public TableColumn<Movie, Float> Y1Col;
-    public TableColumn<Movie, Date> dateCol;
+    public TableColumn<Movie, String> dateCol;
     public TableColumn<Movie, Integer> coutnCol;
     public TableColumn<Movie, Integer> lengthCol;
     public TableColumn<Movie, String> genreCol;
     public TableColumn<Movie, MpaaRating> ratingCol;
     public TableColumn<Movie, String> direcotrCol;
-    public TableColumn<Movie, Date> birthDayCol;
+    public TableColumn<Movie, String> birthDayCol;
     public TableColumn<Movie, Double> heightCol;
     public TableColumn<Movie, Float> weightCol;
     public TableColumn<Movie, String> locCol;
@@ -49,11 +46,16 @@ public class FXMLDocumentController {
     public TableColumn<Movie, String> userCol;
     public TableColumn<Movie, String> keyCol;
     public TableView<Movie> mainTable;
+    public ComboBox<String> langBox;
+    public Button historyCommand;
+    public Button helpButton;
+    public Button updateCommand;
+    public Button removeCommand;
+    public Button minByIDCommand;
+    public Label currUserLabel;
     private FXMLAuthController authController;
     private FXMLInsertController insertController;
 
-    @FXML
-    public TextField commandField;
     @FXML
     private Button showCommand;
 
@@ -66,9 +68,25 @@ public class FXMLDocumentController {
     @FXML
     private Button insertCommand;
 
+    LanguageController lc = new LanguageController();
+
+    @FXML
+    public void initialize() {
+        langBox.getItems().removeAll(langBox.getItems());
+        langBox.getItems().addAll("Russian", "German", "Albanian", "English");
+        historyCommand.setDisable(true);
+        updateCommand.setDisable(true);
+        removeCommand.setDisable(true);
+        minByIDCommand.setDisable(true);
+        showCommand.setDisable(true);
+        clearCommand.setDisable(true);
+        infoCommand.setDisable(true);
+        insertCommand.setDisable(true);
+        helpButton.setDisable(true);
+    }
 
     //Выводит окно помощи
-    public void onClickMethod(ActionEvent actionEvent) {    //TODO fix text
+    public void onClickMethod(ActionEvent actionEvent) {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/Help.fxml"));
@@ -81,12 +99,6 @@ public class FXMLDocumentController {
         assert root != null;
         stage.setScene(new Scene(root));
         stage.show();
-    }
-
-    //закрывает окно помощи
-    public void onHelpCloseButton(ActionEvent actionEvent) {
-        Stage stage = (Stage) helpCloseButton.getScene().getWindow();
-        stage.close();
     }
 
     //выводит окно входа/регистрации
@@ -112,63 +124,6 @@ public class FXMLDocumentController {
         stage.show();
     }
 
-    //Ввод команды
-    public void useCommand(ActionEvent actionEvent) throws ParseException {
-        Client client = new Client();
-        String response = client.clientOneCommand(commandField.getText(), currentUser.getText(), currentPassword);
-        System.out.println(response);
-        switch (commandField.getText()) {
-            case "help":
-            case "info":
-            case "history":
-                Parent root = null;
-                try {
-                    FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
-                    root = myloader.load();
-                    FXMLResultController resultController = myloader.getController();
-                    resultController.setResultLabel(response);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                showAd1();
-
-                Stage stage = new Stage();
-                stage.setTitle("Result");
-                assert root != null;
-                stage.setScene(new Scene(root));
-                stage.show();
-            default:
-                movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
-                IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
-                X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
-                Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
-                dateCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("CreationDate"));
-                coutnCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Oscars"));
-                lengthCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Length"));
-                genreCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Genre"));
-                ratingCol.setCellValueFactory(new PropertyValueFactory<Movie, MpaaRating>("MpaaRating"));
-                direcotrCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorName"));
-                birthDayCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("DirectorBirthday"));
-                heightCol.setCellValueFactory(new PropertyValueFactory<Movie, Double>("DirectorHeight"));
-                weightCol.setCellValueFactory(new PropertyValueFactory<Movie, Float>("DirectorWeight"));
-                locCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorLocationName"));
-                X2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationX"));
-                Y2Col.setCellValueFactory(new PropertyValueFactory<Movie, Long>("DirectorLocationY"));
-                Z2Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("DirectorLocationZ"));
-                userCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("user"));
-                keyCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("MovieKey"));
-
-                if (commandField.getText().equals("show")) {
-                    mainTable.getItems().clear();
-                    LoadMovies loadMovies = new LoadMovies();
-                    List<Movie> movieList = loadMovies.load(response);
-                    for (Movie movie : movieList) {
-                        mainTable.getItems().add(movie);
-                    }
-                }
-        }
-    }
-
     public void useShowCommand() {
         Client client = new Client();
         String response = client.clientOneCommand("show", currentUser.getText(), currentPassword);
@@ -176,13 +131,13 @@ public class FXMLDocumentController {
         IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
         X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
         Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("CreationDate"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("LocaleDate"));
         coutnCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Oscars"));
         lengthCol.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("Length"));
         genreCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Genre"));
         ratingCol.setCellValueFactory(new PropertyValueFactory<Movie, MpaaRating>("MpaaRating"));
         direcotrCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorName"));
-        birthDayCol.setCellValueFactory(new PropertyValueFactory<Movie, Date>("DirectorBirthday"));
+        birthDayCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("LocaleBirthday"));
         heightCol.setCellValueFactory(new PropertyValueFactory<Movie, Double>("DirectorHeight"));
         weightCol.setCellValueFactory(new PropertyValueFactory<Movie, Float>("DirectorWeight"));
         locCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("DirectorLocationName"));
@@ -201,6 +156,7 @@ public class FXMLDocumentController {
             e.printStackTrace();
         }
         for (Movie movie : movieList) {
+            movie.setLocale(lc.getLocale());
             mainTable.getItems().add(movie);
         }
     }
@@ -244,7 +200,7 @@ public class FXMLDocumentController {
             root = myloader.load();
             FXMLResultController resultController = myloader.getController();
             resultController.setResultLabel(response);
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         showAd1();
@@ -288,6 +244,38 @@ public class FXMLDocumentController {
         }
     }
 
+    public void changeLanguage(ActionEvent actionEvent) {
+        lc.setLang(langBox.getValue());
+        changeLangOfWindow();
+    }
+
+    private void changeLangOfWindow() {
+        changeUserButton.setText(LanguageController.loadLocale("changeUserButton"));
+        currUserLabel.setText(LanguageController.loadLocale("currUserLabel"));
+        movieCol.setText(LanguageController.loadLocale("movieCol"));
+        dateCol.setText(LanguageController.loadLocale("dateCol"));
+        coutnCol.setText(LanguageController.loadLocale("coutnCol"));
+        lengthCol.setText(LanguageController.loadLocale("lengthCol"));
+        genreCol.setText(LanguageController.loadLocale("genreCol"));
+        ratingCol.setText(LanguageController.loadLocale("ratingCol"));
+        direcotrCol.setText(LanguageController.loadLocale("direcotrCol"));
+        birthDayCol.setText(LanguageController.loadLocale("birthDayCol"));
+        heightCol.setText(LanguageController.loadLocale("heightCol"));
+        weightCol.setText(LanguageController.loadLocale("weightCol"));
+        locCol.setText(LanguageController.loadLocale("locCol"));
+        userCol.setText(LanguageController.loadLocale("userCol"));
+        keyCol.setText(LanguageController.loadLocale("keyCol"));
+        showCommand.setText(LanguageController.loadLocale("showCommand"));
+        clearCommand.setText(LanguageController.loadLocale("clearCommand"));
+        infoCommand.setText(LanguageController.loadLocale("infoCommand"));
+        insertCommand.setText(LanguageController.loadLocale("insertCommand"));
+        historyCommand.setText(LanguageController.loadLocale("historyCommand"));
+        helpButton.setText(LanguageController.loadLocale("helpButton"));
+        updateCommand.setText(LanguageController.loadLocale("updateCommand"));
+        removeCommand.setText(LanguageController.loadLocale("removeCommand"));
+        minByIDCommand.setText(LanguageController.loadLocale("minByIDCommand"));
+    }
+
     public void setCurrentUser(String text) {
         currentUser.setText(text);
     }
@@ -301,7 +289,7 @@ public class FXMLDocumentController {
     }
 
     public void setChangeUserButton() {
-        changeUserButton.setText("Switch account");
+        changeUserButton.setText(LanguageController.loadLocale("changeUserButton"));
     }
 
     public void setUser(String user) {
@@ -316,4 +304,15 @@ public class FXMLDocumentController {
         return currentPassword;
     }
 
+    public void enableButtons() {
+        historyCommand.setDisable(false);
+        updateCommand.setDisable(false);
+        removeCommand.setDisable(false);
+        minByIDCommand.setDisable(false);
+        showCommand.setDisable(false);
+        clearCommand.setDisable(false);
+        infoCommand.setDisable(false);
+        insertCommand.setDisable(false);
+        helpButton.setDisable(false);
+    }
 }
