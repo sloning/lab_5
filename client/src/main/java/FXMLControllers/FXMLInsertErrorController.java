@@ -29,7 +29,7 @@ public class FXMLInsertErrorController {
     }
 
     // Перевод может перезаписывать текст, записанный этой функцией
-    public void setInserErrorLabel(String text) throws UnsupportedEncodingException {
+    public void setResultLabel(String text) throws UnsupportedEncodingException {
         insertErrorLabel.setText(new String(text.getBytes("Windows-1251"), StandardCharsets.UTF_8));
     }
 }

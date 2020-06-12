@@ -239,10 +239,10 @@ public class FXMLInsertController implements IController {
         } catch (NumberFormatException e) {
             Parent root = null;
             try {
-                FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
+                FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
                 root = myloader.load();
                 FXMLInsertErrorController errorInsertController = myloader.getController();
-                errorInsertController.setInserErrorLabel("Вы не заполнили корректно все поля");
+                errorInsertController.setResultLabel("Вы не заполнили корректно все поля");
             } catch (IOException exp) {
                 exp.printStackTrace();
             }

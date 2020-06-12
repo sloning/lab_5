@@ -97,9 +97,7 @@ public class Client implements Runnable {
             byte[] inputBytes;
             inputBytes = connection.read(socket);
             if (inputBytes == null) System.out.println("ноу");
-            String answer = serializer.fromByteArray(inputBytes, String.class);
-            if (answer != null) System.out.println(answer);
-            return answer;
+            return serializer.fromByteArray(inputBytes, String.class);
         } catch (Exception e) {
             handleDisconnect();
             return "упс";
