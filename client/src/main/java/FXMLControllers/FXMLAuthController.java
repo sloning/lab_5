@@ -40,7 +40,6 @@ public class FXMLAuthController implements IController {
         inTab.setText(LanguageController.loadLocale("singInButton"));
         upTab.setText(LanguageController.loadLocale("singUpButton"));
     }
-    //TODO make method translator for errors
 
     public void singIn(ActionEvent actionEvent) {
         Auth auth = new Auth();

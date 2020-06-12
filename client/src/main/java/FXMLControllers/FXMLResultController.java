@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import lab.LanguageController;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,22 +34,27 @@ public class FXMLResultController {
         stage.close();
     }
 
-    //TODO сделать перевод инфо
     private void changeLangOfWindow() {
         resultButton.setText(LanguageController.loadLocale("helpCloseButton"));
     }
 
-    public void setResultLabel(String text) throws ParseException {
-        String regex = "Тип коллекции: LinkedHashMap\n" +
-                "Количество элементов коллекции: (\\d+)\n" +
-                "Дата создания колекции: *";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        matcher.find();
+    public void setResultLabel(String cmd, String text) throws ParseException, UnsupportedEncodingException {
+        String result;
+        if (cmd.equals("info")) {
+            String regex = "Тип коллекции: LinkedHashMap\n" +
+                    "Количество элементов коллекции: (\\d+)\n" +
+                    "Дата создания колекции: *";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(text);
+            matcher.find();
 
-        int moviesInCollection = Integer.parseInt(matcher.group(1));
+            int moviesInCollection = Integer.parseInt(matcher.group(1));
 //        Date dateOfCreation = FormattingDate(matcher.group(2));
-        Date dateOfCreation = new Date();
-        resultLabel.setText(LanguageController.resultInfo(moviesInCollection, dateOfCreation));
+            Date dateOfCreation = new Date();
+            result = LanguageController.resultInfo(moviesInCollection, dateOfCreation);
+        } else {
+            result = text;
+        }
+        resultLabel.setText(new String(result.getBytes("Windows-1251"), StandardCharsets.UTF_8));
     }
 }

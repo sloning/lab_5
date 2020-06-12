@@ -8,7 +8,7 @@ import socket_connection.Connection;
 
 import java.net.Socket;
 
-public class Auth {     //TODO запретить просмотр коллекции до авторизации??
+public class Auth {
     public static String login = "";
     public static String password;
 

@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -22,6 +21,7 @@ import lab.Client;
 import lab.LanguageController;
 import movie.Movie;
 import movie.MpaaRating;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -113,7 +113,7 @@ public class FXMLDocumentController {
     }
 
     //выводит окно входа/регистрации
-    public void changeUser(ActionEvent actionEvent) {    //TODO сделать окно закрываемым только по кнопке
+    public void changeUser(ActionEvent actionEvent) {
         Parent root = null;
         try {
             FXMLLoader myloader = new FXMLLoader(getClass().getResource("/fxml/Auth.fxml"));
@@ -140,7 +140,10 @@ public class FXMLDocumentController {
         Client client = new Client();
         String response = client.clientOneCommand("show", currentUser.getText(), currentPassword);
         System.out.println(response);
+        mainTable.setEditable(true);
+
         movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
+//        movieCol.setCellValueFactory(TextFieldTableCell.forTableColumn());
         IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
         X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
         Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
@@ -265,21 +268,24 @@ public class FXMLDocumentController {
     }
 
     public void useHistoryCommand() {
+        Client client = new Client();
+        String response = client.clientOneCommand("history", currentUser.getText(), currentPassword);
+        resultMethod("history", response);
     }
 
     public void useInfoCommand() {
         Client client = new Client();
         String response = client.clientOneCommand("info", currentUser.getText(), currentPassword);
-        resultMethod(response);
+        resultMethod("info", response);
     }
 
-    public void resultMethod(String response) {
+    public void resultMethod(String cmd, String response) {
         Parent root = null;
         try {
             FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Result.fxml")));
             root = myloader.load();
             FXMLResultController resultController = myloader.getController();
-            resultController.setResultLabel(response);
+            resultController.setResultLabel(cmd, response);
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -314,7 +320,7 @@ public class FXMLDocumentController {
     public void useMinByIDCommand() {
         Client client = new Client();
         String response = client.clientOneCommand("min_by_id", currentUser.getText(), currentPassword);
-        resultMethod(response);
+        resultMethod("minbyid", response);
     }
 
     public void showAd() {
@@ -420,4 +426,10 @@ public class FXMLDocumentController {
         insertCommand.setDisable(false);
         helpButton.setDisable(false);
     }
+
+//    public void movieColEdit(TableColumn.CellEditEvent cellEditEvent) {
+//        useInsertCommand();
+//        Movie changedMovie = mainTable.getSelectionModel().getSelectedItem();
+//        System.out.println("aaaaaaaaaa");
+//    }
 }
