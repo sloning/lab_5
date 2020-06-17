@@ -55,6 +55,7 @@ public class FXMLAuthController implements IController {
             setCurrentPassword(Hash.encryptThisString(password));
             setChangeUserButton();
             enableButtons();
+
             mainController.useShowCommand();
         } else {
             inErrorLabel.setText(response);
@@ -80,6 +81,7 @@ public class FXMLAuthController implements IController {
 
     private void enableButtons() {
         mainController.enableButtons();
+        mainController.disableUpdate();
     }
 
     private void setCurrentUser() {

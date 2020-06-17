@@ -18,9 +18,9 @@ public class Client implements Runnable {
     public static String password = null;
     public static Socket socket = null;
     private static int reconnectionAttempts = 0;
-    InputOutput inputOutput = new InputOutput();
-    Serializer serializer = new Serializer();
-    Connection connection = new Connection();
+    public InputOutput inputOutput = new InputOutput();
+    public Serializer serializer = new Serializer();
+    public Connection connection = new Connection();
 
     @Override
     public void run() {
@@ -125,7 +125,7 @@ public class Client implements Runnable {
         return false;
     }
 
-    private boolean sendMsgWithScript(Serializer serializer, Connection connection, Socket socket) {
+    public boolean sendMsgWithScript(Serializer serializer, Connection connection, Socket socket) {
         FabricOfShell fabricOfShell = new FabricOfShell();
         CollectionOfShells collectionOfShells = new CollectionOfShells();
         fabricOfShell.setShellCollection(collectionOfShells.getShellCollection());

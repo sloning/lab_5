@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="650.0"
+            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="FXMLControllers.FXMLUpdateController">
+    <children>
+        <TextField fx:id="Name" layoutX="94.0" layoutY="67.0"/>
+        <Text fx:id="insertMovieName" layoutX="94.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите название фильма" wrappingWidth="202.3999603271484">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="X" layoutX="94.0" layoutY="127.0" prefHeight="26.0" prefWidth="69.0"/>
+        <TextField fx:id="Y" layoutX="171.0" layoutY="127.0" prefHeight="26.0" prefWidth="70.0"/>
+        <TextField fx:id="oscars" layoutX="94.0" layoutY="189.0"/>
+        <TextField fx:id="length" layoutX="94.0" layoutY="254.0"/>
+        <TextField fx:id="directorName" layoutX="349.0" layoutY="67.0"/>
+        <TextField fx:id="height" layoutX="349.0" layoutY="127.0"/>
+        <TextField fx:id="weight" layoutX="349.0" layoutY="189.0"/>
+        <TextField fx:id="locationName" layoutX="349.0" layoutY="254.0"/>
+        <TextField fx:id="locX" layoutX="349.0" layoutY="324.0" prefHeight="26.0" prefWidth="70.0"/>
+        <TextField fx:id="locY" layoutX="427.0" layoutY="324.0" prefHeight="26.0" prefWidth="70.0"/>
+        <TextField fx:id="locZ" layoutX="349.0" layoutY="394.0" prefHeight="26.0" prefWidth="70.0"/>
+        <Button fx:id="insert" layoutX="586.0" layoutY="459.0" mnemonicParsing="false" onAction="#setInsert"
+                text="Update"/>
+        <Button fx:id="cancel" layoutX="506.0" layoutY="459.0" mnemonicParsing="false" onAction="#InsertClose"
+                text="Cancel"/>
+        <Text fx:id="insertCoordsMovie" layoutX="96.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите координаты фильма" wrappingWidth="187.99995117187495">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertOscars" layoutX="96.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите количество оскаров" wrappingWidth="173.5999877929687">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertLegth" layoutX="96.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите длину фильма" wrappingWidth="173.5999877929687">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertGenre" layoutX="97.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Выберете жанр фильма" wrappingWidth="166.93670654296875">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertRating" layoutX="97.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Выберете MPA рейтинг фильма" wrappingWidth="187.99995117187495">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <ComboBox fx:id="genre" layoutX="96.0" layoutY="325.0" prefWidth="150.0"/>
+        <ComboBox fx:id="MPARating" layoutX="96.0" layoutY="395.0" prefWidth="150.0"/>
+        <TextField fx:id="key" layoutX="97.0" layoutY="446.0"/>
+        <Text fx:id="insertKey" layoutX="97.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите ключ" wrappingWidth="133.153564453125">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertDirectorName" layoutX="349.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите имя директора">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertHieght" layoutX="349.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите высоту директора" wrappingWidth="148.79999999999995">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertWeight" layoutX="349.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите ширину директора" wrappingWidth="158.13671875">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertLocation" layoutX="349.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите название локации" wrappingWidth="150.39999999999998">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+        <Text fx:id="insertsLocCoords" layoutX="349.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Введите координаты локации">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Text>
+    </children>
+</AnchorPane>

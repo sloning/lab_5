@@ -1,6 +1,7 @@
 package commands;
 
 import Collection.MovieCollection;
+import Collection.SaveCollection;
 import movie.Movie;
 
 import java.io.IOException;
@@ -42,7 +43,9 @@ public class Remove_key implements ICommand {
        try {
            MovieCollection movieCollection = new MovieCollection();
            if (movieCollection.getMovie(parameter).getUser().equals(user)) {
-                movieCollection.getMovies().remove(parameter);
+               movieCollection.getMovies().remove(parameter);
+               SaveCollection saveCollection = new SaveCollection();
+               saveCollection.save();
                return "Фильм успешо удалён";
            } else {
                return "Вы не можете удалить этот фильм, поскольку он вам не принадлежит";

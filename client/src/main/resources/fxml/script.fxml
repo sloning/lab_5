@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="300.0" prefWidth="400.0"
+            style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.171"
+            fx:controller="FXMLControllers.FXMLScriptController">
+   <children>
+      <TextField fx:id="scriptField" layoutX="133.0" layoutY="152.0"/>
+      <Text layoutX="135.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter script file"
+            wrappingWidth="148.79999999999995"/>
+      <Button fx:id="scriptButton" layoutX="325.0" layoutY="259.0" mnemonicParsing="false" onAction="#useScriptButton"
+              text="Execute"/>
+      <Button fx:id="Cancel" layoutX="246.0" layoutY="258.0" mnemonicParsing="false" onAction="#removeButtonClose"
+              text="Cancel"/>
+   </children>
+</AnchorPane>

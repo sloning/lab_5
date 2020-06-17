@@ -20,7 +20,7 @@ import movie.Person;
 
 import java.io.IOException;
 
-public class FXMLInsertController implements IController {
+public class FXMLUpdateController implements IController {
 
     public Text insertMovieName;
     public Text insertCoordsMovie;
@@ -37,6 +37,8 @@ public class FXMLInsertController implements IController {
     ObservableList<String> genreList = FXCollections.observableArrayList("FANTASY", "MUSICAL", "COMEDY");
 
     ObservableList<String> MPARatingList = FXCollections.observableArrayList("G", "PG", "PG_13");
+
+    private Movie movie;
 
     @FXML
     private TextField Name;
@@ -123,7 +125,7 @@ public class FXMLInsertController implements IController {
         insertWeight.setText(LanguageController.loadLocale("insertWeight"));
         insertLocation.setText(LanguageController.loadLocale("insertLocation"));
         insertsLocCoords.setText(LanguageController.loadLocale("insertsLocCoords"));
-        insert.setText(LanguageController.loadLocale("insert"));
+        insert.setText(LanguageController.loadLocale("updateCommand"));
         cancel.setText(LanguageController.loadLocale("cancel"));
     }
 
@@ -160,7 +162,7 @@ public class FXMLInsertController implements IController {
         director.setName(this.directorName.getText());
     }
 
-    public void setDirectorHeight(Person director) throws NumberFormatException{
+    public void setDirectorHeight(Person director) throws NumberFormatException {
         double height = Double.parseDouble(this.height.getText());
         director.setHeight(height);
     }
@@ -206,6 +208,7 @@ public class FXMLInsertController implements IController {
     }
 
     public void setInsert() {
+        FXMLRemoveController.removeRow(movie.getMovieKey(), mainController.getUser(), mainController.getPassword());
         Movie movie = new Movie();
         Person director = new Person();
         Location location = new Location();
@@ -228,7 +231,14 @@ public class FXMLInsertController implements IController {
             director.setLocation(location);
             movie.setDirector(director);
 
-            sendMovie(movie);
+            shell = new Shell("insert", key.getText(), movie);
+            shell.setUser(mainController.getUser());
+            shell.setPassword(mainController.getPassword());
+
+            Client client = new Client();
+            String answer = client.clientOneCommandWithShell(shell);
+            System.out.println(answer);
+
             Stage stage = (Stage) insert.getScene().getWindow();
             mainController.useShowCommand();
             stage.close();
@@ -252,16 +262,6 @@ public class FXMLInsertController implements IController {
         }
     }
 
-    private void sendMovie(Movie movie) {
-        shell = new Shell("insert", key.getText(), movie);
-        shell.setUser(mainController.getUser());
-        shell.setPassword(mainController.getPassword());
-
-        Client client = new Client();
-        String answer = client.clientOneCommandWithShell(shell);
-        System.out.println(answer);
-    }
-
     public Shell getShell() {
         return shell;
     }
@@ -271,8 +271,34 @@ public class FXMLInsertController implements IController {
         this.mainController = mainController;
     }
 
-    public void script(Movie scriptMovie) {
-        this.scriptMovie = scriptMovie;
-        sendMovie(scriptMovie);
+    public void setFields(Movie movie) {
+        this.movie = movie;
+        Name.setText(movie.getName());
+        X.setText(String.valueOf(movie.getCoordinatesX()));
+        Y.setText(String.valueOf(movie.getCoordinatesY()));
+        oscars.setText(String.valueOf(movie.getOscars()));
+        length.setText(String.valueOf(movie.getLength()));
+        directorName.setText(movie.getDirectorName());
+        height.setText(String.valueOf(movie.getDirectorHeight()));
+        weight.setText(String.valueOf(movie.getDirectorWeight()));
+        locationName.setText(movie.getDirectorLocationName());
+        locX.setText(String.valueOf(movie.getDirectorLocationX()));
+        locY.setText(String.valueOf(movie.getDirectorLocationY()));
+        locZ.setText(String.valueOf(movie.getDirectorLocationZ()));
+        genre.setValue(movie.getGenre());
+        MPARating.setValue(movie.getMpaaRating());
+        key.setText(movie.getMovieKey());
+    }
+
+    public void script(Movie movie) {
+        this.scriptMovie = movie;
+        FXMLRemoveController.removeRow(movie.getMovieKey(), mainController.getUser(), mainController.getPassword());
+        shell = new Shell("insert", scriptMovie.getMovieKey(), scriptMovie);
+        shell.setUser(mainController.getUser());
+        shell.setPassword(mainController.getPassword());
+
+        Client client = new Client();
+        String answer = client.clientOneCommandWithShell(shell);
+        System.out.println(answer);
     }
 }

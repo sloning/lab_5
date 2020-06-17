@@ -75,7 +75,7 @@ public class InputOutput {
     public void InputFile(String nameFile) throws IOException {
         try {
             File file = new File(nameFile);
-            if (checkFile(nameFile) == 0) {
+            if (checkFile(nameFile).equals("0")) {
                 FileReader fileReader = new FileReader(file);
                 String str;
                 BufferedReader bufferedReader = new BufferedReader(fileReader);

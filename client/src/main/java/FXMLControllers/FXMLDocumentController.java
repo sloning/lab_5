@@ -1,20 +1,16 @@
 package FXMLControllers;
 
 import deserialize.LoadMovies;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -63,12 +59,17 @@ public class FXMLDocumentController {
     public Button removeCommand;
     public Button minByIDCommand;
     public Label currUserLabel;
+    public static String scriptKey;
 
     @FXML
     private AnchorPane rootPane;
-    private FXMLAuthController authController;
-    private FXMLInsertController insertController;
-
+    public static Movie scriptMovie;
+    public static boolean script = false;
+    public Button scriptButton;
+    public FXMLAuthController authController;
+    public FXMLInsertController insertController;
+    public FXMLUpdateController updateController;
+    public FXMLScriptController scriptController;
 
     //@FXML
     //private Canvas Visible;
@@ -100,10 +101,17 @@ public class FXMLDocumentController {
         infoCommand.setDisable(true);
         insertCommand.setDisable(true);
         helpButton.setDisable(true);
+        scriptButton.setDisable(true);
+
+        mainTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                updateCommand.setDisable(false);
+            }
+        });
     }
 
     //Выводит окно помощи
-    public void onClickMethod(ActionEvent actionEvent) {
+    public void onClickMethod() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/Help.fxml"));
@@ -119,7 +127,7 @@ public class FXMLDocumentController {
     }
 
     //выводит окно входа/регистрации
-    public void changeUser(ActionEvent actionEvent) {
+    public void changeUser() {
         Parent root = null;
         try {
             FXMLLoader myloader = new FXMLLoader(getClass().getResource("/fxml/Auth.fxml"));
@@ -149,7 +157,6 @@ public class FXMLDocumentController {
         rootPane.getChildren().clear();
 
         movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
-//        movieCol.setCellValueFactory(TextFieldTableCell.forTableColumn());
         IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
         X1Col.setCellValueFactory(new PropertyValueFactory<Movie, Integer>("CoordinatesX"));
         Y1Col.setCellValueFactory(new PropertyValueFactory<Movie, Float>("CoordinatesY"));
@@ -279,6 +286,11 @@ public class FXMLDocumentController {
         stage.setScene(new Scene(root, 650, 500));
         stage.show();
 
+        if (script) {
+            insertController.script(scriptMovie);
+            script = false;
+        }
+
         useShowCommand();
     }
 
@@ -292,12 +304,17 @@ public class FXMLDocumentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         setMainController(removeController);
         Stage stage = new Stage();
         stage.setTitle("Remove");
         assert root != null;
         stage.setScene(new Scene(root));
         stage.show();
+        if (script) {
+            removeController.script(scriptKey);
+            script = false;
+        }
     }
 
     public void useClearCommand() {
@@ -396,9 +413,10 @@ public class FXMLDocumentController {
         }
     }
 
-    public void changeLanguage(ActionEvent actionEvent) {
+    public void changeLanguage() {
         lc.setLang(langBox.getValue());
         changeLangOfWindow();
+        useShowCommand();
     }
 
     private void changeLangOfWindow() {
@@ -426,6 +444,7 @@ public class FXMLDocumentController {
         updateCommand.setText(LanguageController.loadLocale("updateCommand"));
         removeCommand.setText(LanguageController.loadLocale("removeCommand"));
         minByIDCommand.setText(LanguageController.loadLocale("minByIDCommand"));
+        scriptButton.setText(LanguageController.loadLocale("scriptButton"));
     }
 
     public void setCurrentUser(String text) {
@@ -458,7 +477,6 @@ public class FXMLDocumentController {
 
     public void enableButtons() {
         historyCommand.setDisable(false);
-        updateCommand.setDisable(false);
         removeCommand.setDisable(false);
         minByIDCommand.setDisable(false);
         showCommand.setDisable(false);
@@ -466,11 +484,65 @@ public class FXMLDocumentController {
         infoCommand.setDisable(false);
         insertCommand.setDisable(false);
         helpButton.setDisable(false);
+        scriptButton.setDisable(false);
     }
 
-//    public void movieColEdit(TableColumn.CellEditEvent cellEditEvent) {
-//        useInsertCommand();
-//        Movie changedMovie = mainTable.getSelectionModel().getSelectedItem();
-//        System.out.println("aaaaaaaaaa");
-//    }
+    public void useUpdateCommand() {
+        Parent root = null;
+        try {
+            FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Update.fxml")));
+            root = myloader.load();
+            updateController = myloader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setMainController(updateController);
+
+        Movie selectedMovie = mainTable.getSelectionModel().getSelectedItem();
+        if (selectedMovie == null) {
+            disableUpdate();
+            return;
+        }
+        updateController.setFields(selectedMovie);
+
+        Stage stage = new Stage();
+        stage.setTitle("Update");
+        assert root != null;
+        stage.setScene(new Scene(root, 650, 500));
+        stage.show();
+
+        if (script) {
+            updateController.script(scriptMovie);
+            script = false;
+        }
+
+        useShowCommand();
+    }
+
+    public void disableUpdate() {
+        updateCommand.setDisable(true);
+    }
+
+    public void useScript() throws IOException, ParseException {
+        Parent root = null;
+        try {
+            FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/script.fxml")));
+            root = myloader.load();
+            scriptController = myloader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setMainController(scriptController);
+
+        Stage stage = new Stage();
+        stage.setTitle("Script executor");
+        assert root != null;
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        if (script) {
+            scriptController.script(scriptKey);
+            script = false;
+        }
+    }
 }
