@@ -6,6 +6,8 @@ import movie.Movie;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class DBLoader {
     public DBLoader(){
@@ -30,7 +32,11 @@ public class DBLoader {
                 movie.setOscarsCount(resultMoviesSet.getInt("oscars"));
                 movie.setGenre(resultMoviesSet.getString("movie_genre"));
                 movie.setMpaaRating(resultMoviesSet.getString("movie_rating"));
-                movie.setCreationDate(resultMoviesSet.getDate("date_of_creation"));
+                Timestamp timestamp = resultMoviesSet.getTimestamp("date_of_creation");
+                Date date = new Date();
+                if (timestamp != null)
+                    date = new java.util.Date(timestamp.getTime());
+                movie.setCreationDate(date);
                 String directorId = resultMoviesSet.getString("director");
                 String coordsId = resultMoviesSet.getString("movie_coords");
                 String user = resultMoviesSet.getString("usernames");
@@ -50,12 +56,14 @@ public class DBLoader {
                 String directorName = null;
                 double directorHeight = 0;
                 float directorWeight = 0;
+                Date birthDate = new Date();
 
                 while (resultDirectorSet.next()) {
                     locationId = resultDirectorSet.getString("location");
                     directorName = resultDirectorSet.getString("director_name");
                     directorHeight = resultDirectorSet.getDouble("height");
                     directorWeight = resultDirectorSet.getFloat("weight");
+                    birthDate = resultDirectorSet.getDate("birthday");
                 }
 
                 ResultSet resultLocationSet = statement.executeQuery("select * from locations where location_id = '" + locationId + "'");
@@ -71,7 +79,7 @@ public class DBLoader {
                     locationY = resultLocationSet.getLong("y");
                     locationZ = resultLocationSet.getInt("z");
                 }
-                movie.setDirectorWithLocation(directorName, directorHeight, directorWeight, locationName, locationX, locationY, locationZ);
+                movie.setDirectorWithLocationAndDate(directorName, directorHeight, directorWeight, locationName, locationX, locationY, locationZ, birthDate);
 
                 movieCollection.putMovie(key, movie);
             }

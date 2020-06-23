@@ -6,9 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ClientMain extends Application {
+    private static Thread clientThread;
     public static void main(String[] args) {
-        Thread clientThread = new Thread(new Client());
-        clientThread.start();   //TODO закрывать этот поток вместе с ui
+        clientThread = new Thread(new Client());
+        clientThread.start();
         launch(args);
     }
 
@@ -17,6 +18,11 @@ public class ClientMain extends Application {
         primaryStage.setTitle("neKinopoisk");
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/fxml/FXMLDocument.fxml"))));
         primaryStage.show();
+    }
 
+    @Override
+    public void stop() {
+        clientThread.interrupt();
+        System.exit(0);
     }
 }

@@ -48,7 +48,7 @@ public class Movie implements Serializable {
     }
 
     public String getLocaleDate() {
-        DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
         return df.format(creationDate);
     }
 
@@ -103,9 +103,9 @@ public class Movie implements Serializable {
         director = new Person(name, height, weight, location);
     }
 
-    public void setDirectorWithLocation(String name, Double height, Float weight, String locationName, int x, long y, int z) {
+    public void setDirectorWithLocationAndDate(String name, Double height, Float weight, String locationName, int x, long y, int z, Date date) {
         Location location = new Location(locationName, x, y, z);
-        director = new Person(name, height, weight, location);
+        director = new Person(name, height, weight, location, date);
     }
 
 

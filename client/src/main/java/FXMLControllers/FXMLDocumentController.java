@@ -1,30 +1,24 @@
 package FXMLControllers;
 
 import deserialize.LoadMovies;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import lab.Client;
 import lab.LanguageController;
+import lab.Updater;
 import movie.Movie;
 import movie.MpaaRating;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.Random;
 
 public class FXMLDocumentController {
     @FXML
@@ -60,9 +54,9 @@ public class FXMLDocumentController {
     public Button minByIDCommand;
     public Label currUserLabel;
     public static String scriptKey;
+    public Button visualizationButton;
 
     @FXML
-    private AnchorPane rootPane;
     public static Movie scriptMovie;
     public static boolean script = false;
     public Button scriptButton;
@@ -70,9 +64,11 @@ public class FXMLDocumentController {
     public FXMLInsertController insertController;
     public FXMLUpdateController updateController;
     public FXMLScriptController scriptController;
-
-    //@FXML
-    //private Canvas Visible;
+    public VisualisationController visualizationController;
+    public List<Movie> movieList;
+    boolean signedIn = false;
+    boolean callForLangChange = false;
+    private String response = "";
 
     @FXML
     private Button showCommand;
@@ -102,6 +98,7 @@ public class FXMLDocumentController {
         insertCommand.setDisable(true);
         helpButton.setDisable(true);
         scriptButton.setDisable(true);
+        visualizationButton.setDisable(true);
 
         mainTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -151,10 +148,14 @@ public class FXMLDocumentController {
 
     public void useShowCommand() {
         Client client = new Client();
-        String response = client.clientOneCommand("show", currentUser.getText(), currentPassword);
+        String response1 = client.clientOneCommand("show", currentUser.getText(), currentPassword);
+        if (response.equals(response1)) {
+            return;
+        } else {
+            response = response1;
+        }
         System.out.println(response);
         mainTable.setEditable(true);
-        rootPane.getChildren().clear();
 
         movieCol.setCellValueFactory(new PropertyValueFactory<Movie, String>("Name"));
         IDCol.setCellValueFactory(new PropertyValueFactory<Movie, Long>("Id"));
@@ -178,7 +179,6 @@ public class FXMLDocumentController {
 
         mainTable.getItems().clear();
         LoadMovies loadMovies = new LoadMovies();
-        List<Movie> movieList = null;
         try {
             movieList = loadMovies.load(response);
         } catch (ParseException e) {
@@ -187,86 +187,11 @@ public class FXMLDocumentController {
         for (Movie movie : movieList) {
             movie.setLocale(lc.getLocale());
             mainTable.getItems().add(movie);
-            Color[] mColors = {
-                    Color.BLUE, // light blue
-                    Color.DARKBLUE, // dark blue
-                    Color.RED, // red
-                    Color.ORANGE, // orange
-                    Color.LAVENDER, // lavender
-                    Color.PURPLE, // purple
-                    Color.AQUA, // aqua
-                    Color.GREEN, // green
-                    Color.DARKGREY, // dark gray
-                    Color.PINK, // pink
-                    Color.LIGHTGREY  // light gray
-            };
-
-            // Randomly select a fact
-            Random randomGenerator = new Random(); // Construct a new Random number generator
-            int randomNumber1 = randomGenerator.nextInt(mColors.length);
-            int randomNumber2 = randomGenerator.nextInt(mColors.length);
-
-
-            Color colorFill = mColors[randomNumber1];
-            Color colorStroke = mColors[randomNumber2];
-            //context.setFill(colorFill);
-           //context.setStroke(colorStroke);
-
-            Rectangle rectangle = new Rectangle(movie.getCoordinatesX(), movie.getCoordinatesY(), movie.getCoordinatesY(), movie.getCoordinatesX());
-            rectangle.setFill(colorFill);
-            rectangle.setStroke(colorStroke);
-            rectangle.setOnMousePressed(new EventHandler<MouseEvent>()
-            {
-                @Override
-                public void handle(MouseEvent t) {
-                    Parent root = null;
-                    try {
-                        FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
-                        root = myloader.load();
-                        FXMLInsertErrorController errorInsertController = myloader.getController();
-                        errorInsertController.setResultLabel(movie.getInfoAboutMovie());
-                    } catch (IOException exp) {
-                        exp.printStackTrace();
-                    }
-
-                    Stage stage = new Stage();
-                    stage.setTitle("movie");
-                    assert root != null;
-                    stage.setScene(new Scene(root, 650, 500));
-                    stage.show();
-                }
-            });
-
-            Label label = new Label(movie.getName());
-
-            Ellipse ellipse = new Ellipse(movie.getDirectorLocationX(), movie.getDirectorLocationY());
-            ellipse.setFill(colorFill);
-            ellipse.setStroke(colorStroke);
-            ellipse.setOnMousePressed(new EventHandler<MouseEvent>()
-            {
-                @Override
-                public void handle(MouseEvent t) {
-                    Parent root = null;
-                    try {
-                        FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/InsertError.fxml")));
-                        root = myloader.load();
-                        FXMLInsertErrorController errorInsertController = myloader.getController();
-                        errorInsertController.setResultLabel(movie.getInfoAboutDirector());
-                    } catch (IOException exp) {
-                        exp.printStackTrace();
-                    }
-
-                    Stage stage = new Stage();
-                    stage.setTitle("movie");
-                    assert root != null;
-                    stage.setScene(new Scene(root, 650, 500));
-                    stage.show();
-                }
-            });
-
-            rootPane.getChildren().addAll(rectangle, ellipse);
         }
-
+        if (visualizationController != null) {
+            visualizationController.setMovies(movieList);
+            visualizationController.showVisual();
+        }
     }
 
     public void useInsertCommand() {
@@ -416,7 +341,7 @@ public class FXMLDocumentController {
     public void changeLanguage() {
         lc.setLang(langBox.getValue());
         changeLangOfWindow();
-        useShowCommand();
+        updateCols();
     }
 
     private void changeLangOfWindow() {
@@ -445,6 +370,7 @@ public class FXMLDocumentController {
         removeCommand.setText(LanguageController.loadLocale("removeCommand"));
         minByIDCommand.setText(LanguageController.loadLocale("minByIDCommand"));
         scriptButton.setText(LanguageController.loadLocale("scriptButton"));
+        visualizationButton.setText(LanguageController.loadLocale("visualizationButton"));
     }
 
     public void setCurrentUser(String text) {
@@ -485,6 +411,7 @@ public class FXMLDocumentController {
         insertCommand.setDisable(false);
         helpButton.setDisable(false);
         scriptButton.setDisable(false);
+        visualizationButton.setDisable(false);
     }
 
     public void useUpdateCommand() {
@@ -543,6 +470,41 @@ public class FXMLDocumentController {
         if (script) {
             scriptController.script(scriptKey);
             script = false;
+        }
+    }
+
+    public void showVisualization() {
+        Parent root = null;
+        try {
+            FXMLLoader myloader = new FXMLLoader((getClass().getResource("/fxml/Visualisation.fxml")));
+            root = myloader.load();
+            visualizationController = myloader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setMainController(visualizationController);
+        visualizationController.setMovies(movieList);
+        visualizationController.showVisual();
+
+        Stage stage = new Stage();
+        stage.setTitle("Visualization");
+        assert root != null;
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void startUpdaterThread() {
+        if (!signedIn) {
+            new Thread(new Updater(this, user)).start();
+            signedIn = true;
+        }
+    }
+
+    public void updateCols() {
+        mainTable.getItems().clear();
+        for (Movie movie : movieList) {
+            movie.setLocale(lc.getLocale());
+            mainTable.getItems().add(movie);
         }
     }
 }

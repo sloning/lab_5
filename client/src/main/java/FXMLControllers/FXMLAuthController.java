@@ -57,6 +57,7 @@ public class FXMLAuthController implements IController {
             enableButtons();
 
             mainController.useShowCommand();
+            mainController.startUpdaterThread();
         } else {
             inErrorLabel.setText(response);
         }

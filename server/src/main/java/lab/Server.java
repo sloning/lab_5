@@ -89,6 +89,12 @@ public class Server {
         SocketChannel client = socket.accept();
         client.configureBlocking(false);
 
+//        client.register(selector, SelectionKey.OP_WRITE);
+//        Serializer serializer = new Serializer();
+//        System.out.println("Sending...");
+//        connection.write(serializer.toByteArray("Hi!"), client);
+//        System.out.println("Sent!");
+
         client.register(selector, SelectionKey.OP_READ);
     }
 }
